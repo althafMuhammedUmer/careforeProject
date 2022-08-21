@@ -1,0 +1,95 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="{% static 'userRegistration/fonts/material-icon/css/material-design-iconic-font.min.css' %}">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="{% static 'userRegistration/css/style.css' %}">
+</head>
+<body class="img-fluid" style="background-size:100-vh; background-image: url('{% static 'userRegistration/images/signup2.jpg' %}');">
+    {% comment %} style="background-image: url('{% static 'userRegistration/images/signup1.jpg' %}'); {% endcomment %}
+
+    <div class="container-fluid"  >
+
+        <section class=" container">
+            
+            
+                <div class="signup-content ">
+
+                    {% include 'includes/alert.html' %}
+                    {{ form.email.errors}}
+                    {{form.non_field_errors}}
+
+                   
+                   
+                    <h2 class="form-title">Create account</h2>
+                    <form action="{% url 'register' %}" method="POST" id="signup-form" >
+                        {% csrf_token %}
+                        
+
+                        
+                        <div class="form-row">
+                            <div class=" form-group">
+                                  
+                                <input class="form-input"   {{form.first_name}}  </input>
+                                
+                            </div>
+                            <div class=" form-group">
+                                
+                                <input class="form-input"  {{form.last_name}} </input>
+                            </div>
+                          
+                            <div class="form-group">
+                               
+                               
+                                <input class="form-input"  {{form.email}} </input>
+                            </div>
+                            <div class=" form-group">
+                                  
+                                <input class="form-input"   {{form.phone_number}} </input>
+                                
+                            </div>
+                            <div class=" form-group">
+                                <input class="form-input" id="password" {{form.password}} </input>
+                                <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
+                            </div>
+                            <div class=" form-group">
+                                <input class="form-input" id="password" {{form.confirm_password}} </input>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" name="submit" id="submit" class="form-submit" value="Sign up"/>
+                            </div>
+                        </div>
+                       
+                    </form>
+                    <div>
+                    <p>
+                        Have already an account ? <a href="{% url 'login' %}" class="loginhere-link">Login here</a>
+                    </p>
+                </div>
+                
+            </div>
+        </section>
+
+    </div>
+
+    <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="{% static 'userRegistration/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'userRegistration/js/main.js' %}"></script>
+    <!--new added-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>

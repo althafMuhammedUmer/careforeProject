@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'base/basehome.html' %}
 
 {% load static %}
 {% block content %}
@@ -39,14 +39,28 @@
 	
 	<div class="limiter " style="background-image: url('{% static 'userLogin/images/loginbg.jpg' %}');">
         
-		<div class="container-login100" >
+		<div class="container-login100 section-content" >
+            {% if request.GET.command == 'verification' %}
+            <div class="container-fluid  ">
+            <div class="container mx-auto alert alert-info text-dark " role="alert" style="max-width:1080px; margin-top: 100px;">
+                Thankyou for registering with us. We have send you a verification email to your email address[{{request.GET.email}}]
+                <br><br>
+                Already verified? <a href="{% url 'login' %}">Click here for Login </a>
+            </div>
+            </div>
+
+            {% else %}
             
             
             <div class="wrap-login100 p-t-30 p-b-50">
                 <span class="login100-form-title p-b-41">
                     Account Login
                 </span>
+               
+                <div style="color:white" >
                 {% include 'includes/alert.html' %}
+                </div>
+               
                 <form action="{% url 'login' %}" method="POST" class="login100-form validate-form p-b-33 p-t-5">
                     {% csrf_token %}
 
@@ -71,8 +85,8 @@
                 <div class="container">
                     <p style ="color:white";>
                         Not having an account ?
-                        <div class="d-flex justify-content-center">
-                            <a href="{% url 'register' %}" class="register-link " >
+                        <div class="">
+                            <a href="{% url 'register' %}" >
                                 <button type="button" class=" btn btn-warning mask"  >register</button>
                             </a>
                         </div>
@@ -83,9 +97,12 @@
         
 		</div>
 	</div>
+    {% endif %}
 	
 
 	<div id="dropDownSelect1"></div>
+
+
 	
 <!--===============================================================================================-->
 	<script src="{% static 'userLogin/vendor/jquery/jquery-3.2.1.min.js' %}"></script>

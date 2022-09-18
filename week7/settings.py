@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import os
 
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -32,6 +34,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,7 +45,10 @@ INSTALLED_APPS = [
     'category',
     'Accounts',
     'store',
-    'crispy_forms',
+    'myadmin',
+   
+    
+    
 ]
 
 MIDDLEWARE = [
@@ -68,6 +74,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'Grocery.context_processors.counter',
             ],
         },
     },
@@ -84,7 +91,7 @@ AUTH_USER_MODEL = 'Accounts.Account'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'grocery',
+        'NAME': 'carefore',
         'USER': 'postgres',
         'PASSWORD': '1234',
         'HOST': 'localhost',
@@ -143,15 +150,21 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 from django.contrib.messages import constants as messages
 MESSAGE_TAGS = {
-    messages.INFO: '',
+    messages.ERROR: 'danger',
     
 }
 
 #SMTP Configuration
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'althafav7@gmail.com'
-EMAIL_HOST_PASSWORD = '9567638807'
-EMAIL_USE_TLS = 'True'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = 'althafav7@gmail.com'
+# EMAIL_HOST_PASSWORD = 'qiea nnvt daue gidr'
+# EMAIL_USE_TLS = True
+
+#otp twilio
+
+ACCOUNT_SID= "AC22aa104c73a983362633617fcb3beabf"
+AUTH_TOKEN = "dc0b2a6e20bb97b9ff3a1c44cb205bdc"
+SERVICES_ID = "VAccec68e6a2bdc44e4072935708766b67"
 
 

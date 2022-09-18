@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Ogani Template">
+    <meta name="keywords" content="Ogani, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>
+        {% block title %} 
+        {% endblock title %}
+
+    </title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="{% static 'Home_page/css/bootstrap.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'Home_page/css/font-awesome.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'Home_page/css/elegant-icons.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'Home_page/css/nice-select.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'Home_page/css/jquery-ui.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'Home_page/css/owl.carousel.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'Home_page/css/slicknav.min.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'Home_page/css/style.css' %}" type="text/css">
+    
+
+    
+</head>
+ <body>
+    
+
+    <!-- navbar-->
+
+
+{% block content %}
+
+<!--content-->
+
+{% endblock %}
+
+<!--footer-->
+
+<!--my js for cart-->
+{% comment %} <script type="text/javascript" src="{% static 'cart/js/cart.js' %} "></script> {% endcomment %}
+
+    
+  <!-- Js Plugins -->
+  <script src="{% static 'Home_page/js/jquery-3.3.1.min.js' %}"></script>
+  <script src="{% static 'Home_page/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'Home_page/js/jquery.nice-select.min.js' %}"></script>
+  <script src="{% static 'Home_page/js/jquery-ui.min.js' %}"></script>
+  <script src="{% static 'Home_page/js/jquery.slicknav.js' %}"></script>
+  <script src="{% static 'Home_page/js/mixitup.min.js' %}"></script>
+  <script src="{% static 'Home_page/js/owl.carousel.min.js' %}"></script>
+  <script src="{% static 'Home_page/js/main.js' %}"></script>
+
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>   
+</body>
+</html>
+
+
+
+

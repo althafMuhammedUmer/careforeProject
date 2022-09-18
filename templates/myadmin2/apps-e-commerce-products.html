@@ -1,0 +1,589 @@
+{% extends 'myadmin2/baseAdmin2/base.html' %}
+{% load static %}
+{% block title %}
+Product
+{% endblock title %}
+{% block content %}
+
+<body class="layout layout-vertical layout-left-navigation layout-above-toolbar">
+    <main>
+        {% include 'myadmin2/baseAdmin2/basenav.html' %}
+        <div id="wrapper">
+            <aside id="aside" class="aside aside-left" data-fuse-bar="aside" data-fuse-bar-media-step="md" data-fuse-bar-position="left">
+                <div class="aside-content-wrapper">
+
+                    <div class="aside-content bg-primary-700 text-auto">
+
+                        <div class="aside-toolbar">
+
+                            <div class="logo">
+                                <span class="logo-icon">F</span>
+                                <span class="logo-text">FUSE</span>
+                            </div>
+
+                            <button id="toggle-fold-aside-button" type="button" class="btn btn-icon d-none d-lg-block" data-fuse-aside-toggle-fold>
+                                <i class="icon icon-backburger"></i>
+                            </button>
+
+                        </div>
+
+                        <ul class="nav flex-column custom-scrollbar" id="sidenav" data-children=".nav-item">
+
+                            <li class="subheader">
+                                <span>APPS</span>
+                            </li>
+
+                            <li class="nav-item" role="tab" id="heading-dashboards">
+
+                                <a class="nav-link ripple with-arrow collapsed" data-toggle="collapse" data-target="#collapse-dashboards" href="#" aria-expanded="false" aria-controls="collapse-dashboards">
+
+                                    <i class="icon s-4 icon-tile-four"></i>
+
+                                    <span>Dashboards</span>
+                                </a>
+                                <ul id="collapse-dashboards" class='collapse ' role="tabpanel" aria-labelledby="heading-dashboards" data-children=".nav-item">
+
+                                    <li class="nav-item">
+                                        <a class="nav-link ripple " href=" {% url 'myadmin2' %} " data-url="apps-e-commerce-products.html">
+
+                                            <span>Project Dashboard</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link ripple " href="apps-dashboards-server.html" data-url="index.html">
+
+                                            <span>Server</span>
+                                        </a>
+                                    </li>
+
+                                   
+
+                                </ul>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link ripple " href="apps-calendar.html" data-url="apps-e-commerce-products.html">
+
+                                    <i class="icon s-4 icon-calendar-today"></i>
+
+                                    <span>Calendar</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item" role="tab" id="heading-ecommerce">
+
+                                <a class="nav-link ripple with-arrow " data-toggle="collapse" data-target="#collapse-ecommerce" href="#" aria-expanded="true" aria-controls="collapse-ecommerce">
+
+                                    <i class="icon s-4 icon-cart"></i>
+
+                                    <span>Ecommerce</span>
+                                </a>
+                                <ul id="collapse-ecommerce" class='collapse show' role="tabpanel" aria-labelledby="heading-ecommerce" data-children=".nav-item">
+
+                                    <li class="nav-item">
+                                        <a class="nav-link ripple active" href="apps-e-commerce-products.html" data-url="apps-e-commerce-products.html">
+
+                                            <span>Products</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link ripple " href=" {% url 'userdata' %} " data-url="apps-e-commerce-products.html">
+
+                                            <span>Users</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link ripple " href=" {% url 'category_list' %} " data-url="apps-e-commerce-product.html">
+
+                                            <span>Category</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link ripple " href="apps-e-commerce-orders.html" data-url="apps-e-commerce-products.html">
+
+                                            <span>Orders</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item ">
+                                        <a class="nav-link ripple " href=" {% url 'index' %} " >
+                                            
+                                            <span>Shopping Website View</span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link ripple " href="apps-mail.html" data-url="apps-e-commerce-products.html">
+
+                                    <i class="icon s-4 icon-email"></i>
+
+                                    <span>Mail</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link ripple " href="apps-chat.html" data-url="apps-e-commerce-products.html">
+
+                                    <i class="icon s-4 icon-hangouts"></i>
+
+                                    <span>Chat</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link ripple " href="apps-file-manager.html" data-url="apps-e-commerce-products.html">
+
+                                    <i class="icon s-4 icon-folder"></i>
+
+                                    <span>File Manager</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link ripple " href="apps-contacts.html" data-url="apps-e-commerce-products.html">
+
+                                    <i class="icon s-4 icon-account-box"></i>
+
+                                    <span>Contacts</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link ripple " href="apps-todo.html" data-url="apps-e-commerce-products.html">
+
+                                    <i class="icon s-4 icon-checkbox-marked"></i>
+
+                                    <span>To-Do</span>
+                                </a>
+                            </li>
+
+                            <li class="subheader">
+                                <span>PAGES</span>
+                            </li>
+
+                            <li class="nav-item" role="tab" id="heading-authentication">
+
+                                <a class="nav-link ripple with-arrow collapsed" data-toggle="collapse" data-target="#collapse-authentication" href="#" aria-expanded="false" aria-controls="collapse-authentication">
+
+                                    <i class="icon s-4 icon-lock"></i>
+
+                                    <span>Authentication</span>
+                                </a>
+                                <ul id="collapse-authentication" class='collapse ' role="tabpanel" aria-labelledby="heading-authentication" data-children=".nav-item">
+
+                                    <li class="nav-item">
+                                        <a class="nav-link ripple " href="pages-auth-login.html" data-url="apps-e-commerce-products.html">
+
+                                            <span>Login</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link ripple " href="pages-auth-login-v2.html" data-url="apps-e-commerce-products.html">
+
+                                            <span>Login v2</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link ripple " href="pages-auth-register.html" data-url="apps-e-commerce-products.html">
+
+                                            <span>Register</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link ripple " href="pages-auth-register-v2.html" data-url="apps-e-commerce-products.html">
+
+                                            <span>Register v2</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link ripple " href="pages-auth-forgot-password.html" data-url="apps-e-commerce-products.html">
+
+                                            <span>Forgot Password</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link ripple " href="pages-auth-reset-password.html" data-url="apps-e-commerce-products.html">
+
+                                            <span>Reset Password</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link ripple " href="pages-auth-lock-screen.html" data-url="apps-e-commerce-products.html">
+
+                                            <span>Lock Screen</span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link ripple " href="pages-coming-soon.html" data-url="apps-e-commerce-products.html">
+
+                                    <i class="icon s-4 icon-alarm-check"></i>
+
+                                    <span>Coming Soon</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item" role="tab" id="heading-errors">
+
+                                <a class="nav-link ripple with-arrow collapsed" data-toggle="collapse" data-target="#collapse-errors" href="#" aria-expanded="false" aria-controls="collapse-errors">
+
+                                    <i class="icon s-4 icon-alert"></i>
+
+                                    <span>Errors</span>
+                                </a>
+                                <ul id="collapse-errors" class='collapse ' role="tabpanel" aria-labelledby="heading-errors" data-children=".nav-item">
+
+                                    <li class="nav-item">
+                                        <a class="nav-link ripple " href="pages-errors-404.html" data-url="apps-e-commerce-products.html">
+
+                                            <span>404</span>
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link ripple " href="pages-errors-500.html" data-url="apps-e-commerce-products.html">
+
+                                            <span>500</span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link ripple " href="pages-maintenance.html" data-url="apps-e-commerce-products.html">
+
+                                    <i class="icon s-4 icon-oil"></i>
+
+                                    <span>Maintenance</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link ripple " href="pages-profile.html" data-url="apps-e-commerce-products.html">
+
+                                    <i class="icon s-4 icon-account"></i>
+
+                                    <span>Profile</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link ripple " href="pages-search.html" data-url="apps-e-commerce-products.html">
+
+                                    <i class="icon s-4 icon-magnify"></i>
+
+                                    <span>Search</span>
+                                </a>
+                            </li>
+
+                            
+                        </ul>
+                    </div>
+                </div>
+            </aside>
+            <div class="content-wrapper">
+                <div class="content custom-scrollbar">
+
+                    <div id="e-commerce-products" class="page-layout carded full-width">
+
+                        <div class="top-bg bg-secondary"></div>
+
+                        <!-- CONTENT -->
+                        <div class="page-content-wrapper">
+
+                            <!-- HEADER -->
+                            <div class="page-header light-fg row no-gutters align-items-center justify-content-between">
+
+                                <!-- APP TITLE -->
+                                <div class="col-12 col-sm">
+
+                                    <div class="logo row no-gutters justify-content-center align-items-start justify-content-sm-start">
+                                        <div class="logo-icon mr-3 mt-1">
+                                            <i class="icon-cube-outline s-6"></i>
+                                        </div>
+                                        <div class="logo-text">
+                                            <div class="h4">Products</div>
+                                            <div class="">Total Products: 20</div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- / APP TITLE -->
+
+                                <!-- SEARCH -->
+                                <div class="col search-wrapper px-2">
+
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-icon">
+                                                <i class="icon icon-magnify"></i>
+                                            </button>
+                                        </span>
+                                        <input id="products-search-input" type="text" class="form-control" placeholder="Search" aria-label="Search" />
+                                    </div>
+
+                                </div>
+                                <!-- / SEARCH -->
+
+                                <div class="col-auto">
+                                    <a href=" {% url 'add_product' %} " class="btn btn-light">ADD NEW PRODUCT</a>
+                                </div>
+
+                            </div>
+                            <!-- / HEADER -->
+
+                            <div class="page-content-card">
+
+                                <table id="e-commerce-products-table" class="table dataTable">
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <div class="table-header">
+                                                    <span class="column-title">ID</span>
+                                                </div>
+                                            </th>
+
+                                            <th>
+                                                <div class="table-header">
+                                                    <span class="column-title">Image</span>
+                                                </div>
+                                            </th>
+
+                                            <th>
+                                                <div class="table-header">
+                                                    <span class="column-title">Name</span>
+                                                </div>
+                                            </th>
+
+                                            <th>
+                                                <div class="table-header">
+                                                    <span class="column-title">Category</span>
+                                                </div>
+                                            </th>
+
+                                            <th>
+                                                <div class="table-header">
+                                                    <span class="column-title">Price</span>
+                                                </div>
+                                            </th>
+
+                                            <th>
+                                                <div class="table-header">
+                                                    <span class="column-title">Stock</span>
+                                                </div>
+                                            </th>
+
+                                            <th>
+                                                <div class="table-header">
+                                                    <span class="column-title">Active</span>
+                                                </div>
+                                            </th>
+
+                                            <th>
+                                                <div class="table-header">
+                                                    <span class="column-title">Actions</span>
+                                                </div>
+                                            </th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        {% for product in products %}
+                                        <tr>
+                                           <td>{{product.id}}</td>
+                                            <td>
+                                                <img class="product-image" src="{{product.images.url}}">
+                                            </td>
+                                            <td>{{ product.product_name}}</td>
+                                            
+                                            <td>{{product.Category}}</td>
+                                            
+                                            <td>{{ product.price}}</td>
+                                            <td>{{ product.stock}}</td>
+                                            <td>true</td>
+                                            
+                                               
+                                           
+                                            <td>
+                                                <a href=" {% url 'delete_product' product.id %} " type="button" class="btn btn-icon" aria-label="Product details">
+                                                    <i class="icon-delete-forever"></i>
+                                                </a>
+                                                <a href=" {% url 'update_product' product.id %} " type="button" class="btn btn-icon" aria-label="Product details">
+                                                    <i class="icon icon-pencil s-4"></i>
+                                                </a>
+                                                <a href="#" type="button" class="btn btn-icon" aria-label="Product details">
+                                                    <i class="icon-eye"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <!-- / CONTENT -->
+                    </div>
+
+                    <script type="text/javascript" src="{% static 'myadmin2/assets/js/apps/e-commerce/products/products.js' %}"></script>
+
+                </div>
+            </div>
+            <div class="quick-panel-sidebar custom-scrollbar" fuse-cloak data-fuse-bar="quick-panel-sidebar" data-fuse-bar-position="right">
+                <div class="list-group" class="date">
+
+                    <div class="list-group-item subheader">TODAY</div>
+
+                    <div class="list-group-item two-line">
+
+                        <div class="text-muted">
+
+                            <div class="h1"> Saturday</div>
+
+                            <div class="h2 row no-gutters align-items-start">
+                                <span> 1</span>
+                                <span class="h6">th</span>
+                                <span> Jan</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="list-group">
+
+                    <div class="list-group-item subheader">Events</div>
+
+                    <div class="list-group-item two-line">
+
+                        <div class="list-item-content">
+                            <h3>Group Meeting</h3>
+                            <p>In 32 Minutes, Room 1B</p>
+                        </div>
+                    </div>
+
+                    <div class="list-group-item two-line">
+
+                        <div class="list-item-content">
+                            <h3>Public Beta Release</h3>
+                            <p>11:00 PM</p>
+                        </div>
+                    </div>
+
+                    <div class="list-group-item two-line">
+
+                        <div class="list-item-content">
+                            <h3>Dinner with David</h3>
+                            <p>17:30 PM</p>
+                        </div>
+                    </div>
+
+                    <div class="list-group-item two-line">
+
+                        <div class="list-item-content">
+                            <h3>Q&amp;A Session</h3>
+                            <p>20:30 PM</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="list-group">
+
+                    <div class="list-group-item subheader">Notes</div>
+
+                    <div class="list-group-item two-line">
+
+                        <div class="list-item-content">
+                            <h3>Best songs to listen while working</h3>
+                            <p>Last edit: May 8th, 2015</p>
+                        </div>
+                    </div>
+
+                    <div class="list-group-item two-line">
+
+                        <div class="list-item-content">
+                            <h3>Useful subreddits</h3>
+                            <p>Last edit: January 12th, 2015</p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="list-group">
+
+                    <div class="list-group-item subheader">Quick Settings</div>
+
+                    <div class="list-group-item">
+
+                        <div class="list-item-content">
+                            <h3>Notifications</h3>
+                        </div>
+
+                        <div class="secondary-container">
+                            <label class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" />
+                                <span class="custom-control-indicator"></span>
+                            </label>
+                        </div>
+
+                    </div>
+
+                    <div class="list-group-item">
+
+                        <div class="list-item-content">
+                            <h3>Cloud Sync</h3>
+                        </div>
+
+                        <div class="secondary-container">
+                            <label class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" />
+                                <span class="custom-control-indicator"></span>
+                            </label>
+                        </div>
+
+                    </div>
+
+                    <div class="list-group-item">
+
+                        <div class="list-item-content">
+                            <h3>Retro Thrusters</h3>
+                        </div>
+
+                        <div class="secondary-container">
+
+                            <label class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" />
+                                <span class="custom-control-indicator"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+</body>
+
+{% endblock %}
+

@@ -1,0 +1,130 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+  	
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+		
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="{% static 'sidebarMyadmin/sidebar/css/style.css' %}">
+  </head>
+  <body>
+		
+		<div class="wrapper d-flex align-items-stretch">
+			<nav id="sidebar">
+				<div class="p-4 pt-5">
+		  		<a href="#" class="img logo rounded-circle mb-5" style="background-image: url(images/logo.jpg);"></a>
+	        <ul class="list-unstyled components mb-5">
+	          <li class="active">
+               <li>
+              <a href="{% url 'myadmin' %}">
+                <i class="fa fa-dash"></i>Dashboard</a>
+	            </li>
+	    
+	            
+	          </li>
+	          <li>
+              <a href="{% url 'product_details' %}">
+                <i class="fa fa-cube"></i> Products</a>
+	          </li>
+	          {% comment %} <li>
+              <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
+              <ul class="collapse list-unstyled" id="pageSubmenu">
+                <li>
+                    <a href="#">Page 1</a>
+                </li>
+                <li>
+                    <a href="#">Page 2</a>
+                </li>
+                <li>
+                    <a href="#">Page 3</a>
+                </li>
+              </ul>
+	          </li> {% endcomment %}
+	          <li>
+              <a href="{% url 'userdata' %}">
+                <i class="fa fa-user"></i> Users</a>
+             
+	          </li>
+	          <li>
+              <a href=" {% url 'index' %} ">View Shopping Page</a>
+	          </li>
+	        </ul>
+
+	        
+	      </div>
+    	</nav>
+
+        <!-- Page Content  -->
+      <div id="content" class="p-4 p-md-5">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container-fluid">
+
+            <button type="button" id="sidebarCollapse" class="btn btn-primary">
+              <i class="fa fa-bars"></i>
+              <span class="sr-only">Toggle Menu</span>
+            </button>
+            <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars"></i>
+            </button>
+            {% comment %} <nav aria-label="breadcrumb" class="ms-5 mt-4"  >
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href=" {% url 'myadmin' %} ">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Products</li>
+              </ol>
+            </nav> {% endcomment %}
+            <form class="form-inline  " action="" >
+              <input class="form-control " type="search" placeholder="Search">
+              <button class="btn btn-success" type="submit">Search</button>
+            </form>
+
+
+            
+
+            <div>
+              <div class="dropdown">
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  
+                                            
+                                          
+                  <a class="text-black"  href="#">{{admin.username}}</a>
+                    
+                    
+
+                
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href=" {% url 'myadminlogout' %} ">Logout</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+
+        <!--nav-->
+        
+
+        {% block content %}
+
+      <!--content-->
+
+        {% endblock %}
+
+
+        
+      </div>
+		</div>
+
+    <script src="{% static 'sidebarMyadmin/sidebar/js/jquery.min.js' %}"></script>
+    <script src="{% static 'sidebarMyadmin/sidebar/js/popper.js' %}"></script>
+    <script src="{% static 'sidebarMyadmin/sidebar/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'sidebarMyadmin/sidebar/js/main.js' %}"></script>
+  </body>
+</html>

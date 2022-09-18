@@ -1,0 +1,252 @@
+{% extends 'base/basehome.html' %}
+
+{% load static %}
+{% block title %} 
+cart
+{% endblock title %}
+{% block content %}
+{% include 'includes/navbar555.html' %}
+
+    <!-- Breadcrumb Section Begin -->
+    <section class="hero hero-normal">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="hero__categories">
+                        <div class="hero__categories__all">
+                            <i class="fa fa-bars"></i>
+                            <span>All departments</span>
+                        </div>
+                        <ul>
+                        {% for categories in category%}
+                        
+                        
+    
+                            <li><a href="#">{{ categories.category_name}}</a></li>
+                       
+                        
+                        {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-9">
+                    <div class="hero__search">
+                        <div class="hero__search__form">
+                            <form action=" {% url 'search' %} " method="GET">
+                              
+                                <input type="text" placeholder="What do yo u need?" name="keyword">
+                                <button type="submit" class="btn site-btn">SEARCH</button>
+                            </form>
+                        </div>
+                        <div class="hero__search__phone">
+                            <div class="hero__search__phone__icon">
+                                <i class="fa fa-phone"></i>
+                            </div>
+                            <div class="hero__search__phone__text">
+                                <h5>+65 11.188.888</h5>
+                                <span>support 24/7 time</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+   
+    <!-- Breadcrumb Section End -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center ">
+                <div class="breadcrumb__text ">
+                    <h2 class="text-dark">Cart</h2>
+                    <div class="breadcrumb__option">
+                        <a class="text-dark" href=" {% url 'home' %} ">Home</a>
+                        <a class="text-dark" href=" {% url 'cart_view' %} ">Cart</a>
+
+                        <a class="text-dark" href=" {% url 'checkout' %} ">Checkout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Shoping Cart Section Begin -->
+    <section class="shoping-cart spad">
+
+        <div class="container">
+            {% if not cart_items %}
+            <h2 class="text-center">Your Cart is empty</h2>
+            <br>
+            <a href=" {% url 'home' %} " class="primary-btn cart-btn bg-success text-white">CONTINUE SHOPPING</a>
+            {% else %} 
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="shoping__cart__table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="shoping__product">Products</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for cart_item in cart_items %}
+                                <tr>
+                                    <td class="shoping__cart__item">
+                                        <img src="{{ cart_item.product.images.url}}" alt="" height=100px width=100px >
+                                        <h5>{{cart_item.product}}</h5>
+                                    </td>
+                                    <td class="shoping__cart__price">
+                                        {{cart_item.product.price}}
+                                    </td>
+                                    <td class="shoping__cart__quantity">
+                                        <div class="col">
+                                            <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <a href="{% url 'remove_cart' cart_item.product.id %}" type="button" class="quantity-left-minus btn btn-danger btn-number"  data-type="minus" data-field="">
+                                              <li class="fa fa-minus"></li>
+                                            </a>
+                                        </span>
+                                        <input type="text" id="quantity" name="quantity" class="form-control input-number" value="{{ cart_item.quantity }}">
+                                        <span class="input-group-btn">
+                                            <a href=" {% url 'add_cart' cart_item.product.id %} " type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus" data-field="">
+                                                <li class="fa fa-plus"></li>
+                                            </a>
+                                        </span>
+                                    </div>
+                            </div>
+                                        {% comment %} <div class="quantity">
+                                            <a href=" {% url 'add_cart' cart_item.product.id %} " class="pro-qty">
+                                                <input type="text" value="{{ cart_item.quantity }}">
+                                            </a>
+                                        </div> {% endcomment %}
+                                    </td>
+                                    <td class="shoping__cart__total">
+                                        {{cart_item.sub_total}}
+                                    </td>
+                                    <td class="shoping__cart__item__close">
+                                        <a href=" {% url 'remove_cart_item' cart_item.product.id %} ">
+                                            <span class="icon_close"></span>
+                                        </a>
+                                       
+                                    </td>
+
+                                </tr>
+                                {% endfor %}
+                               
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="shoping__cart__btns">
+                        <a href="#" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
+                        <a href="#" class="primary-btn cart-btn cart-btn-right"><span class="icon_loading"></span>
+                            Upadate Cart</a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="shoping__continue">
+                        <div class="shoping__discount">
+                            <h5>Discount Codes</h5>
+                            <form action="#">
+                                <input type="text" class="form-control" placeholder="Enter your coupon code">
+                                <button type="submit" class="btn text-white ">APPLY COUPON</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="shoping__checkout">
+                        <h5>Cart Total</h5>
+                        <ul>
+                            <li>tax 3%<span>{{tax}}</span></li>
+                            <li>Total <span>{{total}}</span></li>
+                            <li>Grand Total <span>{{grand_total}}</span></li>
+
+                        </ul>
+                        <a href=" {% url 'checkout' %} " class="primary-btn btn">PROCEED TO CHECKOUT</a>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </section>
+    <!-- Shoping Cart Section End -->
+
+    <!-- Footer Section Begin -->
+    <footer class="footer spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer__about">
+                        <div class="footer__about__logo">
+                            <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                        </div>
+                        <ul>
+                            <li>Address: 60-49 Road 11378 New York</li>
+                            <li>Phone: +65 11.188.888</li>
+                            <li>Email: hello@colorlib.com</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
+                    <div class="footer__widget">
+                        <h6>Useful Links</h6>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">About Our Shop</a></li>
+                            <li><a href="#">Secure Shopping</a></li>
+                            <li><a href="#">Delivery infomation</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Our Sitemap</a></li>
+                        </ul>
+                        <ul>
+                            <li><a href="#">Who We Are</a></li>
+                            <li><a href="#">Our Services</a></li>
+                            <li><a href="#">Projects</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">Innovation</a></li>
+                            <li><a href="#">Testimonials</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12">
+                    <div class="footer__widget">
+                        <h6>Join Our Newsletter Now</h6>
+                        <p>Get E-mail updates about our latest shop and special offers.</p>
+                        <form action="#">
+                            <input type="text" placeholder="Enter your mail">
+                            <button type="submit" class="site-btn">Subscribe</button>
+                        </form>
+                        <div class="footer__widget__social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="footer__copyright">
+                        <div class="footer__copyright__text"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
+                        <div class="footer__copyright__payment"><img src="img/payment-item.png" alt=""></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+   
+    <!-- Footer Section End -->
+
+    <!-- Js Plugins -->
+{% endblock %}

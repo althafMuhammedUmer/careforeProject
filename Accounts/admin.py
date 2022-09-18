@@ -1,10 +1,11 @@
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin
+from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from .models import Account
+
 # Register your models here.
-class AccountAdmin(UserAdmin):
+class AccountAdmin(BaseUserAdmin):
     list_display = ('email', 'username', 'date_joined' ,'last_login', 'is_active')
-    list_display_links = ('email', 'username')
+    list_display_links = ('email', 'username',)
    
     
     
@@ -12,6 +13,11 @@ class AccountAdmin(UserAdmin):
     filter_horizontal = ()
     list_filter = ()
     fieldsets = ()
+    
+    
+      
+    
+    
 
 admin.site.register(Account,AccountAdmin)
 

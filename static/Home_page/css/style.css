@@ -35,7 +35,7 @@ body {
 	height: 100%;
 	font-family: "Cairo", sans-serif;
 	-webkit-font-smoothing: antialiased;
-	font-smoothing: antialiased;
+	font-smooth: antialiased;
 }
 
 h1,
@@ -167,8 +167,11 @@ ol {
 	color: #ffffff;
 	text-transform: uppercase;
 	font-weight: 700;
-	background: #7fad39;
+	background: #3d3c91;
 	letter-spacing: 2px;
+}
+.primary-btn :hover{
+	background-color: black;
 }
 
 .site-btn {
@@ -178,8 +181,11 @@ ol {
 	text-transform: uppercase;
 	display: inline-block;
 	padding: 13px 30px 12px;
-	background: #7fad39;
+	background: #3d3c91;
 	border: none;
+}
+.site-btn :hover{
+	background-color: black;
 }
 
 /* Preloder */
@@ -587,7 +593,7 @@ ol {
 }
 
 .hero__categories__all {
-	background: #7fad39;
+	background:#333389;
 	position: relative;
 	padding: 10px 25px 10px 40px;
 	cursor: pointer;
@@ -797,7 +803,7 @@ ol {
 	position: absolute;
 	left: -35px;
 	top: 50%;
-	-webkit-transform: translateY(-35px);
+	-webkit-transform : translateY(-35px);
 	background: #ffffff;
 }
 
@@ -811,7 +817,7 @@ ol {
 -----------------------*/
 
 .featured {
-	padding-top: 80px;
+	padding-top: 80	px;
 	padding-bottom: 40px;
 }
 
@@ -2921,7 +2927,7 @@ ol {
 		padding: 10px 25px 10px 20px;
 	}
 	.hero__categories ul {
-		padding-left: 20px;
+		padding-left: 10px;
 	}
 	.latest-product__slider.owl-carousel .owl-nav {
 		right: 0;
@@ -2941,7 +2947,7 @@ ol {
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
 	.hero__categories {
-		margin-bottom: 30px;
+		margin-bottom: 0px;
 	}
 	.hero__search__form {
 		width: 485px;

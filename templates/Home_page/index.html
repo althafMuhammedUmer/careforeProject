@@ -1,234 +1,87 @@
-{% extends 'base.html' %}
+{% extends 'base/basehome.html' %}
 
 {% load static %}
-
+{% block title %} 
+Home
+{% endblock title %}
 {% block content %}
+{% include 'includes/navbar555.html' %}
+<!-- Header Section End -->
 
-<body>
-    <!-- Page Preloder -->
-    <div id="preloder">
-        <div class="loader"></div>
-    </div>
-
-    <!-- Humberger Begin -->
-    <div class="humberger__menu__overlay"></div>
-    <div class="humberger__menu__wrapper">
-        <div class="humberger__menu__logo">
-            <a href="#"><img src="{% static 'Home_page/img/logo.png' %}" alt=""></a>
-        </div>
-        <div class="humberger__menu__cart">
-            <ul>
-                <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
-            </ul>
-            <div class="header__cart__price">item: <span>$150.00</span></div>
-        </div>
-        <div class="humberger__menu__widget">
-            {% if user.id is None %}
-                        <div class="widget-header header__top__left">
-                            <small class="title text-muted">Welcome guest</small>
-                            <div>
-                                <a href="{% url 'login' %}">Sign In </a> <span class="dark-transp">|</span>
-                                <a href="{% url 'register' %}">Register </a> 
-                            </div>
-                        </div>
-                        {% else %}
-                        <div class="widget-header header__top__left">
-                            <small class="title text-muted">Welcome {{user.first_name}}</small>
-                            <div>
-                                <a href="#">Dashboard</a> <span class="dark-transp">|</span>
-                                <a href="{% url 'logout' %}">Logout</a> 
-                            </div>
-                        </div>
-                        {% endif %}
-            
-            
-
-
-
-
-
-
-
-        </div>
-        <nav class="humberger__menu__nav mobile-menu">
-            <ul>
-                <li class="active"><a href="./index.html">Home</a></li>
-                <li><a href="./shop-grid.html">Shop</a></li>
-                <li><a href="#">Pages</a>
-                    <ul class="header__menu__dropdown">
-                        <li><a href="./shop-details.html">Shop Details</a></li>
-                        <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                        <li><a href="./checkout.html">Check Out</a></li>
-                        <li><a href="./blog-details.html">Blog Details</a></li>
-                    </ul>
-                </li>
-                <li><a href="./blog.html">Blog</a></li>
-                <li><a href="./contact.html">Contact</a></li>
-            </ul>
-        </nav>
-        <div id="mobile-menu-wrap"></div>
-        <div class="header__top__right__social">
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-linkedin"></i></a>
-            <a href="#"><i class="fa fa-pinterest-p"></i></a>
-        </div>
-        <div class="humberger__menu__contact">
-            <ul>
-                <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-                <li>Free Shipping for all Order of $99</li>
-            </ul>
-        </div>
-    </div>
-    <!-- Humberger End -->
-
-    <section class="hero">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-2">
-                    <div class="hero__categories">
-                        <div class="hero__categories__all">
-                            <i class="fa fa-bars"></i>
-                            <span>All Categories</span>
-                        </div>
-                        <ul>
-                            <li><a href="#">Beverages</a></li>
-                            <li><a href="#">Fruits & Vegetables</a></li>
-                            <li><a href="#">Frozen Foods</a></li>
-                            <li><a href="#">Electronic & Appliances</a></li>
-                            <li><a href="#">Baby Products</a></li>
-                            <li><a href="#">Snacks</a></li>
-                            <li><a href="#">Personal Care</a></li>
-                           
-                        </ul>
-                    </div>
-                </div>
-
-   
-
-    <!-- Hero Section Begin -->
-    {% comment %} <section class="hero">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-3">
-                    <div class="hero__categories">
-                        <div class="hero__categories__all">
-                            <i class="fa fa-bars"></i>
-                            <span>All Categories</span>
-                        </div>
-                        <ul>
-                            <li><a href="#">Beverages</a></li>
-                            <li><a href="#">Fruits & Vegetables</a></li>
-                            <li><a href="#">Frozen Foods</a></li>
-                            <li><a href="#">Electronic & Appliances</a></li>
-                            <li><a href="#">Baby Products</a></li>
-                            <li><a href="#">Snacks</a></li>
-                            <li><a href="#">Personal Care</a></li>
-                           
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-9">
-                    <div class="hero__search">
-                        <div class="hero__search__form">
-                            <form action="#">
-                                {% comment %} <div class="hero__search__categories">
-                                    All Categories
-                                    <span class="arrow_carrot-down"></span>
-                                </div> {% endcomment %}
-                                {% comment %} <input type="text" placeholder="What do yo u need?">
-                                <button type="submit" class="site-btn">SEARCH</button>
-                            </form>
-                        </div>
-                        <div class="hero__search__phone">
-                            <div class="hero__search__phone__icon">
-                                <i class="fa fa-phone"></i>
-                            </div>
-                            <div class="hero__search__phone__text">
-                                <h5>+65 11.188.888</h5>
-                                <span>support 24/7 time</span>
-                            </div>
-                        </div>
-                    </div> {% endcomment %}
-                 {% comment %} <div class="hero__item set-bg" data-setbg="{% static 'Home_page/img/hero/banner.jpg' %}">
-                        <div class="hero__text">
-                            <span>FRUIT FRESH</span>
-                            <h2>Vegetable <br />100% Organic</h2>
-                            <p>Free Pickup and Delivery Available</p>
-                            <a href="#" class="primary-btn">SHOP NOW</a>
-                        </div>
-                    </div> 
-                </div> 
-            </div>
-        </div>
-    </section> {% endcomment %}
-    <!-- Hero Section End -->
-    {% comment %} <div class="row">
-        {% for product in products %}
-        <div class="col-md-3">
-            <div class="card-product-grid">
-                <a href="./product-details.html" class=" img-wrap"><img src="{{product.images.url}}"></a>
-                <figcaption class ="info-wrap">
-                    <a href="./product-details.html" class="title">{{product.product_name}}</a>
-                    <div class="price mt-1">${{product.price}}</div>
-                </figcaption>
-            </div>
-        </div>
-        {% endfor %}
-    </div> {% endcomment %}
+<!-- Hero Section Begin -->
+<section class="hero hero-normal">
     <div class="container">
-        <div class="hero__item set-bg" data-setbg="{% static 'Home_page/img/hero/banner.jpg' %}">
-            <div class="hero__text">
-                <span>FRUIT FRESH</span>
-                <h2>Vegetable <br />100% Organic</h2>
-                <p>Free Pickup and Delivery Available</p>
-                <a href="#" class="primary-btn">SHOP NOW</a>
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="hero__categories">
+                    <div class="hero__categories__all">
+                        <i class="fa fa-bars"></i>
+                        <span>All departments</span>
+                    </div>
+                    <ul>
+                     {% for categories in category%}
+                    
+                    
+
+                        <li><a href="#">{{ categories.category_name}}</a></li>
+                   
+                    
+                    {% endfor %}
+                    </ul>
+                </div>
             </div>
-        </div> 
-    </div>
-</div>
-
-
-
-    <!-- Categories Section Begin -->
-    {% comment %} <section class="categories">
-        <div class="container">
-            <div class="row">
-                <div class="categories__slider owl-carousel">
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="{% static 'Home_page/img/categories/cat-1.jpg' %}">
-                            <h5><a href="#">Fresh Fruit</a></h5>
-                        </div>
+            <div class="col-lg-9">
+                <div class="hero__search">
+                    <div class="hero__search__form">
+                        <form action=" # " method="GET" >
+                          
+                            <input type="text" placeholder="What do yo u need?" name="keyword">
+                            <button type="submit" class="btn site-btn">SEARCH</button>
+                        </form>
                     </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="{% static 'Home_page/img/categories/cat-2.jpg' %}">
-                            <h5><a href="#">Dried Fruit</a></h5>
+                    <div class="hero__search__phone">
+                        <div class="hero__search__phone__icon">
+                            <i class="fa fa-phone"></i>
                         </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="{% static 'Home_page/img/categories/cat-3.jpg' %}">
-                            <h5><a href="#">Vegetables</a></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="{% static 'Home_page/img/categories/cat-4.jpg' %}">
-                            <h5><a href="#">drink fruits</a></h5>
-                        </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="categories__item set-bg" data-setbg="{% static 'Home_page/img/categories/cat-5.jpg' %}">
-                            <h5><a href="#">drink fruits</a></h5>
+                        <div class="hero__search__phone__text">
+                            <h5>+65 11.188.888</h5>
+                            <span>support 24/7 time</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section> {% endcomment %}
+    </div>
+</section>
+
+
+
+
+                <div class="container ">
+                    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="{% static 'Home_page/img/hero/carefore banner2.jpg'%}" class="d-block w-100 " alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="{% static 'Home_page/img/hero/banner carefore.jpg' %}" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="..." class="d-block w-100" alt="...">
+                        </div>
+                        </div>
+                    </div>
+                
+                </div>
+            </div>
+
+
+
+    
     <!-- Categories Section End -->
 
     <!-- Featured Section Begin -->
-   <section class="featured spad">
+   <section class="featured spad ">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -247,27 +100,40 @@
                 </div>
             </div>
             <div class="row featured__filter">
-                {% for product in products %}
-                <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="{{product.images.url}}">
+                {% if product %}
+                {% for product in product %}
+                <div class="col-lg-3 col-md-4 col-sm-6 ">
+                    <div class="featured__item ">
+                        <div class="featured__item__pic set-bg " data-setbg="{{product.images.url}}">
                             <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                {% comment %} <li><a href="#"><i class="fa fa-retweet"></i></a></li> {% endcomment %}
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                <li  ><a href="  "><i class="fa fa-heart "></i></a></li>
+                             
+                                <li><a href=" {% url 'add_cart' product.id %}"><i  class="fa fa-shopping-cart update-cart"></i></a></li>
+                                
                             </ul>
                         </div>
                         <div class="featured__item__text">
                             <h6><a href="#">{{ product.product_name}}</a></h6>
                             <h5>&#8377;{{product.price}}</h5>
+                            
+
                         </div>
                     </div>
                 </div>
                 {% endfor %}
+                {% else %}
+                
+                <div style="text-align:center">
+                    <h2>No Products Found</h2>
+                </div>    
+
+                {% endif %}
                 
             </div>
         </div>
     </section> 
+    {% include 'includes/footer.html' %}
+
     <!-- Featured Section End -->
 
     <!-- Banner Begin -->
@@ -556,20 +422,6 @@
 
 
 
-    <!-- Js Plugins -->
-    <script src="{% static 'Home_page/js/jquery-3.3.1.min.js' %}"></script>
-    <script src="{% static 'Home_page/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'Home_page/js/jquery.nice-select.min.js' %}"></script>
-    <script src="{% static 'Home_page/js/jquery-ui.min.js' %}"></script>
-    <script src="{% static 'Home_page/js/jquery.slicknav.js' %}"></script>
-    <script src="{% static 'Home_page/js/mixitup.min.js' %}"></script>
-    <script src="{% static 'Home_page/js/owl.carousel.min.js' %}"></script>
-    <script src="{% static 'Home_page/js/main.js' %}"></script>
 
-
-
-</body>
-
-</html>
 
 {% endblock %}

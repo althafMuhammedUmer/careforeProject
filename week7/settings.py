@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'Accounts',
     'store',
     'myadmin',
+    'orders',
    
     
     

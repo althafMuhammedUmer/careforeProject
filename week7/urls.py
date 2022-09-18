@@ -26,9 +26,12 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
     path('', include('Grocery.urls')),
-    path('', include('store.urls')),    
+    path('', include('store.urls')), 
+    path('orders/', include('orders.urls')),
+       
     path('accounts/', include('Accounts.urls')),
     path('myadmin/', include('myadmin.urls')),
+    
    
 
     

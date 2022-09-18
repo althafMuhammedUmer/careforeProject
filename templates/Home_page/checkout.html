@@ -78,7 +78,7 @@
            
             <div class="checkout__form">
                 <h4>Billing Details</h4>
-                <form action="" method="POST" >
+                <form action=" {% url 'place_order' %} " method="POST" >
                     {% csrf_token %}
                     <div class="row">
                         <div class="col-lg-8 col-md-6">
@@ -86,48 +86,48 @@
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>First Name<span>*</span></p>
-                                        <input type="text" placeholder="First Name" required>
+                                        <input class="form-control" type="text" name="first_name" placeholder="First Name" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Last Name<span>*</span></p>
-                                        <input type="text" placeholder="Last Name">
+                                        <input class="form-control" type="text" name="last_name" placeholder="Last Name">
                                     </div>
                                 </div>
                             </div>
                             <div class="checkout__input">
                                 <p>Country<span>*</span></p>
-                                <input type="text" placeholder="Country" required>
+                                <input class="form-control" type="text" name="country" placeholder="Country" required>
                             </div>
                             <div class="checkout__input">
                                 <p>Address<span>*</span></p>
-                                <input type="text" placeholder="Street Address" class="checkout__input__add" required>
-                                <input type="text" placeholder="Apartment, suite, unite ect (optinal)">
+                                <input class="form-control" type="text" name="address_line_1" placeholder="Street Address" class="checkout__input__add" required>
+                                <input class="form-control" type="text" name="address_line_2" placeholder="Apartment, suite, unite ect (optinal)">
                             </div>
                             <div class="checkout__input">
                                 <p>Town/City<span>*</span></p>
-                                <input type="text" placeholder="Town/City" required>
+                                <input class="form-control" type="text" placeholder="Town/City" required>
                             </div>
                             <div class="checkout__input">
-                                <p>Country/State<span>*</span></p>
-                                <input type="text" placeholder="Country/State" required>
+                                <p>State<span>*</span></p>
+                                <input class="form-control" type="text" name="country" placeholder="Country/State" required>
                             </div>
                             <div class="checkout__input">
                                 <p>Postcode / ZIP<span>*</span></p>
-                                <input type="text"  required>
+                                <input class="form-control" type="text" name="post_code" required>
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Phone<span>*</span></p>
-                                        <input type="text" required>
+                                        <input type="text" name="phone" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Email<span>*</span></p>
-                                        <input type="text" placeholder="eg: abc@gmail.com">
+                                        <input type="text" name="email" placeholder="eg: abc@gmail.com">
                                     </div>
                                 </div>
                             </div>
@@ -141,9 +141,9 @@
                                 </label>
                             </div>
                             <div class="checkout__input">
-                                <p>Order notes<span>*</span></p>
-                                <input type="text"
-                                    placeholder="Notes about your order, e.g. special notes for delivery.">
+                                <label for="">Order Note</label>
+                                <textarea name="order_note"  rows="5" class="form-control"></textarea>
+               
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-6">

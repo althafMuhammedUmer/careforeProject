@@ -33,17 +33,7 @@ class CartItem(models.Model):
     def __unicode__(self): # from py3 onwards we use __unicode__ instead of __str__
         return self.product
     
-class ShippingAddress(models.Model):
-    user   = models.ForeignKey(Account, on_delete=models.CASCADE, null=True, blank=True)
-    Cart    = models.ForeignKey(Cart, on_delete=models.CASCADE, null=True)
-    address = models.CharField(max_length=250)
-    country = models.CharField(max_length=100, null=True, blank=True)
-    city   = models.CharField(max_length=100)
-    state  = models.CharField(max_length=100)
-    pincode = models.CharField(max_length=100)
-    
-    def __unicode__(self):
-        return self.address
+
     
     
      

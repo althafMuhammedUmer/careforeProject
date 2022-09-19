@@ -8,17 +8,9 @@ import datetime
 # Create your views here.
 def place_order(request, total=0, quantity=0,):
     current_user = request.user
-    
-    #if the cart item is less than or equal to  0 then redirect to shop or home
-    cart_items = CartItem.objects.filter(user=current_user)
-    cart_count = cart_items.count()
-    if cart_count <= 0:
-        
-        return HttpResponse("your cart is empty")
-    
     grand_total = 0
     tax = 0
-    
+    cart_items = CartItem.objects.filter(user=current_user)
     for cart_item in cart_items:
         total += (cart_item.product.price * cart_items.quantity)
         quantity += cart_item.quantity
@@ -59,10 +51,21 @@ def place_order(request, total=0, quantity=0,):
             
             data.order_number = order_number
             data.save()
+            print(data)
             print("its working")
             return redirect('checkout')
         
         else:
-            return redirect('checkout')
+            # return redirect('checkout')
+            return HttpResponse("form is invalid")
+    
+    #if the cart item is less than or equal to  0 then redirect to shop or home
+
+    cart_count = cart_items.count()
+    if cart_count <= 0:
+        
+        return HttpResponse("your cart is empty")
+    
+    
             
             

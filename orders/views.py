@@ -1,22 +1,47 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from Grocery.models import CartItem
+from Grocery.models import CartItem, Cart
 from .models import Order
 from .forms import OrderForm
 import datetime 
+from Grocery.views import _cart_id
+
+
 
 # Create your views here.
+def payments(request):
+    return render(request, 'orders/payments.html')
+
+
+
+
+
+
+
 def place_order(request, total=0, quantity=0,):
-    current_user = request.user
+    # current_user = request.user
+    # cart = Cart.objects.get(cart_id=_cart_id(request))
+    
     grand_total = 0
     tax = 0
-    cart_items = CartItem.objects.filter(user=current_user)
+    delivery_charge = 50
+    
+    cart = Cart.objects.get(cart_id = _cart_id(request))   
+    cart_items = CartItem.objects.filter(Cart=cart, is_active=True)
+    print(cart_items)
     for cart_item in cart_items:
-        total += (cart_item.product.price * cart_items.quantity)
+        print("inside for loop")
+        total += (cart_item.product.price * cart_item.quantity)
         quantity += cart_item.quantity
-
-    tax = (2 * total) / 100
-    grand_total = total + tax 
+        print("hello")
+        
+    print("total is :",total)
+    tax = (3 * total) / 100
+    
+    # total_after_tax = total + tax
+    
+    grand_total = total + delivery_charge
+    
     
     
     if request.method == "POST":
@@ -38,7 +63,9 @@ def place_order(request, total=0, quantity=0,):
             data.order_total    = grand_total
             data.tax            = tax
             data.ip            = request.META.get('REMOTE_ADDR')
+            # data.product_total = total_after_tax
             data.save()
+            
             
              #genarate order number and store in order table
             yr = int(datetime.date.today().strftime('%Y'))
@@ -53,7 +80,7 @@ def place_order(request, total=0, quantity=0,):
             data.save()
             print(data)
             print("its working")
-            return redirect('checkout')
+            return redirect('payments')
         
         else:
             # return redirect('checkout')
@@ -65,7 +92,7 @@ def place_order(request, total=0, quantity=0,):
     if cart_count <= 0:
         
         return HttpResponse("your cart is empty")
-    
+   
     
             
             

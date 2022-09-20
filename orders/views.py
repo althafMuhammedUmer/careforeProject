@@ -1,8 +1,8 @@
-from multiprocessing import context
+
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from Grocery.models import CartItem, Cart
-from .models import Order
+from .models import Order, Payment
 from .forms import OrderForm
 import datetime 
 from Grocery.views import _cart_id
@@ -13,6 +13,21 @@ import json
 # Create your views here.
 def payments(request):
     body = json.loads(request.body)
+    
+    order = Order.objects.get(user=request.user,is_ordered=False, order_number=body['orderID'])
+    
+    
+    # store transaction details in the payment model
+    payment = Payment(
+        payment_id = body['transID'],
+        payment_method = body['payment_method'],
+        amount_paid  = order.order_total,
+        status = body['status'],
+    )
+    payment.save()
+    order.payment = payment
+    order.is_active = True
+    order.save()    
     print(body)
     return render(request, 'orders/payments.html')
 

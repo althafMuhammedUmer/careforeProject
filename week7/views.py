@@ -11,7 +11,10 @@ def home(request):
     products = Product.objects.filter(is_available=True)
     category = Category.objects.all()
     
+    found = True  
+    
     context = {
+        'found' : found,    
         'product': products,
         'category':category,
     }

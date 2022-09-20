@@ -13,22 +13,27 @@ import json
 # Create your views here.
 def payments(request):
     body = json.loads(request.body)
+
+    order_id = body['orderID'].strip()
+    order = Order.objects.get(is_ordered=False, order_number= order_id)
     
-    order = Order.objects.get(user=request.user,is_ordered=False, order_number=body['orderID'])
+    
     
     
     # store transaction details in the payment model
     payment = Payment(
+        user = order.user,
         payment_id = body['transID'],
         payment_method = body['payment_method'],
         amount_paid  = order.order_total,
         status = body['status'],
     )
     payment.save()
+    print(payment)
     order.payment = payment
-    order.is_active = True
+    order.is_ordered = True
     order.save()    
-    print(body)
+    
     return render(request, 'orders/payments.html')
 
 
@@ -83,6 +88,7 @@ def place_order(request, total=0, quantity=0,):
             data.tax            = tax
             data.ip            = request.META.get('REMOTE_ADDR')
             # data.product_total = total_after_tax
+            data.user = request.user
             data.save()
             
             

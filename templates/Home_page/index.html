@@ -33,7 +33,7 @@ Home
             <div class="col-lg-9">
                 <div class="hero__search">
                     <div class="hero__search__form">
-                        <form action=" # " method="GET" >
+                        <form action="{% url 'search' %}" method="GET" >
                           
                             <input type="text" placeholder="What do yo u need?" name="keyword">
                             <button type="submit" class="btn site-btn">SEARCH</button>
@@ -99,6 +99,7 @@ Home
                     </div> {% endcomment %}
                 </div>
             </div>
+
             <div class="row featured__filter">
                 {% if product %}
                 {% for product in product %}

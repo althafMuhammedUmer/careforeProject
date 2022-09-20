@@ -39,10 +39,17 @@ def search(request):
     if 'keyword' in request.GET:
         keyword = request.GET['keyword']
        
+       
         product = Product.objects.filter(Q(product_name__icontains=keyword) | Q(description__icontains = keyword))
+        product_count = product.count()
+        print(product_count)
+        
+
          
         context = {
-            'products':product
+       
+            'product':product,
+            'product_count':product_count,
         } 
     
     return render(request,'Home_page/index.html', context)  
@@ -55,7 +62,8 @@ def add_cart(request, product_id):
     product = Product.objects.get(id=product_id)
     
     
-    # guest user
+    
+    # if     user
     
     try:
         cart = Cart.objects.get(cart_id=_cart_id(request))

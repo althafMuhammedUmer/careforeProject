@@ -1,12 +1,85 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>order successfull</h1>
-</body>
-</html>
+{% extends 'base/basehome.html' %}
+{% block title %}
+payment 
+{% endblock title %}
+{% block content %}
+{% include 'includes/navbar555.html' %}
+
+
+
+<section class="section-content padding-y bg">
+    <div class="container">
+        <div class="row">
+            <div class="col-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="">Billing Details</h5>   
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text text-dark">name: {{order.full_name}}</p>   
+                        <p class="card-text text-dark">order id: {{order.order_number}}</p>
+                        <p class="card-text text-dark">Address: {{address}}</p>
+                        {% if order.order_note %}
+                        <b>Order Note: </b>{{order.order_note}}
+                        {% endif %}
+
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="">Payment Method</h5>   
+                    </div>
+                    <div class="card-body">
+
+                        {% comment %} <input class="form-check-input active" type="checkbox" value="" id="flexCheckDefault" >  {% endcomment %}
+                      <p class="card-text ">paypal</p>
+                    </div>
+                </div>
+                {% comment %} <div class="card">
+                    <div class="card-header">
+                        <h5 class="">Review Products</h5>   
+                    </div>
+                    <div class="card-body">   
+                      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    </div>
+                </div> {% endcomment %}
+            </div>
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-header">
+                      Payment
+                    </div>
+                    <div class="card-body">
+                        <div>
+                            <b>Total:</b>
+                            <span>
+                                {{total}}
+                            </span>
+                           </div>
+                        <div>
+                        <div>
+                            <b>Tax:</b>
+                            <span>
+                                {{tax}}
+                            </span>
+                           </div>
+                        <div>
+                        <b>Grand Total:</b>
+                        <span>
+                            {{grand_total}}
+                        </span>
+                       </div>
+                      
+                    
+                     
+                        
+                    </div>
+                    <div class="mt-3" id="paypal-button-container"></div>
+                  </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

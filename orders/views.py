@@ -1,3 +1,4 @@
+from multiprocessing import context
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from Grocery.models import CartItem, Cart
@@ -5,11 +6,14 @@ from .models import Order
 from .forms import OrderForm
 import datetime 
 from Grocery.views import _cart_id
+import json
 
 
 
 # Create your views here.
 def payments(request):
+    body = json.loads(request.body)
+    print(body)
     return render(request, 'orders/payments.html')
 
 
@@ -19,7 +23,7 @@ def payments(request):
 
 
 def place_order(request, total=0, quantity=0,):
-    # current_user = request.user
+    current_user = request.user
     # cart = Cart.objects.get(cart_id=_cart_id(request))
     
     grand_total = 0
@@ -40,7 +44,7 @@ def place_order(request, total=0, quantity=0,):
     
     # total_after_tax = total + tax
     
-    grand_total = total + delivery_charge
+    grand_total = total + delivery_charge + tax
     
     
     
@@ -75,12 +79,24 @@ def place_order(request, total=0, quantity=0,):
             current_date = d.strftime("%d%m%Y") # like 20220305
              
             order_number = current_date + str(data.id)
+            name = data.first_name
+            address = data.address_line_1
             
             data.order_number = order_number
             data.save()
-            print(data)
-            print("its working")
-            return redirect('payments')
+            order = Order.objects.get(order_number=order_number)
+            
+            context = {
+                'order':order,
+                'cart_items':cart_items,
+                'total':total,
+                'tax': tax,
+                'grand_total':grand_total,
+                'name':name,
+                'address':address,
+            }
+           
+            return render(request, 'orders/payments.html', context)
         
         else:
             # return redirect('checkout')

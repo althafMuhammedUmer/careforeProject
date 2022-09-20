@@ -159,11 +159,13 @@
                                 
                                
                                 {% endfor %}
-                                <div class="checkout__order__subtotal">Total<span>{{total}}</span></div>
+                                <div class="checkout__order__subtotal">Total<span>$ {{total}}</span></div>
+                                <div class="checkout__order__subtotal">Tax<span>$ {{tax}}</span></div>
 
-                                <div class="checkout__order__subtotal">delivery charge<span>{{delivery_charge}}</span></div>
 
-                                <div class="checkout__order__total">Grand Total<span>{{checkout_total}}</span></div>
+                                <div class="checkout__order__subtotal">delivery charge<span>$ {{delivery_charge}}</span></div>
+
+                                <div class="checkout__order__total">Grand Total<span>$ {{grand_total}}</span></div>
 
                                 <div class="checkout__input__checkbox">
                                     <label for="payment">

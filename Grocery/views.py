@@ -164,10 +164,11 @@ def checkout(request, total=0, quantity=0, cart_items = None):
             quantity += cart_item.quantity
         tax = ( 3 * total )/100
         # grand_total = tax + total
-        total_after_tax = total + tax
+        
         
         delivery_charge = 50
         checkout_total = delivery_charge + total
+        grand_total = total + tax + delivery_charge
     except ObjectDoesNotExist:
         pass
     context = {
@@ -175,7 +176,7 @@ def checkout(request, total=0, quantity=0, cart_items = None):
         'quantity':quantity,
         'cart_items':cart_items,
         'tax':tax,
-        'total_after_tax':total_after_tax,
+        'grand_total':grand_total,
         'products':products_list,
         'category': category_list,
         'checkout_total':checkout_total,

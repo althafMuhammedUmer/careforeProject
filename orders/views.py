@@ -34,7 +34,9 @@ def payments(request):
     order.is_ordered = True
     order.save()
     
-    # move the cart items in Order Product table   
+    # move the cart items in Order Product table
+    cart
+      
     
     
     #reduce the quantity of the sold products

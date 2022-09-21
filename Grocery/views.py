@@ -35,6 +35,7 @@ def _cart_id(request):
     
 #     return render(request,'Home_page/index.html', context)
 ####################################################################
+
 def search(request):
     if 'keyword' in request.GET:
         keyword = request.GET['keyword']
@@ -59,7 +60,10 @@ def search(request):
 
 
 def add_cart(request, product_id):
+    current_user = request.user
     product = Product.objects.get(id=product_id)
+    
+    # is_cart_item_exists = CartItem.objects.filter(product=product,user=current_user).exists()
     
     
     
@@ -67,16 +71,26 @@ def add_cart(request, product_id):
     
     try:
         cart = Cart.objects.get(cart_id=_cart_id(request))
+        print("cart try inside")
+        
+        
     except Cart.DoesNotExist:
+        print("no cart is saved")
         cart = Cart.objects.create(
             cart_id = _cart_id(request)
         )
+        
+    
+    cart.user = request.user
     cart.save()
     
     try: # for quantity increment
         cart_item = CartItem.objects.get(product = product, Cart=cart)
+        
+        
         cart_item.quantity += 1 #cart_item.quantity = cartItem.quantity + 1
         cart_item.save()
+        
         return redirect('cart_view')
         
     except CartItem.DoesNotExist:
@@ -84,7 +98,9 @@ def add_cart(request, product_id):
             product = product,
             quantity = 1,
             Cart = cart,
+            user = request.user
         )
+        
         cart_item.save()
         return redirect('cart_view')
   
@@ -192,5 +208,7 @@ def checkout(request, total=0, quantity=0, cart_items = None):
         
     }
     
+    
     return render(request, 'Home_page/checkout.html', context)
+
     

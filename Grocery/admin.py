@@ -3,7 +3,10 @@ from .models import *
 
 
 # Register your models here.
-admin.site.register(Cart)
-admin.site.register(CartItem)
+class CartItemAdmin(admin.ModelAdmin):
+    list_display = ['user', 'product', 'quantity', 'Cart', 'sub_total']
 
+
+admin.site.register(Cart)
+admin.site.register(CartItem, CartItemAdmin)
 

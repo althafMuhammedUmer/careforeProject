@@ -32,7 +32,18 @@ def payments(request):
     print(payment)
     order.payment = payment
     order.is_ordered = True
-    order.save()    
+    order.save()
+    
+    # move the cart items in Order Product table   
+    
+    
+    #reduce the quantity of the sold products
+    
+    #clear cart
+    
+    #send order recieved email to customer
+    
+    #send order number and transaction id back to send data method via JSONresponse 
     
     return render(request, 'orders/payments.html')
 

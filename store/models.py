@@ -1,28 +1,70 @@
 from django.db import models
+from django.utils.safestring import mark_safe
 from category.models import *
 from Accounts.models import *
 
 
 # Create your models here.
+class Banner(models.Model):
+    image = models.ImageField(upload_to = 'photos/banner')
+    text  = models.CharField(max_length=300)
+    
+    def image_tag(self):
+        return mark_safe('<img src="%s" width="100"  /> '% (self.image.url))
+    
+    def __str__(self):
+        return self.text
+    
+    
+    
+    
+
+
+
 class Product(models.Model):
     product_name    = models.CharField(max_length=200, unique=True)
     slug            = models.SlugField(max_length=200, unique=True)
     description     = models.TextField(max_length=2500, blank=True)
-    price           = models.FloatField()
+    # price           = models.FloatField()
     product_discount_price = models.CharField(max_length=200, null=True, blank=True)
     images          = models.ImageField(upload_to = 'photos/products', null=True, blank=True)
     stock        = models.IntegerField()
-    is_available    = models.BooleanField(default=True)
+    is_available    = models.BooleanField(default=True) #status
     Category        = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
-    subcategorys=models.ForeignKey(SubCategory,on_delete=models.CASCADE , null=True, blank=True)
+    subcategorys     =models.ForeignKey(SubCategory,on_delete=models.CASCADE , null=True, blank=True)
+    brand            =models.ForeignKey(Brand, on_delete=models.CASCADE,null=True, blank=True)
+    color            =models.ForeignKey(Color,on_delete=models.CASCADE,null=True, blank=True)
+    storage          =models.ForeignKey(Storage, on_delete=models.CASCADE , null=True,blank=True)
+    
     # quantity        =models.IntegerField()
     
     # items           = models.ForeignKey(Items, on_delete=models.CASCADE)
     created_date    = models.DateTimeField(auto_now_add=True)
     modified_date   = models.DateTimeField(auto_now=True)
     
+    
+    def image_tag(self):
+        return mark_safe('<img src="%s" width="60"   /> '% (self.images.url))
+    
+    
+   
+    
     def __str__(self):
         return self.product_name
+
+
+    
+    
+class ProductAttribute(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    color   = models.ForeignKey(Color, on_delete=models.CASCADE)
+    storage = models.ForeignKey(Storage, on_delete=models.CASCADE)
+    price   = models.PositiveIntegerField() 
+    
+    
+    def __str__(self):
+        return self.product.product_name
+    
 
 class ProductMedia(models.Model):
     product_id = models.ForeignKey(Product, on_delete=models.CASCADE)

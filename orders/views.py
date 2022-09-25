@@ -2,7 +2,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from Grocery.models import CartItem, Cart
-from .models import Order, Payment
+from .models import Order, OrderProduct, Payment
 from .forms import OrderForm
 import datetime 
 from Grocery.views import _cart_id
@@ -35,7 +35,23 @@ def payments(request):
     order.save()
     
     # move the cart items in Order Product table
-    cart
+    cart_item =CartItem.objects.filter(user=request.user)
+    
+    for item in cart_item:
+        orderproduct = OrderProduct()
+        orderproduct.order_id = order.id
+        orderproduct.payment = payment
+        orderproduct.user_id = request.user.id
+        orderproduct.product_id = item.product_id
+        orderproduct.quantity = item.quantity
+        orderproduct.product_price = item.product.price
+        orderproduct.ordered = True
+        orderproduct.save()
+        
+        
+        
+        
+        
       
     
     

@@ -122,7 +122,7 @@ def cart_view(request, total=0, quantity=0, cart_items = None):
         cart = Cart.objects.get(cart_id = _cart_id(request))
         cart_items = CartItem.objects.filter(Cart=cart, is_active=True)
         for cart_item in cart_items:
-            total += (cart_item.product.price * cart_item.quantity)
+            # total += (cart_item.product.price * cart_item.quantity)
             quantity += cart_item.quantity
         tax = ( 3 * total )/100
         grand_total = tax + total
@@ -131,11 +131,11 @@ def cart_view(request, total=0, quantity=0, cart_items = None):
         print("object does not exist in cart")
     
     context = {
-        'total':total,
+        # 'total':total,
         'quantity':quantity,
         'cart_items':cart_items,
-        'tax':tax,
-        'grand_total':grand_total,
+        # 'tax':tax,
+        # 'grand_total':grand_total,
         'products':products_list,
         'category': category_list,
         
@@ -180,30 +180,30 @@ def checkout(request, total=0, quantity=0, cart_items = None):
     
    
     try:
-        cart = Cart.objects.get(cart_id = _cart_id(request))
-        cart_items = CartItem.objects.filter(Cart=cart, is_active=True)
+        # cart = Cart.objects.get(cart_id = _cart_id(request))
+        cart_items = CartItem.objects.filter(user=request.user, is_active=True)
         
         for cart_item in cart_items:
-            total += (cart_item.product.price * cart_item.quantity)
+            # total += (cart_item.product.price * cart_item.quantity)
             quantity += cart_item.quantity
         tax = ( 3 * total )/100
         # grand_total = tax + total
         
         
         delivery_charge = 50
-        checkout_total = delivery_charge + total
-        grand_total = total + tax + delivery_charge
+        # checkout_total = delivery_charge + total
+        # grand_total = total + tax + delivery_charge
     except ObjectDoesNotExist:
         pass
     context = {
-        'total':total,
+        # 'total':total,
         'quantity':quantity,
         'cart_items':cart_items,
-        'tax':tax,
-        'grand_total':grand_total,
+        # 'tax':tax,
+        # 'grand_total':grand_total,
         'products':products_list,
         'category': category_list,
-        'checkout_total':checkout_total,
+        # 'checkout_total':checkout_total,
         'delivery_charge':delivery_charge
         
     }

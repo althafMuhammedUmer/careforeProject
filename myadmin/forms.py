@@ -1,5 +1,5 @@
 
-from email.policy import default
+
 from django import forms
 from store.models import Product
 
@@ -12,7 +12,7 @@ class ProductForm(forms.ModelForm):
         fields = ["product_name",
                  "slug",
                  "description",
-                 "price",
+                #  "price",
                  "product_discount_price",
                  "images",
                  "stock",
@@ -24,7 +24,7 @@ class ProductForm(forms.ModelForm):
             'product_name': forms.TextInput(attrs={'class': 'form-control'}),
             'slug': forms.TextInput(attrs={'class': 'form-control'}),
             'description': forms.TextInput(attrs={'class': 'form-control'}),
-            'price': forms.TextInput(attrs={'class': 'form-control'}),
+            # 'price': forms.TextInput(attrs={'class': 'form-control'}),
             'product_discount_price': forms.TextInput(attrs={'class': 'form-control'}),
           
             'stock': forms.NumberInput(attrs={'class': 'form-control'}),

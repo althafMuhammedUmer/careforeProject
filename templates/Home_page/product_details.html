@@ -80,14 +80,14 @@ Product Details
         <div class="container">
             <div class="row">
               
-                {% for product in product %}
+               
             
                 
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__pic">
                         <div class="product__details__pic__item w-50 align-items-center">
                             <img class="image-fluid "
-                                src="{{product.images.url}}" alt="">
+                                src="{{data.images.url}}" alt="">
                         </div>
                         <div class="product__details__pic__slider owl-carousel">
                             <img data-imgbigurl="{% static 'Home_page/img/product/details/product-details-2.jpg' %}"
@@ -103,7 +103,7 @@ Product Details
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__text">
-                        <h3>{{product.product_name}}</h3>
+                        <h3>{{data.product_name}}</h3>
                         <div class="product__details__rating">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -112,9 +112,9 @@ Product Details
                             <i class="fa fa-star-half-o"></i>
                             <span>(18 reviews)</span>
                         </div>
-                        {% for product_attribute in product_attribute %}
-                        <div class="product__details__price">{{product_attribute.price}}</div>
-                        {% endfor %}
+                        
+                        <div class="product__details__price"></div>
+                       
                         <p>Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam
                             vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet
                             quam vehicula elementum sed sit amet dui. Proin eget tortor risus.</p>
@@ -222,7 +222,7 @@ Product Details
                         </div>
                     </div>
                 </div>
-                {% endfor %}
+               
                
                 
             </div>

@@ -142,7 +142,7 @@ Home
                             </div>
                                     <div class="featured__item__text">
                                 
-                                <h6><a href=" product_details ">{{ product.product_name}}</a></h6>
+                                <h6><a href=" {% url 'product_details' product.id %} ">{{ product.product_name}}</a></h6>
                                 <h5>$</h5>
     
                             </div>

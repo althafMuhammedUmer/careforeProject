@@ -80,13 +80,13 @@ Product Details
         <div class="container">
             <div class="row">
               
-                
+                {% for product in product %}
             
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__pic">
                         <div class="product__details__pic__item w-50 align-items-center">
-                            <img class="cart-img-top " id="zoom_01" data-zoom-image="{{product.images.url}}"
-                                src="{{product.images.url}}" alt="{{product.text}}">
+                            <img class="image-fluid "
+                                src="{{product.images.url}}" alt="">
                         </div>
                         <div class="product__details__pic__slider owl-carousel">
                             <img data-imgbigurl="{% static 'Home_page/img/product/details/product-details-2.jpg' %}"
@@ -111,41 +111,20 @@ Product Details
                             <i class="fa fa-star-half-o"></i>
                             <span>(18 reviews)</span>
                         </div>
-                      
+                        {% for product_attribute in product_attribute %}
+                        <div class="product__details__price">{{product_attribute.price}}</div>
+                        {% endfor %}
                         <p>Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam
                             vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet
                             quam vehicula elementum sed sit amet dui. Proin eget tortor risus.</p>
-
-                            <table class="table">
-                                <tr>
-                                    <th>Price</th>
-                                    <th></th>
-                                </tr>
-                                <tr>
-                                    <th>Color</th>
-                                    <td>
-                                        
-                                        <button type="button" class="btn btn-outline-info">{{product.storage}}</button>
-
-                                    </td>
-                                </tr>
-                            </table>
-                            {% comment %} {% for product in product_attribute %}
-                            <button type="button" class="btn btn-outline-info">{{product.storage}}</button>
-                          
-                            {% endfor %}
-                            {% for product_attribute in product_attribute %}
-                            
-                            <div class="product__details__price">price : ${{product_attribute.price}}</div>
-                            {% endfor %} {% endcomment %}
                         <div class="product__details__quantity">
                             <div class="quantity">
                                 <div class="pro-qty">
                                     <input type="text" value="1">
                                 </div>
                             </div>
-                        </div>  
-                        <a href=" # " class="primary-btn btn-outline-primary">ADD TO CARD</a>
+                        </div>
+                        <a href="#" class="primary-btn">ADD TO CARD</a>
                         <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                         <ul>
                             <li><b>Availability</b> <span>In Stock</span></li>
@@ -242,7 +221,7 @@ Product Details
                         </div>
                     </div>
                 </div>
-                
+                {% endfor %}
                
                 
             </div>

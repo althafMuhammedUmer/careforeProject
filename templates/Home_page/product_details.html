@@ -87,9 +87,9 @@ Product Details
                     <div class="product__details__pic">
                         <div class="product__details__pic__item w-50 align-items-center">
                             <img class="image-fluid "
-                                src="{{data.images.url}}" alt="">
+                                src="{{data.productattribute_set.first.image.url}}" alt="">
                         </div>
-                        <div class="product__details__pic__slider owl-carousel">
+                        {% comment %} <div class="product__details__pic__slider owl-carousel">
                             <img data-imgbigurl="{% static 'Home_page/img/product/details/product-details-2.jpg' %}"
                                 src="{% static 'Home_page/img/product/details/thumb-1.jpg' %}" alt="">
                             <img data-imgbigurl="{% static 'Home_page/img/product/details/product-details-3.jpg' %}"
@@ -98,7 +98,7 @@ Product Details
                                 src="{% static 'Home_page/img/product/details/thumb-3.jpg' %}" alt="">
                             <img data-imgbigurl="{% static 'Home_page/img/product/details/product-details-4.jpg' %}"
                                 src="{% static 'Home_page/img/product/details/thumb-4.jpg' %}" alt="">
-                        </div>
+                        </div> {% endcomment %}
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
@@ -115,9 +115,31 @@ Product Details
                         
                         <div class="product__details__price"></div>
                        
-                        <p>Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam
-                            vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet
-                            quam vehicula elementum sed sit amet dui. Proin eget tortor risus.</p>
+                        <p>{{data.description}}</p>
+                        <table class="table">
+                            <tr>
+                                <th>Price</th>
+                                <th>${{data.productattribute_set.first.price}}</th>
+                            </tr>
+                            <tr>
+                                <th>Colors</th>
+                                <td>
+                                    {% for p_attr in data.productattribute_set.all %}
+                                    <button class="btn  btn-lg" style="background-color:{{p_attr.color.color_code}}"></button>
+                                    {% endfor %}
+
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Storage</th>
+                                <td>
+                                    {% for p_attr in data.productattribute_set.all %}
+                                    <button class="btn btn-outline-secondary btn-sm">{{p_attr.storage.title}}</button>
+                                    {% endfor %}
+                                </td>
+                            </tr>
+
+                        </table>
                         <div class="product__details__quantity">
                             <div class="quantity">
                                 <div class="pro-qty">
@@ -125,7 +147,7 @@ Product Details
                                 </div>
                             </div>
                         </div>
-                        <a href="#" class="primary-btn">ADD TO CARD</a>
+                        <a href=" {% url 'add_cart' product.id %} " class="primary-btn">ADD TO CARD</a>
                         <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                         <ul>
                             <li><b>Availability</b> <span>In Stock</span></li>

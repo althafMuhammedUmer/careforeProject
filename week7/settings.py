@@ -76,6 +76,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'Grocery.context_processors.counter',
+                # 'store.template_context.get_filters',
             ],
         },
     },

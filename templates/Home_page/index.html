@@ -131,19 +131,19 @@ Home
                 <div class="col-lg-3 col-md-4 col-sm-6 ">
                     <div class="featured__item ">
                         <div class="card align-items-center border-0">
-                            <div class="featured__item__pic set-bg  img-fluid "  data-setbg="{{product.images.url}}" style= "width:200px; ">
+                            <div class="featured__item__pic set-bg  img-fluid "  data-setbg="{{product.productattribute_set.first.image.url}}" style= "width:200px; ">
                                 <ul class="featured__item__pic__hover">
                                     <li  ><a href="  "><i class="fa fa-heart "></i></a></li>
                                  
-                                    <li><a href=" {% url 'add_cart' product.id %}"><i  class="fa fa-shopping-cart update-cart"></i></a></li>
+                                    <li><a href="{% url 'add_cart' product.id %}"><i  class="fa fa-shopping-cart update-cart"></i></a></li>
                                     
                                 </ul>
                                 
                             </div>
                                     <div class="featured__item__text">
                                 
-                                <h6><a href=" {% url 'product_details' product.id %} ">{{ product.product_name}}</a></h6>
-                                <h5>$</h5>
+                                <h6><a href="product_details/{{product.slug}}/{{product.id}} ">{{ product.product_name}}</a></h6>
+                                <h5>${{product.productattribute_set.first.price}}</h5>
     
                             </div>
 

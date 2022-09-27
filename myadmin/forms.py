@@ -14,7 +14,7 @@ class ProductForm(forms.ModelForm):
                  "description",
                 #  "price",
                  "product_discount_price",
-                 "images",
+                #  "images",
                  "stock",
                  "Category",
                  "subcategorys",

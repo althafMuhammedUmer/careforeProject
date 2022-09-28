@@ -58,7 +58,7 @@
                 </span>
                
                 <div style="color:white" >
-                {% include 'includes/alert.html' %}
+                {% comment %} {% include 'includes/alert.html' %} {% endcomment %}
                 </div>
                
                 <form action="{% url 'login' %}" method="POST" class="login100-form validate-form p-b-33 p-t-5">
@@ -101,6 +101,8 @@
 	
 
 	<div id="dropDownSelect1"></div>
+
+    
 
 
 	

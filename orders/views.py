@@ -1,11 +1,11 @@
 
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from Grocery.models import CartItem, Cart
+# from Grocery.models import CartItem, Cart
 from .models import Order, OrderProduct, Payment
 from .forms import OrderForm
 import datetime 
-from Grocery.views import _cart_id
+# from Grocery.views import _cart_id
 import json
 
 

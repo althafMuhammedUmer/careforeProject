@@ -61,9 +61,9 @@ cart
                     <h2 class="text-dark">Cart</h2>
                     <div class="breadcrumb__option">
                         <a class="text-dark" href=" {% url 'home' %} ">Home</a>
-                        <a class="text-dark" href=" {% url 'cart_view' %} ">Cart</a>
+                        <a class="text-dark" href="">Cart</a>
 
-                        <a class="text-dark" href=" {% url 'checkout' %} ">Checkout</a>
+                        <a class="text-dark" href="  ">Checkout</a>
                     </div>
                 </div>
             </div>
@@ -73,11 +73,11 @@ cart
     <section class="shoping-cart spad">
 
         <div class="container">
-            {% if not cart_items %}
+           
             <h2 class="text-center">Your Cart is empty</h2>
             <br>
             <a href=" {% url 'home' %} " class="primary-btn cart-btn bg-success text-white">CONTINUE SHOPPING</a>
-            {% else %} 
+          
             <div class="row">
                 <div class="col-lg-12">
                     <div class="shoping__cart__table">
@@ -92,26 +92,28 @@ cart
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for cart_item in cart_items %}
+                               
                                 <tr>
+                                    
                                     <td class="shoping__cart__item">
-                                        <img src="#" alt="" height=100px width=100px >
-                                        <h5>{{cart_item.product}}</h5>
+                                        <img src="" alt="" height=100px width=100px >
+                                        <h5></h5>
                                     </td>
+                                    
                                     <td class="shoping__cart__price">
-                                        $ {{cart_item.product.price}}
+                                        $
                                     </td>
                                     <td class="shoping__cart__quantity">
                                         <div class="col">
                                             <div class="input-group">
                                         <span class="input-group-btn">
-                                            <a href="{% url 'remove_cart' cart_item.product.id %}" type="button" class="quantity-left-minus btn btn-danger btn-number"  data-type="minus" data-field="">
+                                            <a href="" type="button" class="quantity-left-minus btn btn-danger btn-number"  data-type="minus" data-field="">
                                               <li class="fa fa-minus"></li>
                                             </a>
                                         </span>
-                                        <input type="text" id="quantity" name="quantity" class="form-control input-number" value="{{ cart_item.quantity }}">
+                                        <input type="text" id="quantity" name="quantity" class="form-control input-number" value="">
                                         <span class="input-group-btn">
-                                            <a href=" {% url 'add_cart' cart_item.product.id %} " type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus" data-field="">
+                                            <a href=" " type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus" data-field="">
                                                 <li class="fa fa-plus"></li>
                                             </a>
                                         </span>
@@ -124,17 +126,17 @@ cart
                                         </div> {% endcomment %}
                                     </td>
                                     <td class="shoping__cart__total">
-                                        $ {{grand_total}}
+                                        $ 
                                     </td>
                                     <td class="shoping__cart__item__close">
-                                        <a href=" {% url 'remove_cart_item' cart_item.product.id %} ">
+                                        <a href="  ">
                                             <span class="icon_close"></span>
                                         </a>
                                        
                                     </td>
 
                                 </tr>
-                                {% endfor %}
+                               
                                
                             </tbody>
                         </table>
@@ -169,11 +171,11 @@ cart
                             <li>Grand Total <span>$</span></li>
 
                         </ul>
-                        <a href=" {% url 'checkout' %} " class="primary-btn btn">PROCEED TO CHECKOUT</a>
+                        <a href=" " class="primary-btn btn">PROCEED TO CHECKOUT</a>
                     </div>
                 </div>
             </div>
-            {% endif %}
+           
         </div>
     </section>
     <!-- Shoping Cart Section End -->

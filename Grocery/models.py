@@ -2,7 +2,7 @@
 
 from django.db import models
 
-from store.models import Product
+from store.models import Product,ProductAttribute
 from Accounts.models import Account
 
 
@@ -10,28 +10,31 @@ from Accounts.models import Account
 class Cart(models.Model):
     
     user   = models.ForeignKey(Account, on_delete=models.CASCADE, null=True, blank=True)
-    
-    cart_id = models.CharField(max_length=250, blank=True, unique=True)
-    date_added = models.DateField(auto_now_add=True)
+    product = models.ForeignKey(ProductAttribute, on_delete=models.CASCADE, blank=True)
+    product_qty = models.IntegerField()
+  
+    # cart_id = models.CharField(max_length=250, blank=True, unique=True)
+    created_at = models.DateField(auto_now_add=True)
     completed = models.BooleanField(default=False)
     
     
-    def __str__(self):
-        return self.cart_id
+    # def __str__(self):
+    #     return self.product.product_name
     
     
-class CartItem(models.Model):
-    user   = models.ForeignKey(Account, on_delete=models.CASCADE, null=True, blank=True)
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    Cart    = models.ForeignKey(Cart, on_delete=models.CASCADE, null=True)
-    quantity = models.IntegerField()
-    is_active = models.BooleanField(default=True)
+# class CartItem(models.Model):
+#     user   = models.ForeignKey(Account, on_delete=models.CASCADE, null=True, blank=True)
+#     product = models.ForeignKey(Product, on_delete=models.CASCADE)
+#     # product_attribute = models.ForeignKey(ProductAttribute, on_delete=models.CASCADE,blank=True)
     
-    def sub_total(self):
-        return self.product.price * self.quantity
+#     Cart    = models.ForeignKey(Cart, on_delete=models.CASCADE, null=True)
+#     is_active = models.BooleanField(default=True)
     
-    def __unicode__(self): # from py3 onwards we use __unicode__ instead of __str__
-        return self.product
+#     def sub_total(self):
+#         return self.product.price * self.quantity
+    
+#     def __unicode__(self): # from py3 onwards we use __unicode__ instead of __str__
+#         return self.product
     
 
     

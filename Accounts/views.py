@@ -3,14 +3,15 @@ from django.http import HttpResponse
 from django.shortcuts import render,redirect
 # from . import verify
 from .verify import send_otp, verify_otp
-
+from django.contrib.auth import authenticate,login,logout
 
 from .forms import RegistrationForm
 from .models import Account
 from django.contrib import messages,auth
 from django.contrib.auth.decorators import login_required
-from Grocery.views import _cart_id
-from Grocery.models import Cart, CartItem
+# from Grocery.views import _cart_id
+# from Grocery.models import Cart, CartItem
+
 #verification email
 # from django.contrib.sites.shortcuts import get_current_site
 # from django.template.loader import render_to_string
@@ -20,7 +21,22 @@ from Grocery.models import Cart, CartItem
 # from django.core.mail import EmailMessage
 # from Accounts.mixins import *
 
+# testing view
+# def test(request):
+#     return render(request, 'Home_page/test.html')
 
+
+# # def profile(request):
+# #     if request.method == 'POST':
+# #         name = request.POST['name']
+# #         email = request.POST['email']
+# #         bio = request.POST['bio']
+# #         new_profile = Profile(name=name, email=email, bio=bio)
+# #         new_profile.save()
+# #         success = 'User ' + name + ' is created sucessfully'
+# #         return HttpResponse(success)
+        
+    
 
 
 
@@ -80,29 +96,23 @@ def register(request):
 
    
 
-def login(request):
+def loginpage(request):
+    if request.user.is_authenticated:
+        messages.warning(request, 'you are already logged in ')
+        
+        
     if request.method == "POST":
         
         email = request.POST['email']
         password = request.POST['password']
-        user = auth.authenticate(email=email, password=password)
+        user = authenticate(request, email=email, password=password)
+        # user = auth.authenticate(email=email, password=password)
         
         if user is not None:
-            # cart_item = CartItem.objects.filter(user=request.user) 
-            try:
-                cart =  Cart.objects.get(cart_id=_cart_id(request))
-                is_cart_item_exists = CartItem.objects.filter(cart=cart).exists()
-                if is_cart_item_exists:
-                    cart_item = CartItem.objects.filter(cart=cart)
-      
-                    for item in cart_item:
-                        item.user = user
-                        item.save()
-            except:
-                print('except error from login')
-           
-            auth.login(request,user)
-            # messages.success(request, 'you are now logged in')
+            login(request, user)
+          
+            # auth.login(request,user)
+            messages.success(request, 'you are now logged in')
             if request.user.is_superadmin:
                 return redirect('myadmin2')
             else:
@@ -114,8 +124,8 @@ def login(request):
     return render(request,'accounts/login.html')
 
 @login_required(login_url = 'login')
-def logout(request):
-    auth.logout(request)
+def logoutpage(request):
+    logout(request)
     messages.success(request,'You are logged out')
     return redirect('login')
 

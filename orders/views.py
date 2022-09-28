@@ -1,11 +1,11 @@
 
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from Grocery.models import CartItem, Cart
+# from Grocery.models import CartItem, Cart
 from .models import Order, OrderProduct, Payment
 from .forms import OrderForm
 import datetime 
-from Grocery.views import _cart_id
+# from Grocery.views import _cart_id
 import json
 
 
@@ -35,18 +35,18 @@ def payments(request):
     order.save()
     
     # move the cart items in Order Product table
-    cart_item =CartItem.objects.filter(user=request.user)
+    # cart_item =CartItem.objects.filter(user=request.user)
     
-    for item in cart_item:
-        orderproduct = OrderProduct()
-        orderproduct.order_id = order.id
-        orderproduct.payment = payment
-        orderproduct.user_id = request.user.id
-        orderproduct.product_id = item.product_id
-        orderproduct.quantity = item.quantity
-        orderproduct.product_price = item.product.price
-        orderproduct.ordered = True
-        orderproduct.save()
+    # for item in cart_item:
+    #     orderproduct = OrderProduct()
+    #     orderproduct.order_id = order.id
+    #     orderproduct.payment = payment
+    #     orderproduct.user_id = request.user.id
+    #     orderproduct.product_id = item.product_id
+    #     orderproduct.quantity = item.quantity
+    #     orderproduct.product_price = item.product.price
+    #     orderproduct.ordered = True
+    #     orderproduct.save()
         
         
         
@@ -79,17 +79,17 @@ def place_order(request, total=0, quantity=0,):
     tax = 0
     delivery_charge = 50
     
-    cart = Cart.objects.get(cart_id = _cart_id(request))   
-    cart_items = CartItem.objects.filter(Cart=cart, is_active=True)
-    print(cart_items)
-    for cart_item in cart_items:
-        print("inside for loop")
-        total += (cart_item.product.price * cart_item.quantity)
-        quantity += cart_item.quantity
-        print("hello")
+    # cart = Cart.objects.get(cart_id = _cart_id(request))   
+    # cart_items = CartItem.objects.filter(Cart=cart, is_active=True)
+    # print(cart_items)
+    # for cart_item in cart_items:
+    #     print("inside for loop")
+    #     total += (cart_item.product.price * cart_item.quantity)
+    #     quantity += cart_item.quantity
+    #     print("hello")
         
-    print("total is :",total)
-    tax = (3 * total) / 100
+    # print("total is :",total)
+    # tax = (3 * total) / 100
     
     # total_after_tax = total + tax
     
@@ -138,7 +138,7 @@ def place_order(request, total=0, quantity=0,):
             
             context = {
                 'order':order,
-                'cart_items':cart_items,
+                # 'cart_items':cart_items,
                 'total':total,
                 'tax': tax,
                 'grand_total':grand_total,
@@ -154,10 +154,10 @@ def place_order(request, total=0, quantity=0,):
     
     #if the cart item is less than or equal to  0 then redirect to shop or home
 
-    cart_count = cart_items.count()
-    if cart_count <= 0:
+    # cart_count = cart_items.count()
+    # if cart_count <= 0:
         
-        return HttpResponse("your cart is empty")
+    #     return HttpResponse("your cart is empty")
    
     
             

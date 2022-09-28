@@ -26,7 +26,12 @@
     <link rel="stylesheet" href="{% static 'Home_page/css/owl.carousel.min.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'Home_page/css/slicknav.min.css' %}" type="text/css">
     <link rel="stylesheet" href="{% static 'Home_page/css/style.css' %}" type="text/css">
-    <script type="text/javascript" src=""></script>
+    <!-- CSS alertify -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+    <!-- end alertify -->
+   
     
 
     
@@ -45,6 +50,22 @@
 
 <!--footer-->
 
+<!--jquery custom-->
+    <script src="{% static '/Home_page/js/jquery-3.6.1.min.js' %}"></script>
+    <script src="{% static '/Home_page/js/custom.js' %}"></script>
+    <!--alertify js starts-->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <script>
+        {% for msg in messages %}
+        
+        alertify.set('notifier','position', 'top-left');
+        
+        alertify.success('{{msg}}');
+        
+        {% endfor %}
+    </script>
+
+    <!--alertify js ends-->
 
     
   <!-- Js Plugins -->

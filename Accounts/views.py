@@ -92,7 +92,7 @@ def login(request):
         
            
             auth.login(request,user)
-            # messages.success(request, 'you are now logged in')
+            messages.success(request, 'you are now logged in')
             if request.user.is_superadmin:
                 return redirect('myadmin2')
             else:

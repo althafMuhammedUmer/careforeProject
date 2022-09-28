@@ -77,12 +77,9 @@ Product Details
 
     <!-- Product Details Section Begin -->
     <section class="mt-3">
-        <div class="container">
-            <div class="row">
+        <div class="container card shadow border-0 product-data">
+            <div class="row mt-4">
               
-               
-            
-                
                 <div class="col-lg-6 col-md-6">
                     <div class="product__details__pic">
                         <div class="product__details__pic__item w-50 align-items-center">
@@ -140,14 +137,15 @@ Product Details
                             </tr>
 
                         </table>
-                        <div class="product__details__quantity">
-                            <div class="quantity">
-                                <div class="pro-qty">
-                                    <input type="text" value="1">
-                                </div>
-                            </div>
+                        <div class="product__details__quantity" >
+                           <div class=" input-group text-center" style="width:130px;" >
+                                <button class="input-group-text decrement-btn">-</button>
+                                <input type="text" name="quantity" class="form-control qty-input text-center" value="1" >
+                                <button class="input-group-text increment-btn">+</button>
+
+                           </div>
                         </div>
-                        <a href=" {% url 'add_cart' product.id %} " class="primary-btn">ADD TO CARD</a>
+                        <a href="  " class="primary-btn">ADD TO CARD</a>
                         <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                         <ul>
                             <li><b>Availability</b> <span>In Stock</span></li>

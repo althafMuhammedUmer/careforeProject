@@ -94,10 +94,12 @@ cart
                             <tbody>
                                 {% for cart_item in cart_items %}
                                 <tr>
+                                    
                                     <td class="shoping__cart__item">
-                                        <img src="#" alt="" height=100px width=100px >
+                                        <img src="" alt="" height=100px width=100px >
                                         <h5>{{cart_item.product}}</h5>
                                     </td>
+                                    
                                     <td class="shoping__cart__price">
                                         $ {{cart_item.product.price}}
                                     </td>

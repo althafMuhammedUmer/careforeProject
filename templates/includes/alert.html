@@ -1,11 +1,5 @@
 
-
-
-
-{% if messages %}
-
-
-
+{% comment %} {% if messages %}
 
     {% for message in messages %}
     <div id="message" class="container" style="width:500px;">
@@ -15,6 +9,16 @@
         {{ message }}
     </div>
     </div>
+    {% endfor %}
+
+{% endif %} {% endcomment %}
+{% if messages %}
+    {% for msg in messages %}
+        <div class="aler alert-{{msg.tags}} m-2" id="msg1" role="alert">
+            {{msg}}
+        </div>
+
+
     {% endfor %}
 
 {% endif %}

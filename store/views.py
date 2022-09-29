@@ -1,3 +1,4 @@
+from email.mime import image
 from django.shortcuts import render
 from .models import Product,ProductAttribute
 from category.models import Category,Color

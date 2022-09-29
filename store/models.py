@@ -62,6 +62,7 @@ class ProductAttribute(models.Model):
     color   = models.ForeignKey(Color, on_delete=models.CASCADE,null=True)
     storage = models.ForeignKey(Storage, on_delete=models.CASCADE,null=True)
     price   = models.PositiveIntegerField()
+    quantity =models.IntegerField()
     
     
     class Meta:

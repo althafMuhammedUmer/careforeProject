@@ -26,7 +26,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
     # path('', include('Grocery.urls')),
-    path('', include('CartApp.urls')),
+    path('cart/', include('CartApp.urls')),
     
     path('', include('store.urls')), 
     path('orders/', include('orders.urls')),

@@ -138,6 +138,8 @@ Product Details
 
                         </table>
                         <div class="product__details__quantity" >
+                            {% csrf_token %}
+                            <input type="hidden" value="{{data.id}}" class="prod_id">
                            <div class=" input-group text-center" style="width:130px;" >
                                 <button class="input-group-text decrement-btn">-</button>
                                 <input type="text" name="quantity" class="form-control qty-input text-center" value="1" >
@@ -145,7 +147,7 @@ Product Details
 
                            </div>
                         </div>
-                        <a href="  " class="primary-btn">ADD TO CARD</a>
+                        <button type="button" class="primary-btn btn-outline-dark addToCartBtn">ADD TO CARD</button>
                         <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
                         <ul>
                             <li><b>Availability</b> <span>In Stock</span></li>

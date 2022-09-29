@@ -5,7 +5,8 @@ from django.urls import path
 urlpatterns = [
 
     # path('place_order', views.place_order, name='place_order'),
-    # path('', views.payments, name='payments'),
+    path('add-to-cart/', views.add_cart, name='add_cart'),
+    
     
  
 ] 

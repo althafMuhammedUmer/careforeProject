@@ -16,8 +16,8 @@ class Cart(models.Model):
     completed = models.BooleanField(default=False)
     
     
-    def __int__(self):
-        return self.cart_id
+    def __str__(self):
+        return self.user.first_name
     
     
 class CartItem(models.Model):

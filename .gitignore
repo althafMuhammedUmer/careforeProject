@@ -3,4 +3,5 @@ orders/__pycache__/
 orders/migrations/__pycache__/
 Accounts/__pycache__/
 CartApp/__pycache__/
+.env
  

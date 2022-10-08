@@ -16,7 +16,7 @@ class Cart(models.Model):
     completed = models.BooleanField(default=False)
     
     
-    def __str__(self):
+    def __int__(self):
         return self.cart_id
     
     

@@ -7,7 +7,7 @@ from .models import *
     
 
 
-admin.site.register(Cart)
+
 admin.site.register(CartItem)
 
 

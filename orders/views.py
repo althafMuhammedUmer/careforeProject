@@ -1,11 +1,11 @@
 from multiprocessing import context
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from Grocery.models import CartItem, Cart
+from Grocery.models import CartItem
 from .models import Order
 from .forms import OrderForm
 import datetime 
-from Grocery.views import _cart_id
+
 import json
 
 
@@ -30,8 +30,8 @@ def place_order(request, total=0, quantity=0,):
     tax = 0
     delivery_charge = 50
     
-    cart = Cart.objects.get(cart_id = _cart_id(request))   
-    cart_items = CartItem.objects.filter(Cart=cart, is_active=True)
+    # cart = Cart.objects.get(cart_id = _cart_id(request))   
+    cart_items = CartItem.objects.filter(user=request.user, is_active=True)
     print(cart_items)
     for cart_item in cart_items:
         print("inside for loop")

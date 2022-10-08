@@ -9,8 +9,8 @@ from .forms import RegistrationForm
 from .models import Account
 from django.contrib import messages,auth
 from django.contrib.auth.decorators import login_required
-from Grocery.views import _cart_id
-from Grocery.models import Cart, CartItem
+
+from Grocery.models import  CartItem
 #verification email
 # from django.contrib.sites.shortcuts import get_current_site
 # from django.template.loader import render_to_string
@@ -91,12 +91,12 @@ def login(request):
             
             try:
                 
-                cart = Cart.objects.get(cart_id=_cart_id(request))
+                # cart = Cart.objects.get(cart_id=_cart_id(request))
                  
-                is_cart_item_exists = CartItem.objects.filter(Cart=cart).exists() 
+                is_cart_item_exists = CartItem.objects.filter(user=request.user).exists() 
                 print(is_cart_item_exists)      
                 if is_cart_item_exists:
-                    cart_item = CartItem.objects.filter(Cart=cart)
+                    cart_item = CartItem.objects.filter(user=request.user)
                     
                     
                     for item in cart_item:

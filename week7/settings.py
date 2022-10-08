@@ -41,22 +41,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'Grocery',
+    'Grocery',
     'category',
     'Accounts',
     'store',
     'myadmin',
     'orders',
-<<<<<<< HEAD
-    'CartApp',
-=======
-    'cart',
->>>>>>> main
    
     
     
 ]
-CART_SESSION_ID = 'cart'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -81,13 +75,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-<<<<<<< HEAD
-                # 'Grocery.context_processors.counter',
-=======
                 'Grocery.context_processors.counter',
-                'cart.context_processor.cart_total_amount',
->>>>>>> main
-                # 'store.template_context.get_filters',
             ],
         },
     },
@@ -176,14 +164,5 @@ MESSAGE_TAGS = {
 
 #otp twilio
 
-ACCOUNT_SID= "AC22aa104c73a983362633617fcb3beabf"
-AUTH_TOKEN = "dc0b2a6e20bb97b9ff3a1c44cb205bdc"
-SERVICES_ID = "VAccec68e6a2bdc44e4072935708766b67"
 
-
-from django.contrib.messages import constants as messages
-
-MESSAGE_TAGS = {
-    messages.SUCCESS: 'alert-success',
-}
 

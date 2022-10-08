@@ -13,12 +13,6 @@ class SubCategoryAdmin(admin.ModelAdmin):
 
 admin.site.register(SubCategory,SubCategoryAdmin)
 
-admin.site.register(Brand)
-admin.site.register(Color)
-admin.site.register(Storage)
-
-
-
 # class ItemAdmin(admin.ModelAdmin):
 #     prepopulated_fields = {'slug': ('item_name',)}
 #     list_display = ('item_name', 'slug', 'category', 'item_img')

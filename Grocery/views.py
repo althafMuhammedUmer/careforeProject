@@ -1,9 +1,7 @@
 
-from email.mime import image
-from turtle import color
 from category.models import Category,SubCategory
 from django.shortcuts import render,redirect,get_object_or_404
-from store.models import Product, ProductAttribute
+from store.models import Product
 from .models import Cart, CartItem
 from django.http import HttpResponse
 from django.db.models import Q
@@ -37,22 +35,14 @@ def _cart_id(request):
     
 #     return render(request,'Home_page/index.html', context)
 ####################################################################
-
 def search(request):
     if 'keyword' in request.GET:
         keyword = request.GET['keyword']
        
-       
         product = Product.objects.filter(Q(product_name__icontains=keyword) | Q(description__icontains = keyword))
-        product_count = product.count()
-        print(product_count)
-        
-
          
         context = {
-       
-            'product':product,
-            'product_count':product_count,
+            'products':product
         } 
     
     return render(request,'Home_page/index.html', context)  
@@ -62,37 +52,23 @@ def search(request):
 
 
 def add_cart(request, product_id):
-    current_user = request.user
     product = Product.objects.get(id=product_id)
     
-    # is_cart_item_exists = CartItem.objects.filter(product=product,user=current_user).exists()
     
-    
-    
-    # if     user
+    # guest user
     
     try:
         cart = Cart.objects.get(cart_id=_cart_id(request))
-        print("cart try inside")
-        
-        
     except Cart.DoesNotExist:
-        print("no cart is saved")
         cart = Cart.objects.create(
             cart_id = _cart_id(request)
         )
-        
-    
-    cart.user = request.user
     cart.save()
     
     try: # for quantity increment
         cart_item = CartItem.objects.get(product = product, Cart=cart)
-        
-        
         cart_item.quantity += 1 #cart_item.quantity = cartItem.quantity + 1
         cart_item.save()
-        
         return redirect('cart_view')
         
     except CartItem.DoesNotExist:
@@ -100,9 +76,7 @@ def add_cart(request, product_id):
             product = product,
             quantity = 1,
             Cart = cart,
-            user = request.user
         )
-        
         cart_item.save()
         return redirect('cart_view')
   
@@ -113,11 +87,7 @@ def add_cart(request, product_id):
         
 def cart_view(request, total=0, quantity=0, cart_items = None):
     products_list = Product.objects.all().filter(is_available=True)
-    product_image = Product.objects.values('productattribute')
     category_list = Category.objects.all()
-    # print(product_image)
-    
-    
     
     try:
         tax = 0
@@ -128,7 +98,7 @@ def cart_view(request, total=0, quantity=0, cart_items = None):
         cart = Cart.objects.get(cart_id = _cart_id(request))
         cart_items = CartItem.objects.filter(Cart=cart, is_active=True)
         for cart_item in cart_items:
-            # total += (cart_item.product.price * cart_item.quantity)
+            total += (cart_item.product.price * cart_item.quantity)
             quantity += cart_item.quantity
         tax = ( 3 * total )/100
         grand_total = tax + total
@@ -137,13 +107,12 @@ def cart_view(request, total=0, quantity=0, cart_items = None):
         print("object does not exist in cart")
     
     context = {
-        # 'total':total,
+        'total':total,
         'quantity':quantity,
         'cart_items':cart_items,
-        'product_attribute':product_image,
-        # 'tax':tax,
-        # 'grand_total':grand_total,
-        'product':products_list,
+        'tax':tax,
+        'grand_total':grand_total,
+        'products':products_list,
         'category': category_list,
         
     }
@@ -187,35 +156,33 @@ def checkout(request, total=0, quantity=0, cart_items = None):
     
    
     try:
-        # cart = Cart.objects.get(cart_id = _cart_id(request))
-        cart_items = CartItem.objects.filter(user=request.user, is_active=True)
+        cart = Cart.objects.get(cart_id = _cart_id(request))
+        cart_items = CartItem.objects.filter(Cart=cart, is_active=True)
         
         for cart_item in cart_items:
-            # total += (cart_item.product.price * cart_item.quantity)
+            total += (cart_item.product.price * cart_item.quantity)
             quantity += cart_item.quantity
         tax = ( 3 * total )/100
         # grand_total = tax + total
         
         
         delivery_charge = 50
-        # checkout_total = delivery_charge + total
-        # grand_total = total + tax + delivery_charge
+        checkout_total = delivery_charge + total
+        grand_total = total + tax + delivery_charge
     except ObjectDoesNotExist:
         pass
     context = {
-        # 'total':total,
+        'total':total,
         'quantity':quantity,
         'cart_items':cart_items,
-        # 'tax':tax,
-        # 'grand_total':grand_total,
+        'tax':tax,
+        'grand_total':grand_total,
         'products':products_list,
         'category': category_list,
-        # 'checkout_total':checkout_total,
+        'checkout_total':checkout_total,
         'delivery_charge':delivery_charge
         
     }
     
-    
     return render(request, 'Home_page/checkout.html', context)
-
     

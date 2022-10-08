@@ -94,12 +94,10 @@ cart
                             <tbody>
                                 {% for cart_item in cart_items %}
                                 <tr>
-                                    
                                     <td class="shoping__cart__item">
-                                        <img src="" alt="" height=100px width=100px >
+                                        <img src="{{ cart_item.product.images.url}}" alt="" height=100px width=100px >
                                         <h5>{{cart_item.product}}</h5>
                                     </td>
-                                    
                                     <td class="shoping__cart__price">
                                         $ {{cart_item.product.price}}
                                     </td>
@@ -166,9 +164,9 @@ cart
                     <div class="shoping__checkout">
                         <h5>Cart Total</h5>
                         <ul>
-                            <li>tax 3%<span>$</span></li>
-                            <li>Total <span>$</span></li>
-                            <li>Grand Total <span>$</span></li>
+                            <li>tax 3%<span>${{tax}}</span></li>
+                            <li>Total <span>${{total}}</span></li>
+                            <li>Grand Total <span>${{grand_total}}</span></li>
 
                         </ul>
                         <a href=" {% url 'checkout' %} " class="primary-btn btn">PROCEED TO CHECKOUT</a>

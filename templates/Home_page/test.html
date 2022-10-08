@@ -1,58 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <script
-  src="https://code.jquery.com/jquery-3.6.1.js"
-  integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
-  crossorigin="anonymous"></script>
-</head>
-<body>
-
-  <h1> Create Form </h1>
-  <h2></h2>
-  <h3 class="success"></h3>
-  <form  id="post-form">  
-    {% csrf_token %}
-    <p>Name:</p>
-    <input type="text" id="name" name="name" ><br>
-    <p>email:</p>
-    <input type="text" id="email" name="email"><br>
-    <p>bio</p>
-    <input type="text" id="bio" name="bio"><br><br>
-    <input type="submit">
-  </form>
-
-
-  
-<script type=text/javascript>
-  $(document).on('submit', '#post-form', function(e){
-    e.preventDefault();
-
-    $.ajax({
-      type:'POST',
-      url: '/accounts/profile',
-      data: {
-        name:$('#name').val(),
-        email:$('#email').val(),
-        bio:$('#bio').val(),
-        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val(),
-   
-      },
-      success: function (data){
-        $('.success').html(data);
-
-      }
-      
-    });
-  });
-
-</script>
-
-
-  
-</body>
-</html>
+<section class="hero wpo-hero-style-3">
+    <div class="hero-static">
+      <div class="hero-inner">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="slider-image"><img src="https://i.seadn.io/gae/zSpJcqbleltkabnxkjTs9hsXCqoqGcwN_YEkvBjEM6OADi4rYBiOWUXihZLdSG1WUeZOZychcfAaSARoH2JfAiOw?w=1000" alt="" class="slider-bg"
+                        />
+                      </div>
+                      
+                </div>
+                <div class="col-md-6">
+                    <div class="slide-content">
+                        <div data-swiper-parallax="300" class="slide-title">
+                          <h2><span>Howdy,</span>CodeStreak.in</h2>
+                        </div>
+                        <div data-swiper-parallax="300" class="slide-sub-title">
+                          <h5 > 
+                            <span id="days">  </span> Days of coding  🔥</h5>
+                        </div>
+                        <div data-swiper-parallax="400" class="slide-text">
+                          <p>
+                            We accept all kind of web application as per your requirements!
+                          </p>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="slide-btn">
+                          <a class="theme-btn">Contact Us</a>
+                        </div>
+                      </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="container">
+          
+      </div>
+    </div>
+    <div class="dark_svg">
+      <svg x="0px" y="0px" viewBox="0 186.5 1920 113.5">
+        <polygon
+          points="0,300 655.167,210.5 1432.5,300 1920,198.5 1920,300 "
+        ></polygon>
+      </svg>
+    </div>
+  </section>

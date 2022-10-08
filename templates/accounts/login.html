@@ -36,8 +36,10 @@
 <!--===============================================================================================-->
 </head>
 <body>
+
 	
 	<div class="limiter " style="background-image: url('{% static 'userLogin/images/loginbg.jpg' %}');">
+        {% include 'includes/navbar555.html' %}
         
 		<div class="container-login100 section-content" >
             {% if request.GET.command == 'verification' %}
@@ -58,7 +60,7 @@
                 </span>
                
                 <div style="color:white" >
-                {% comment %} {% include 'includes/alert.html' %} {% endcomment %}
+                {% include 'includes/alert.html' %}
                 </div>
                
                 <form action="{% url 'login' %}" method="POST" class="login100-form validate-form p-b-33 p-t-5">
@@ -101,8 +103,6 @@
 	
 
 	<div id="dropDownSelect1"></div>
-
-    
 
 
 	

@@ -95,9 +95,6 @@ class Account(AbstractBaseUser):
         return True
     
     
-# class Profile(models.Model):
-#     name = models.CharField(max_length=355)
-#     email = models.CharField(max_length=355)
-#     bio  = models.TextField(max_length=2000)
+    
     
 

@@ -37,28 +37,6 @@ class SubCategory(models.Model):
     def __str__(self):
         return self.subcategory_name     
 
-
-class Brand(models.Model):
-    title = models.CharField(max_length=100)
-    image = models.ImageField(upload_to = 'photos/brand', null=True, blank=True)
-    
-    def __str__(self):
-        return self.title
-    
-class Color(models.Model):
-    title = models.CharField(max_length=100)
-    color_code = models.CharField(max_length=100)
-    
-    def __str__(self):
-        return self.title
-    
-class Storage(models.Model):
-    title = models.CharField(max_length=100)
-    
-    def __str__(self):
-        return self.title
-    
-    
     
 # class Items(models.Model):
 #     item_name = models.CharField(max_length=300, unique=True)

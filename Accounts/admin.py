@@ -20,7 +20,6 @@ class AccountAdmin(BaseUserAdmin):
     
 
 admin.site.register(Account,AccountAdmin)
-# admin.site.register(Profile)
 
 
 ####

@@ -10,6 +10,8 @@ urlpatterns = [
     path('update-cart', views.updatecart, name="updatecart"),
     # path('delete-cart-item', views.deletecartitem, name="deletecartitem"),
     
+    # path('wishlist', view.wishlist, name="wishlist")
+    
     
     
 
@@ -18,7 +20,7 @@ urlpatterns = [
     path('remove_cart/<int:product_id>/',views.remove_cart, name='remove_cart'),
    
     
-    path('cart_view/checkout/',views.checkout, name='checkout'),
+    path('checkout/',views.checkout, name='checkout'),
     
    
     

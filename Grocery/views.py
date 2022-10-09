@@ -102,8 +102,24 @@ def cart_view(request):
     
         categories = Category.objects.all()
         carts = CartItem.objects.filter(user=request.user)
+        
+        
+        total_price=0
+        for item in carts:
+            total_price = total_price + item.product.price * item.quantity
+        tax = 0
+        tax += total_price * 2/100
+        delivery_charge = 2
+        grand_total=0
+        grand_total = total_price + tax + delivery_charge    
+        
         context = {
             'carts':carts,
+            'total_price':total_price,
+            'tax':tax,
+            'delivery_charge':delivery_charge,
+            'grand_total':grand_total,
+            
             'categories':categories,
         }
     
@@ -155,46 +171,82 @@ def remove_cart(request,product_id):
     messages.success(request,'deleted successfully')
     return redirect('cart_view')
 
+
+def checkout(request):
+    rawcart = CartItem.objects.filter(user=request.user)
+    for item in rawcart:
+        if item.quantity > item.product.stock:
+            CartItem.objects.delete(id=item.id)
     
+    cartitems = CartItem.objects.filter(user=request.user)
+    total_price = 0
+    for item in cartitems:
+        total_price = total_price + item.product.price * item.quantity
+    tax = 0
+    tax = total_price*2/100
+    print(tax)
+    delivery_charge = 2
+    grand_total = 0
+    grand_total += total_price + tax + delivery_charge
+    print(grand_total)
     
-@login_required(login_url='login')    
-def checkout(request, total=0, quantity=0, cart_items = None):
-    products_list = Product.objects.all().filter(is_available=True)
-    category_list = Category.objects.all()
-    tax=0
-    grand_total=0
-    checkout_total=0
-    delivery_charge=0
-    
-   
-    try:
-        # cart = Cart.objects.get(cart_id = _cart_id(request))
-        cart_items = CartItem.objects.filter(user=request.user, is_active=True)
-        
-        for cart_item in cart_items:
-            total += (cart_item.product.price * cart_item.quantity)
-            quantity += cart_item.quantity
-        tax = ( 3 * total )/100
-        # grand_total = tax + total
-        
-        
-        delivery_charge = 50
-        checkout_total = delivery_charge + total
-        grand_total = total + tax + delivery_charge
-    except ObjectDoesNotExist:
-        pass
     context = {
-        'total':total,
-        'quantity':quantity,
-        'cart_items':cart_items,
+        'cartitems':cartitems,
+        'total_price':total_price,
         'tax':tax,
+        'delivery_charge':delivery_charge,
         'grand_total':grand_total,
-        'products':products_list,
-        'category': category_list,
-        'checkout_total':checkout_total,
-        'delivery_charge':delivery_charge
         
     }
-    
     return render(request, 'Home_page/checkout.html', context)
+     
+    
+
+    
+    
+# @login_required(login_url='login')    
+# def checkout(request, total=0, quantity=0, cart_items = None):
+#     products_list = Product.objects.all().filter(is_available=True)
+#     category_list = Category.objects.all()
+#     tax=0
+#     grand_total=0
+#     checkout_total=0
+#     delivery_charge=0
+    
+   
+#     try:
+#         # cart = Cart.objects.get(cart_id = _cart_id(request))
+#         cart_items = CartItem.objects.filter(user=request.user, is_active=True)
+        
+#         for cart_item in cart_items:
+#             total += (cart_item.product.price * cart_item.quantity)
+#             quantity += cart_item.quantity
+#         tax = ( 3 * total )/100
+#         # grand_total = tax + total
+        
+        
+#         delivery_charge = 50
+#         checkout_total = delivery_charge + total
+#         grand_total = total + tax + delivery_charge
+#     except ObjectDoesNotExist:
+#         pass
+#     context = {
+#         'total':total,
+#         'quantity':quantity,
+#         'cart_items':cart_items,
+#         'tax':tax,
+#         'grand_total':grand_total,
+#         'products':products_list,
+#         'category': category_list,
+#         'checkout_total':checkout_total,
+#         'delivery_charge':delivery_charge
+        
+#     }
+    
+#     return render(request, 'Home_page/checkout.html', context)
+
+
+# def wishlist(request):
+#     pass
+    # return render(request, 'Home_page/wishlist.html')
     

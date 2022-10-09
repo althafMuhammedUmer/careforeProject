@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def home(request):
-    products = Product.objects.filter(is_available=True)
+    products = Product.objects.all()
     category = Category.objects.all()
     
     context = {

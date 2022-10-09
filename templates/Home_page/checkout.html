@@ -150,7 +150,7 @@
                             <div class="checkout__order">
                                 <h4>Your Order</h4>
                                 <div class="checkout__order__products">Products <span>Product price</span></div>
-                                {% for cart_item in cart_items %}
+                                {% for cart_item in cartitems %}
                                 <ul>
                                     <li>{{cart_item.product.product_name}}<span>{{cart_item.product.price}}</span></li>
                                   
@@ -159,7 +159,7 @@
                                 
                                
                                 {% endfor %}
-                                <div class="checkout__order__subtotal">Total<span>$ {{total}}</span></div>
+                                <div class="checkout__order__subtotal">Total<span>$ {{total_price}}</span></div>
                                 <div class="checkout__order__subtotal">Tax<span>$ {{tax}}</span></div>
 
 

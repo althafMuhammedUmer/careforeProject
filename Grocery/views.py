@@ -96,13 +96,15 @@ def addtocart(request):
 
 
 @login_required(login_url='login' )       
-def cart_view(request, total=0, quantity=0, cart_items = None):
+def cart_view(request):
     if request.user.is_authenticated:
+        
     
-        category_list = Category.objects.all()
+        categories = Category.objects.all()
         carts = CartItem.objects.filter(user=request.user)
         context = {
-            'carts':carts
+            'carts':carts,
+            'categories':categories,
         }
     
         return render(request, 'Home_page/shopping-cart.html', context )
@@ -118,6 +120,7 @@ def updatecart(request):
             cartitem = CartItem.objects.get(product_id = prod_id, user=request.user)
             cartitem.quantity = prod_qty
             cartitem.save()
+            
             return JsonResponse({'status': "updated successfully"})
     return redirect('/')
 

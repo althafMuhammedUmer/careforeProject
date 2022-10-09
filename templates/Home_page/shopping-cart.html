@@ -91,9 +91,9 @@ cart
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody >
                                 {% for cart in carts %}
-                                <tr class="product_data">
+                                <tr class="product_data ">
                                     <td class="shoping__cart__item">
                                         <img src="{{ cart.product.images.url}}" alt="" height=100px width=100px >
                                         <h5>{{cart.product.product_name}}</h5>
@@ -139,7 +139,7 @@ cart
                                     
                                     </td>
                                     
-                                    <td class="shoping__cart__total">
+                                    <td class="shoping__cart__total cartdata">
                                         $ {{cart.sub_total}}
                                     </td>
                                     <td class="shoping__cart__item__close">

@@ -107,6 +107,7 @@ $(document).ready(function () {
             success: function (response) {
                 console.log(response)
                 alertify.success(response.status)
+                $('.cartdata').load(location.href + " .cartdata")
                 
             }
         });

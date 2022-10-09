@@ -3,7 +3,7 @@ from category.models import Category,SubCategory
 from django.shortcuts import render,redirect,get_object_or_404
 from store.models import Product
 from .models import  CartItem
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 
@@ -51,8 +51,43 @@ def search(request):
 
 
 
-def add_cart(request, product_id):
-    product = Product.objects.get(id=product_id)
+def addtocart(request):
+    if request.method == "POST":
+        if request.user.is_authenticated:
+            prod_id = request.POST.get('product_id')
+            print(prod_id)
+            
+            
+            
+            
+            product_check = Product.objects.get(id=prod_id)
+            print(product_check)
+            if product_check:
+                if (CartItem.objects.filter(user=request.user.id, product_id=prod_id)):
+                    
+                    return JsonResponse({'status': "product already in the cart"})
+                
+                else:
+                    prod_qty = int(request.POST.get('product_qty'))
+                    
+                    if product_check.stock >= prod_qty:
+                        CartItem.objects.create(user=request.user, product_id=prod_id, quantity=prod_qty)
+                        return JsonResponse({'status': "product added successfully"})
+                    else:
+                        return JsonResponse({'status': "Only " + str(product_check.stock)+ " quantity available"})
+            else:
+                return JsonResponse({'status': "No such products found"})
+            
+        else:
+            return JsonResponse({'status':"login to continue"})
+        
+    return redirect('/')
+    
+    
+    
+        
+    # product = Product.objects.get(id=product_id)
+    
     
     
     # guest user
@@ -63,12 +98,17 @@ def add_cart(request, product_id):
 
         
 def cart_view(request, total=0, quantity=0, cart_items = None):
-    products_list = Product.objects.all().filter(is_available=True)
-    category_list = Category.objects.all()
+    if request.user.is_authenticated:
+    
+        category_list = Category.objects.all()
+        carts = CartItem.objects.filter(user=request.user)
+        context = {
+            'carts':carts
+        }
     
     
     
-    return render(request, 'Home_page/shopping-cart.html' )      
+        return render(request, 'Home_page/shopping-cart.html', context )      
 
 
 

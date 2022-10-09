@@ -14,3 +14,14 @@ def store(request):
         'product_count':product_count,
     }
     return render(request, 'Home_page/shop-grid.html', context)
+
+def product_details(request, slug):
+    product = Product.objects.get(slug=slug)
+    
+    
+    category = Category.objects.all()
+    context = {
+        'categories':category,
+        'product':product,
+    }
+    return render(request, 'Home_page/product.html', context)

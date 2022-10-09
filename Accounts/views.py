@@ -89,26 +89,9 @@ def login(request):
         
         if user is not None:
             
-            try:
-                
-                # cart = Cart.objects.get(cart_id=_cart_id(request))
-                 
-                is_cart_item_exists = CartItem.objects.filter(user=request.user).exists() 
-                print(is_cart_item_exists)      
-                if is_cart_item_exists:
-                    cart_item = CartItem.objects.filter(user=request.user)
-                    
-                    
-                    for item in cart_item:
-                        item.user = user
-                        item.save()
-                    
-            except:
-                
-                
-                pass
+           
             auth.login(request,user)
-            # messages.success(request, 'you are now logged in')
+            messages.success(request, 'you are now logged in')
             if request.user.is_superadmin:
                 return redirect('myadmin2')
             else:

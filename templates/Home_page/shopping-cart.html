@@ -73,12 +73,12 @@ cart
     <section class="shoping-cart spad">
 
         <div class="container">
-            {% if not cart_items %}
+            {% if not carts %}
             <h2 class="text-center">Your Cart is empty</h2>
             <br>
             <a href=" {% url 'home' %} " class="primary-btn cart-btn bg-success text-white">CONTINUE SHOPPING</a>
             {% else %} 
-            <div class="row">
+            <div class="row product_data">
                 <div class="col-lg-12">
                     <div class="shoping__cart__table">
                         <table>
@@ -92,42 +92,58 @@ cart
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for cart_item in cart_items %}
+                                {% for cart in carts %}
                                 <tr>
                                     <td class="shoping__cart__item">
-                                        <img src="{{ cart_item.product.images.url}}" alt="" height=100px width=100px >
-                                        <h5>{{cart_item.product}}</h5>
+                                        <img src="{{ cart.product.images.url}}" alt="" height=100px width=100px >
+                                        <h5>{{cart.product.product_name}}</h5>
                                     </td>
                                     <td class="shoping__cart__price">
-                                        $ {{cart_item.product.price}}
+                                        $ {{cart.product.price | stringformat:'d'}}
                                     </td>
                                     <td class="shoping__cart__quantity">
+                                        {% csrf_token %}
+                                        {% if cart.product.stock >= cart.quantity %}
                                         <div class="col">
                                             <div class="input-group">
-                                        <span class="input-group-btn">
-                                            <a href="{% url 'remove_cart' cart_item.product.id %}" type="button" class="quantity-left-minus btn btn-danger btn-number"  data-type="minus" data-field="">
-                                              <li class="fa fa-minus"></li>
-                                            </a>
-                                        </span>
-                                        <input type="text" id="quantity" name="quantity" class="form-control input-number" value="{{ cart_item.quantity }}">
-                                        <span class="input-group-btn">
-                                            <a href=" {% url 'add_cart' cart_item.product.id %} " type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus" data-field="">
-                                                <li class="fa fa-plus"></li>
-                                            </a>
-                                        </span>
-                                    </div>
-                            </div>
-                                        {% comment %} <div class="quantity">
-                                            <a href=" {% url 'add_cart' cart_item.product.id %} " class="pro-qty">
-                                                <input type="text" value="{{ cart_item.quantity }}">
-                                            </a>
-                                        </div> {% endcomment %}
+                                        
+                                                <span class="input-group-btn">
+                                            
+                                                    <button type="button" class="quantity-left-minus btn btn-danger btn-number decrement-btn"  data-type="minus" data-field="">
+                                                        -
+                                                    </button>
+                                        
+                                                </span>
+                                       
+                                                <input type="hidden" data-product="{{product.id}}"  class="prod_id">
+                                        
+                                                <input type="text"  name="quantity" class="form-control  text-center qty-input" value="{{ cart.quantity }}">
+                                        
+                                       
+                                                <span class="input-group-btn">
+                                            
+                                                    <butoon type="button" class="quantity-right-plus btn btn-success btn-number increment-btn" data-type="plus" data-field="">
+                                                
+                                                        +
+                                            
+                                                    </butoon>
+                                        
+                                                </span>
+
+                                            </div>
+                                        </div>
+                                        {% else %}
+                                        <h6>out of stock</h6>
+                                        {% endif %}
+                
+                                    
                                     </td>
+                                    
                                     <td class="shoping__cart__total">
-                                        $ {{total}}
+                                        $ {{cart.sub_total}}
                                     </td>
                                     <td class="shoping__cart__item__close">
-                                        <a href=" {% url 'remove_cart_item' cart_item.product.id %} ">
+                                        <a href=" } ">
                                             <span class="icon_close"></span>
                                         </a>
                                        

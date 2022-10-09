@@ -78,7 +78,7 @@ cart
             <br>
             <a href=" {% url 'home' %} " class="primary-btn cart-btn bg-success text-white">CONTINUE SHOPPING</a>
             {% else %} 
-            <div class="row product_data">
+            <div class="row ">
                 <div class="col-lg-12">
                     <div class="shoping__cart__table">
                         <table>
@@ -93,7 +93,7 @@ cart
                             </thead>
                             <tbody>
                                 {% for cart in carts %}
-                                <tr>
+                                <tr class="product_data">
                                     <td class="shoping__cart__item">
                                         <img src="{{ cart.product.images.url}}" alt="" height=100px width=100px >
                                         <h5>{{cart.product.product_name}}</h5>
@@ -109,20 +109,20 @@ cart
                                         
                                                 <span class="input-group-btn">
                                             
-                                                    <button type="button" class="quantity-left-minus btn btn-danger btn-number decrement-btn"  data-type="minus" data-field="">
+                                                    <button type="button" data-product="{{cart.product.id}}"  class="quantity-left-minus btn btn-danger btn-number decrement-btn changeQuantity"  data-type="minus" data-field="">
                                                         -
                                                     </button>
                                         
                                                 </span>
                                        
-                                                <input type="hidden" data-product="{{product.id}}"  class="prod_id">
+  
                                         
-                                                <input type="text"  name="quantity" class="form-control  text-center qty-input" value="{{ cart.quantity }}">
+                                                <input type="text"  name="quantity" class="form-control  text-center qty-input" value="{{cart.quantity}}">
                                         
                                        
                                                 <span class="input-group-btn">
                                             
-                                                    <butoon type="button" class="quantity-right-plus btn btn-success btn-number increment-btn" data-type="plus" data-field="">
+                                                    <butoon type="button" data-product="{{cart.product.id}}" class="changeQuantity quantity-right-plus btn btn-success btn-number increment-btn " data-type="plus" data-field="">
                                                 
                                                         +
                                             
@@ -143,8 +143,8 @@ cart
                                         $ {{cart.sub_total}}
                                     </td>
                                     <td class="shoping__cart__item__close">
-                                        <a href=" } ">
-                                            <span class="icon_close"></span>
+                                        <a href=" {% url 'remove_cart' cart.product_id %} ">
+                                            <span class="fa fa-close "></span>
                                         </a>
                                        
                                     </td>

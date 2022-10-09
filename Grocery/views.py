@@ -1,4 +1,5 @@
 
+from django.db.models.fields import URLField
 from category.models import Category,SubCategory
 from django.shortcuts import render,redirect,get_object_or_404
 from store.models import Product
@@ -6,6 +7,7 @@ from .models import  CartItem
 from django.http import HttpResponse, JsonResponse
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 
 
@@ -50,15 +52,12 @@ def search(request):
 
 
 
-
+@login_required(login_url='login')
 def addtocart(request):
     if request.method == "POST":
         if request.user.is_authenticated:
             prod_id = request.POST.get('product_id')
             print(prod_id)
-            
-            
-            
             
             product_check = Product.objects.get(id=prod_id)
             print(product_check)
@@ -96,7 +95,7 @@ def addtocart(request):
 
 
 
-        
+@login_required(login_url='login' )       
 def cart_view(request, total=0, quantity=0, cart_items = None):
     if request.user.is_authenticated:
     
@@ -106,9 +105,34 @@ def cart_view(request, total=0, quantity=0, cart_items = None):
             'carts':carts
         }
     
+        return render(request, 'Home_page/shopping-cart.html', context )
     
+    else:
+        return redirect('login')
     
-        return render(request, 'Home_page/shopping-cart.html', context )      
+def updatecart(request):
+    if request.method == "POST":
+        prod_id = request.POST.get('product_id')
+        if CartItem.objects.filter(user=request.user, product_id=prod_id):
+            prod_qty = int(request.POST.get('product_qty'))
+            cartitem = CartItem.objects.get(product_id = prod_id, user=request.user)
+            cartitem.quantity = prod_qty
+            cartitem.save()
+            return JsonResponse({'status': "updated successfully"})
+    return redirect('/')
+
+# def deletecartitem(request):
+#     if request.method == "POST":
+#         prod_id = request.POST.get('product_id')
+#         if CartItem.objects.filter(user=request.user, product_id=prod_id):
+#             cartitem = CartItem.objects.get(user=request.user, product_id=prod_id)
+#             cartitem.delete()
+#             return JsonResponse({'status': "deleted successfully"})
+#     return redirect('/')
+            
+            
+            
+        
 
 
 
@@ -116,23 +140,18 @@ def cart_view(request, total=0, quantity=0, cart_items = None):
 
 def remove_cart(request,product_id):
     # cart = Cart.objects.get(cart_id = _cart_id(request))
-    product = get_object_or_404(Product, id=product_id)
-    cart_item = CartItem.objects.get(product=product, user=request.user)
+    product_id = Product.objects.get(id=product_id)
+    cart_item = CartItem.objects.get(product_id=product_id, user=request.user)
     
-    if cart_item.quantity > 1 :
-        cart_item.quantity -= 1
-        cart_item.save()
+    # if cart_item.quantity > 1 :
+    #     cart_item.quantity -= 1
+    #     cart_item.save()
         
-    else:
-        cart_item.delete()
+    # else:
+    cart_item.delete()
+    messages.success(request,'deleted successfully')
     return redirect('cart_view')
-    
-def remove_cart_item(request,product_id):
-    # cart = Cart.objects.get(cart_id = _cart_id(request))  
-    # product = get_object_or_404(Product, id=product_id)
-    # cart_item = CartItem.objects.get(product=product, Cart=cart)
-    # cart_item.delete()
-    return redirect('cart_view')
+
     
     
 @login_required(login_url='login')    

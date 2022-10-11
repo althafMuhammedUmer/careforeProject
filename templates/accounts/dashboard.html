@@ -1,0 +1,57 @@
+{% extends 'base/basehome.html' %}
+{% block content %}
+{% include 'includes/navbar555.html' %}
+<div class="container">
+    <div class="row">
+        {% include 'includes/userdashboardside.html' %}
+        <main class="col-md-9">
+            <div class="card">
+                <header class="card-header">
+                    <strong class="d-inline-block mr-3">Logged in as : </strong>
+                    <span>{{user.username}}</span>
+
+                </header>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Total Orders</h5>
+                                    <h4>{{order_count}}</h4>
+                                    <a href="">view orders </a>
+                                    {{order.order_number}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <img src="https://www.w3schools.com/howto/img_avatar.png" alt="user profile picture" width="50" height="50" style="border-radius:50%;">
+                                        </div>
+                                        <div class="col-md-9">
+    
+                                            <strong class="m-3">{{user.username}}</strong>
+                                            
+                                            <p class="mb-0">email: {{user.email}}</p> 
+                                            
+                                            <p clas>mobile no: {{user.phone_number}}</p> 
+                                        </div>
+
+                                    </div>
+                                   
+                                   
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+    </div>
+</div>
+{% endblock content %}

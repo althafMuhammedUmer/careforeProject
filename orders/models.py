@@ -38,7 +38,7 @@ class Order(models.Model):
     city = models.CharField(max_length=50)
     order_note = models.TextField(blank=True, null=True)
     total_price = models.FloatField()
-    payment_id = models.CharField(max_length=250, null=True)
+    payment_id = models.CharField(max_length=250, null=True, blank=True)
     post_code = models.IntegerField(null=True)
     
     # product_total = models.FloatField(null=True ,blank=True)

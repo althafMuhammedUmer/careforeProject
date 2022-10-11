@@ -45,7 +45,7 @@ def myadmin2(request):
 def myadminlogout(request):
     auth.logout(request)
     # messages.success(request, 'You are logged out')
-    return redirect('index')
+    return redirect('home')
 
 def userdata(request):
     if request.user.is_superadmin:

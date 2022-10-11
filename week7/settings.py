@@ -93,7 +93,7 @@ AUTH_USER_MODEL = 'Accounts.Account'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'carefore_old_project',
+        'NAME': 'freshcarefore',
         'USER': 'postgres',
         'PASSWORD': '1234',
         'HOST': 'localhost',

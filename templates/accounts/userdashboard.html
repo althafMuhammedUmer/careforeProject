@@ -23,9 +23,20 @@
 			<div class="col-md-6">
 				<div class="card" style="text-align:center;">
 					<div class="card-body">
-						<h5 class="card-title">Total Orders</h5>
-						<h4>{{orders_count}}</h4>
-						{% comment %} <a href="{% url 'my_orders' %}">View Orders</a> {% endcomment %}
+						<h5 class="card-title">Order details</h5>
+						{% if order  %}
+                        <p class="card-text text-dark">product name: {{order.product}}</p>  
+                        <p class="card-text text-dark">quantity: {{order.quantity}}</p>   
+                        <p class="card-text text-dark">price: {{order.price}}</p>   
+                        <p class="card-text text-dark">payment method: {{orderdetails.payment_method}}</p>   
+
+                        <p class="card-text text-dark">tracking Number: {{orderdetails.tracking_no}} </p>   
+
+						{% else %}
+						<h3>no orders</h3>
+						{% endif %}
+
+						
 					</div>
 				</div>
 			</div>

@@ -11,6 +11,7 @@ from django.contrib import messages,auth
 from django.contrib.auth.decorators import login_required
 
 from Grocery.models import  CartItem
+from orders.models import Order, OrderItem
 #verification email
 # from django.contrib.sites.shortcuts import get_current_site
 # from django.template.loader import render_to_string
@@ -128,7 +129,30 @@ def logout(request):
 
 @login_required(login_url='login')
 def dashboard(request):
-    return render(request, 'accounts/userdashboard.html')
+    order= Order.objects.order_by('-created_at').filter(user_id = request.user.id, is_ordered=True)
+    order_count = order.count()
+    context={
+        'order_count':order_count,
+       
+    }
+    
+    
+    # orderdetails= Order.objects.filter(user=request.user).last()
+    
+    # orderitem = OrderItem.objects.get(order=orderdetails)
+   
+    # context={
+    #     'order':orderitem,
+    #     'orderdetails':orderdetails,
+    # }
+    return render(request, 'accounts/dashboard.html', context)
+
+def my_orders(request):
+    orders = Order.objects.filter(user=request.user, is_ordered=True).order_by('-created_at')
+    context = {
+        'orders':orders
+    }
+    return render(request, 'accounts/myorders.html', context)
 
 
 

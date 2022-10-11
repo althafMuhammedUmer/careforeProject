@@ -1,0 +1,47 @@
+{% extends 'base/basehome.html' %}
+{% load static %}
+{% block title %}
+order completed
+{% endblock title %}
+{% block content %}
+
+<div class="container-fluid">
+    
+    {% include 'includes/navbar555.html' %}
+    <div class="container ">
+        <div class="row justify-content-center mt-5">
+            <div class="col">
+                <div class="card mt-5 bg-dark text-white">
+                    <div class="card-items ">
+                        <div class="col">
+                            <h3 class="text-center">Your order is Place successfully</h3>
+                            <div class="col d-flex justify-content-center mt-3">
+                                <div class="w-25 text-center">
+                                    <img src="{% static 'Home_page/img/completedicon.png' %}" class=" w-25 " alt="...">
+                                   </div>
+                            </div>
+                            <div class="col d-flex justify-content-center mt-3">
+                                <div class="w-25 ">
+                                    <h3 card-text text-center >Your tracking no: {{order.tracking_no}}</h3>
+                                </div>
+                            </div>
+
+                            
+
+                        </div>
+                        <div class="col d-flex justify-content-end">
+                            <a href=" {% url 'home' %} " class="btn btn-success">continue shopping</a>
+                        </div>
+                        
+                       
+                    </div>
+                </div>
+
+            </div>
+           
+        </div>
+
+    </div>
+    
+</div>
+{% endblock content %}

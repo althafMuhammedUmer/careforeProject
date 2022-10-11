@@ -52,7 +52,7 @@ def place_order(request):
         neworder.phone = request.POST.get('phone')
         neworder.email = request.POST.get('email')
         neworder.order_note = request.POST.get('order_note')
-        # neworder.payment_method = request.POST.get('payment_method')
+        
         
         cart = CartItem.objects.filter(user=request.user)
         cart_total_price = 0
@@ -106,8 +106,10 @@ def razorpaycheck(request):
     return JsonResponse({
         'total_price':total_price
     })
+    
+    
 def payment_page(request):
-    order_deltails = Order.objects.filter(user=request.user).last()
+    order_deltails = Order.objects.filter(user=request.user).first()
     context = {
         'order':order_deltails,
     }
@@ -124,9 +126,44 @@ def payments(request):
     print(body)
     return render(request, 'orders/payments.html')
 
-
 def cash_on_delivery(request):
-    pass
+    neworder=Order.objects.filter(user=request.user, is_ordered=False ).last()
+    method = "cash on delivery"
+    neworder.payment_method = method
+    neworder.is_ordered = True
+    
+    neworder.save()
+    
+    
+    neworderitems = CartItem.objects.filter(user=request.user)
+    for item in neworderitems:
+        OrderItem.objects.create(
+            order = neworder,
+            product = item.product,
+            price = item.product.price,
+            quantity = item.quantity,
+                
+        )
+        
+            # To decrease the product quantity from available stock 
+        orderproduct = Product.objects.filter(id=item.product_id).first()
+        orderproduct.stock = orderproduct.stock - item.quantity
+        orderproduct.save()
+    
+                
+        # to clear user cart 
+    CartItem.objects.filter(user=request.user).delete()
+    messages.success(request, "Your order has been placed successfully")
+    return redirect('successpage')
+
+def successpage(request):
+    order_deltails = Order.objects.filter(user=request.user).last()
+    
+    context = {
+        'order':order_deltails,
+    }
+    return render(request, 'orders/successpage.html', context)
+    
 
 
 

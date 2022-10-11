@@ -1,0 +1,57 @@
+{% extends 'base/basehome.html' %}
+{% block content %}
+{% include 'includes/navbar555.html' %}
+<div class="container">
+    <div class="row">
+        {% include 'includes/userdashboardside.html' %}
+        <main class="col-md-9">
+            <div class="card">
+                <header class="card-header">
+                    <strong class="d-inline-block mr-3">Your order history </strong>
+
+                </header>
+                <div class="card-body">
+                    <div class="row">
+                        
+                        <div class="col-md-12">
+                            <table class="table table-hover">
+                                <thead>
+                                  <tr>
+                                    <th scope="col">Order</th>
+                                    <th scope="col">Billing Name</th>
+                                    <th scope="col">Phone Number</th>
+                                    <th scope="col">Payment Method </th>
+                                    <th scope="col">Order Total </th>
+
+
+                                    <th scope="col">Date </th> 
+
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                    {% for order in orders %}
+                                  <tr>
+                                    <th scope="row">{{order.order_number}}</th>
+                                    <td>{{order.full_name}}</td>
+                                    <td>{{order.phone}}</td>
+                                    <td>{{order.payment_method}}</td>
+                                    <td>{{order.total_price}}</td>
+
+                                    <td >{{order.created_at}}</td>
+
+                                  </tr>
+                                  {% endfor %}
+                                 
+                                 
+                                </tbody>
+                              </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+    </div>
+</div>
+{% endblock content %} 

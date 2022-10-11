@@ -86,7 +86,7 @@
                                 <div class="col-lg-6 ">
                                     <div class="checkout__input">
                                         <p>First Name<span>*</span></p>
-                                        <input class="form-control" type="text" value="{{request.user.first_name}}" name="first_name" placeholder="First Name" >
+                                        <input class="form-control" type="text" value="{{request.user.first_name}}" name="first_name" placeholder="First Name" required>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -98,11 +98,11 @@
                             </div>
                             <div class="checkout__input">
                                 <p>Country<span>*</span></p>
-                                <input class="form-control" type="text" value="{{userprofile.country}}" name="country" placeholder="Country" >
+                                <input class="form-control" type="text" value="{{userprofile.country}}" name="country" placeholder="Country" required>
                             </div>
                             <div class="checkout__input">
                                 <p>Address<span>*</span></p>
-                                <input class="form-control" type="text" value="{{userprofile.address}}" name="address_line_1" placeholder="Street Address" class="checkout__input__add" >
+                                <input class="form-control" type="text" value="{{userprofile.address}}" name="address_line_1" placeholder="Street Address" class="checkout__input__add" required>
                                 <input class="form-control" type="text" name="address_line_2" placeholder="Apartment, suite, unite ect (optinal)">
                             </div>
                             <div class="checkout__input">
@@ -115,19 +115,19 @@
                             </div>
                             <div class="checkout__input">
                                 <p>Postcode / ZIP<span>*</span></p>
-                                <input class="form-control" type="text" value="{{userprofile.post_code}}"  name="post_code" >
+                                <input class="form-control" type="text" value="{{userprofile.post_code}}"  name="post_code" required>
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Phone<span>*</span></p>
-                                        <input type="text" value="{{userprofile.phone}}" name="phone" >
+                                        <input type="text" value="{{userprofile.phone}}" name="phone"  required>
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Email<span>*</span></p>
-                                        <input type="text" value="{{userprofile.email}}" name="email" placeholder="eg: abc@gmail.com">
+                                        <input type="text" value="{{userprofile.email}}" name="email" placeholder="eg: abc@gmail.com" required>
                                     </div>
                                 </div>
                             </div>
@@ -173,11 +173,12 @@
                                     </label>
                                 </div>
                                 <div class="footer__copyright__payment"><img src="{% static 'Home_page/img/payment-item.png' %}" alt=""></div>
-                                <input type="hidden" value="COD" name="payment_method">
+                                {% comment %} <input type="hidden" value="COD" name="payment_method"> {% endcomment %}
                                 
+                                {% comment %} <button type="submit" class="site-btn shadow">Cash On Delivery</button> {% endcomment %}
                                
-                                <button type="submit" class="site-btn shadow">Cash On Delivery</button>
-                                <button type="submit" id="rzp-button1" class="btn btn-info shadow ">Razor Pay</button>
+                                <button type="submit"  class="  site-btn shadow checkoutbtn">Check Out</button>
+                               
                        
                             </div>
                         </div>
@@ -257,12 +258,13 @@
     <!-- Footer Section End -->
 
     <!-- Js Plugins -->
+    
   
 
  
 
     
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    {% comment %} <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script>
         var options = {
             "key": "rzp_test_tbszSEUmR8gpmi", // Enter the Key ID generated from the Dashboard
@@ -296,7 +298,7 @@
             rzp1.open();
             e.preventDefault();
         }
-        </script>
+        </script> {% endcomment %}
 
 {% endblock content %}
 

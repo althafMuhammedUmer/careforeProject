@@ -67,6 +67,7 @@
 <script src="{% static 'Home_page/js/mixitup.min.js' %}"></script>
 <script src="{% static 'Home_page/js/owl.carousel.min.js' %}"></script>
 <script src="{% static 'Home_page/js/main.js' %}"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
 <!--custom js starts-->
   <script src="{% static 'Home_page/js/custom.js' %}" ></script>
@@ -75,7 +76,7 @@
  
 
 
-  <script src="{% static 'Home_page/js/checkout.js' %}"></script>
+  
  
 
 <!-- JavaScript alertify-->
@@ -84,7 +85,7 @@
 <!--custom js ends-->
 
 <!--paypal script-->
-  {% comment %} <script src="https://www.paypal.com/sdk/js?client-id=AXO2RGOqzlm9Q8qltdlksP50TCDJxwOK97hGAk9frdAkUdbbXhpzMvtc-rka1lM2S3rwr65q9g9Yi4Vx&currency=USD"></script>
+<script src="https://www.paypal.com/sdk/js?client-id=AXO2RGOqzlm9Q8qltdlksP50TCDJxwOK97hGAk9frdAkUdbbXhpzMvtc-rka1lM2S3rwr65q9g9Yi4Vx&currency=USD"></script>
   <script>
     function getCookie(name) {
         let cookieValue = null;
@@ -171,7 +172,7 @@
 
 
     }).render('#paypal-button-container');
-</script> {% endcomment %}
+</script> 
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
     <script>
         var delay = alertify.get('notifier','delay');
@@ -184,7 +185,8 @@
     {% endfor %}
    
     </script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="{% static 'Home_page/js/checkout.js' %}"></script>
+    
 
    
     

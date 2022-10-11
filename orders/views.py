@@ -19,6 +19,7 @@ import json
 # Create your views here.
 def place_order(request):
     if request.method == "POST":
+        print("post is working")
         
         currentuser = Account.objects.filter(id=request.user.id).first()
         if not currentuser.first_name:
@@ -51,7 +52,7 @@ def place_order(request):
         neworder.phone = request.POST.get('phone')
         neworder.email = request.POST.get('email')
         neworder.order_note = request.POST.get('order_note')
-        neworder.payment_method = request.POST.get('payment_method')
+        # neworder.payment_method = request.POST.get('payment_method')
         
         cart = CartItem.objects.filter(user=request.user)
         cart_total_price = 0
@@ -59,31 +60,39 @@ def place_order(request):
             cart_total_price = cart_total_price + item.product.price * item.quantity
         
         neworder.total_price = cart_total_price
+        #tracking no. generator
         trackno = 'carefore' + str(random.randint(11111111,99999999))
         while Order.objects.filter(tracking_no=trackno) is None:
             trackno = 'carefore' + str(random.randint(11111111,99999999))
         
-        neworder.tracking_no = trackno
-        neworder.save()
-        neworderitems = CartItem.objects.filter(user=request.user)
-        for item in neworderitems:
-            OrderItem.objects.create(
-                order = neworder,
-                product = item.product,
-                price = item.product.price,
-                quantity = item.quantity,
-                 
-            )
-            # To decrease the product quantity from available stock 
-            orderproduct = Product.objects.filter(id=item.product_id).first()
-            orderproduct.stock = orderproduct.stock - item.quantity
-            orderproduct.save()
-            
-        # to clear user cart 
-        CartItem.objects.filter(user=request.user).delete()
-        messages.success(request, "Your order has been placed successfully")
+        #order id generator
+        order_no = 'order' + str(random.randint(11111111,99999999))
+        while Order.objects.filter(order_number=order_no) is None:
+            order_no = 'order' + str(random.randint(11111111,99999999))
         
-    return redirect('/')
+        neworder.tracking_no = trackno
+        neworder.order_number = order_no
+        neworder.save()
+        # neworderitems = CartItem.objects.filter(user=request.user)
+        # for item in neworderitems:
+        #     OrderItem.objects.create(
+        #         order = neworder,
+        #         product = item.product,
+        #         price = item.product.price,
+        #         quantity = item.quantity,
+                 
+        #     )
+        
+            # To decrease the product quantity from available stock 
+        #     orderproduct = Product.objects.filter(id=item.product_id).first()
+        #     orderproduct.stock = orderproduct.stock - item.quantity
+        #     orderproduct.save()
+            
+        # # to clear user cart 
+        # CartItem.objects.filter(user=request.user).delete()
+        # messages.success(request, "Your order has been placed successfully")
+        
+        return redirect('payment_page')
 
 def razorpaycheck(request):
     cart = CartItem.objects.filter(user=request.user)
@@ -97,18 +106,23 @@ def razorpaycheck(request):
     return JsonResponse({
         'total_price':total_price
     })
+def payment_page(request):
+    order_deltails = Order.objects.filter(user=request.user).last()
+    context = {
+        'order':order_deltails,
+    }
+    return render(request, 'orders/payments.html', context)
     
-    
 
 
 
 
 
 
-# def payments(request):
-#     body = json.loads(request.body)
-#     print(body)
-#     return render(request, 'orders/payments.html')
+def payments(request):
+    body = json.loads(request.body)
+    print(body)
+    return render(request, 'orders/payments.html')
 
 
 

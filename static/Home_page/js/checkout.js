@@ -1,6 +1,7 @@
 $(document).ready(function () {
-     $('.payWithRazorpay').click(function (e) { 
+     $('.formclass').click(function (e) { 
         e.preventDefault();
+        console.log("click")
 
         var fname = $("[name= 'first_name']").val();
         var lname = $("[name= 'last_name']").val();
@@ -20,18 +21,19 @@ $(document).ready(function () {
             
             return false;
         }
-        else
-        {
+        // else
+        // {
+        //     console.log('else is working')
 
-            $.ajax({
-                method: "GET",
-                url: "/proceed-to-pay",
+            // $.ajax({
+            //     method: "GET",
+            //     url: "/proceed-to-pay",
                 
-                success: function (response) {
-                    console.log(response);
+            //     success: function (response) {
+            //         console.log(response);
                     
-                }
-            });
+            //     }
+            // });
             // var options = {
             //     "key": "YOUR_KEY_ID", // Enter the Key ID generated from the Dashboard
             //     "amount": "50000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
@@ -63,7 +65,7 @@ $(document).ready(function () {
             // swal("Good job!", "You clicked the button!", "success");
             
 
-        }
+        // }
 
 
 

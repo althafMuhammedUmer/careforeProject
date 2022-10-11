@@ -166,4 +166,8 @@ MESSAGE_TAGS = {
 #otp twilio
 
 
+############razor pay############
+razor_pay_key_id = 'rzp_test_tbszSEUmR8gpmi'
+key_secret = 'l0Y3dGouRdQWKaqk2PyqGsBd'
+
 

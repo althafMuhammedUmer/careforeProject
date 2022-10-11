@@ -1,9 +1,10 @@
 
-from django.db.models.fields import URLField
+
 from category.models import Category,SubCategory
 from django.shortcuts import render,redirect,get_object_or_404
 from store.models import Product
 from .models import  CartItem
+from orders.models import Order, Profile
 from django.http import HttpResponse, JsonResponse
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
@@ -172,6 +173,8 @@ def remove_cart(request,product_id):
     return redirect('cart_view')
 
 
+
+
 def checkout(request):
     rawcart = CartItem.objects.filter(user=request.user)
     for item in rawcart:
@@ -190,12 +193,17 @@ def checkout(request):
     grand_total += total_price + tax + delivery_charge
     print(grand_total)
     
+    userprofile = Profile.objects.filter(user=request.user).first()
+    
+    
+    
     context = {
         'cartitems':cartitems,
         'total_price':total_price,
         'tax':tax,
         'delivery_charge':delivery_charge,
         'grand_total':grand_total,
+        'userprofile':userprofile,
         
     }
     return render(request, 'Home_page/checkout.html', context)

@@ -3,6 +3,9 @@ from .models import *
 
 # Register your models here.
 admin.site.register(Order)
-admin.site.register(Payment)
-admin.site.register(OrderProduct)
+admin.site.register(OrderItem)
+admin.site.register(Profile)
+
+
+
 

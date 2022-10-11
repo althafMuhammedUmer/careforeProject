@@ -45,17 +45,20 @@
 
 <!--content-->
 
-{% endblock %}
+{% endblock content %}
+
+
 
 <!--footer-->
 
 
-
-
-
 <!-- Js Plugins -->
 <!-- JavaScript -->
+<!--custom razorpay js-->
 
+
+<!--razorpay ends-->
+<script src="{% static 'Home_page/js/jquery-3.6.1.min.js' %}"></script>
 <script src="{% static 'Home_page/js/jquery-3.3.1.min.js' %}"></script>
 <script src="{% static 'Home_page/js/bootstrap.min.js' %}"></script>
 <script src="{% static 'Home_page/js/jquery.nice-select.min.js' %}"></script>
@@ -65,10 +68,15 @@
 <script src="{% static 'Home_page/js/owl.carousel.min.js' %}"></script>
 <script src="{% static 'Home_page/js/main.js' %}"></script>
 
-
 <!--custom js starts-->
   <script src="{% static 'Home_page/js/custom.js' %}" ></script>
-  <script src="{% static 'Home_page/js/jquery-3.6.1.min.js' %}"></script>
+  
+  
+ 
+
+
+  <script src="{% static 'Home_page/js/checkout.js' %}"></script>
+ 
 
 <!-- JavaScript alertify-->
 
@@ -76,7 +84,7 @@
 <!--custom js ends-->
 
 <!--paypal script-->
-  <script src="https://www.paypal.com/sdk/js?client-id=AXO2RGOqzlm9Q8qltdlksP50TCDJxwOK97hGAk9frdAkUdbbXhpzMvtc-rka1lM2S3rwr65q9g9Yi4Vx&currency=USD"></script>
+  {% comment %} <script src="https://www.paypal.com/sdk/js?client-id=AXO2RGOqzlm9Q8qltdlksP50TCDJxwOK97hGAk9frdAkUdbbXhpzMvtc-rka1lM2S3rwr65q9g9Yi4Vx&currency=USD"></script>
   <script>
     function getCookie(name) {
         let cookieValue = null;
@@ -163,19 +171,24 @@
 
 
     }).render('#paypal-button-container');
-</script>
-<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
-<script>
-    var delay = alertify.get('notifier','delay');
-    alertify.set('notifier','delay', 0.9);
-    alertify.set('notifier','delay', delay);
+</script> {% endcomment %}
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <script>
+        var delay = alertify.get('notifier','delay');
+        alertify.set('notifier','delay', 0.9);
+        alertify.set('notifier','delay', delay);
 
-    alertify.set('notifier','position', 'top-right');
-    {% for msg in messages %}
-    alertify.success('{{msg}}');
+        alertify.set('notifier','position', 'top-right');
+        {% for msg in messages %}
+        alertify.success('{{msg}}');
     {% endfor %}
    
-</script>
+    </script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+   
+    
+    
 
   
 </body>

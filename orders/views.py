@@ -125,7 +125,8 @@ def payments(request):
     return render(request, 'orders/payments.html')
 
 
-
+def cash_on_delivery(request):
+    pass
 
 
 

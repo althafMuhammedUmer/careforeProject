@@ -1,12 +1,12 @@
 
 from django.http import HttpResponse
-from django.shortcuts import render,redirect
+from django.shortcuts import get_object_or_404, render,redirect
 # from . import verify
 from .verify import send_otp, verify_otp
 
 
-from .forms import RegistrationForm
-from .models import Account
+from .forms import RegistrationForm, UserForm, UserProfileForm
+from .models import Account, UserProfile
 from django.contrib import messages,auth
 from django.contrib.auth.decorators import login_required
 
@@ -129,6 +129,7 @@ def logout(request):
 
 @login_required(login_url='login')
 def dashboard(request):
+    
     order= Order.objects.order_by('-created_at').filter(user_id = request.user.id, is_ordered=True)
     order_count = order.count()
     context={
@@ -138,6 +139,7 @@ def dashboard(request):
     
     return render(request, 'accounts/dashboard.html', context)
 
+@login_required(login_url='login')
 def my_orders(request):
     orders = Order.objects.filter(user=request.user, is_ordered=True).order_by('-created_at')
     context = {
@@ -145,8 +147,70 @@ def my_orders(request):
     }
     return render(request, 'accounts/myorders.html', context)
 
+@login_required(login_url='login')
 def edit_profile(request):
-    return render(request, 'accounts/edit_profile.html')
+    userprofile = get_object_or_404(UserProfile, user=request.user)
+    if request.method == "POST":
+        user_form  = UserForm(request.POST, instance=request.user)
+        profile_form = UserProfileForm(request.POST, request.FILES, instance=userprofile)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, "your profile has been updated")
+            return redirect('edit_profile')
+    else:
+        user_form = UserForm(instance=request.user)
+        profile_form = UserProfileForm(instance=userprofile)
+    
+    context = {
+        
+        'user_form':user_form,
+        'profile_form':profile_form,
+        'userprofile':userprofile,
+        
+    }
+        
+    return render(request, 'accounts/edit_profile.html', context)
+
+
+@login_required(login_url='login')
+def change_password(request):
+    if request.method == "POST":
+        current_password = request.POST['current_password']
+        new_password = request.POST['new_password']
+        confirm_password = request.POST['confirm_password']
+        
+        user = Account.objects.get(username__exact=request.user.username) # exact is checking username exactly present , iexact is without case sensitive
+        
+        if new_password == confirm_password:
+            success = user.check_password(current_password)
+            if success:
+                user.set_password(new_password)
+                user.save()
+                messages.success(request , "password updated successfully")
+                # auth.logout(request)
+                return redirect('change_password')
+            else:
+                messages.error(request, "please enter valid current password")
+                return redirect('change_password')
+        else:
+            messages.error(request, "password doesnot match")
+            return redirect('change_password')
+        
+        
+        
+    return render(request, 'accounts/changepassword.html')
+
+@login_required(login_url='login')
+def order_detail(request,id):
+    order_detail = OrderItem.objects.filter(order_id=id)
+    order = Order.objects.get(id=id)
+    print(order_detail)
+    context = {
+        'order_detail': order_detail,
+        'order':order,
+    }
+    return render(request, 'accounts/user_order_detail.html', context)
 
 
 ### user dashboard ends ###

@@ -7,6 +7,8 @@ from Grocery.models import CartItem
 from  Accounts.models import Account
 from .models import Order, OrderItem, Profile
 from store.models import Product
+from django.contrib.auth.decorators import login_required
+
 
 from .forms import OrderForm
 import datetime 
@@ -17,6 +19,7 @@ import json
 
 
 # Create your views here.
+@login_required(login_url = 'login')
 def place_order(request):
     if request.method == "POST":
         print("post is working")
@@ -93,7 +96,8 @@ def place_order(request):
         # messages.success(request, "Your order has been placed successfully")
         
         return redirect('payment_page')
-
+    
+@login_required(login_url = 'login')
 def razorpaycheck(request):
     cart = CartItem.objects.filter(user=request.user)
     total_price = 0
@@ -108,6 +112,7 @@ def razorpaycheck(request):
     })
     
     
+@login_required(login_url = 'login')   
 def payment_page(request):
     order_deltails = Order.objects.filter(user=request.user).first()
     context = {
@@ -120,12 +125,14 @@ def payment_page(request):
 
 
 
-
+@login_required(login_url = 'login')
 def payments(request):
     body = json.loads(request.body)
     print(body)
     return render(request, 'orders/payments.html')
 
+
+@login_required(login_url = 'login')
 def cash_on_delivery(request):
     neworder=Order.objects.filter(user=request.user, is_ordered=False ).last()
     method = "cash on delivery"
@@ -156,6 +163,8 @@ def cash_on_delivery(request):
     messages.success(request, "Your order has been placed successfully")
     return redirect('successpage')
 
+
+@login_required(login_url='login')
 def successpage(request):
     order_deltails = Order.objects.filter(user=request.user).last()
     

@@ -8,7 +8,7 @@
             <div class="card">
                 <header class="card-header">
                     <strong class="d-inline-block mr-3">Logged in as : </strong>
-                    <span>{{user.username}}</span>
+                    <span>{{request.user.first_name}}</span>
 
                 </header>
                 <div class="card-body">
@@ -18,7 +18,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">Total Orders</h5>
                                     <h4>{{order_count}}</h4>
-                                    <a href="">view orders </a>
+                                    <a href=" {% url 'my_orders' %} ">view orders </a>
                                     {{order.order_number}}
                                 </div>
                             </div>

@@ -15,6 +15,7 @@ def store(request):
     }
     return render(request, 'Home_page/shop-grid.html', context)
 
+
 def product_details(request, slug):
     product = Product.objects.get(slug=slug)
     

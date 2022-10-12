@@ -129,6 +129,7 @@ def cart_view(request):
     else:
         return redirect('login')
     
+@login_required(login_url = 'login')    
 def updatecart(request):
     if request.method == "POST":
         prod_id = request.POST.get('product_id')
@@ -157,7 +158,7 @@ def updatecart(request):
 
 
 
-
+@login_required(login_url = 'login')
 def remove_cart(request,product_id):
     # cart = Cart.objects.get(cart_id = _cart_id(request))
     product_id = Product.objects.get(id=product_id)
@@ -174,7 +175,7 @@ def remove_cart(request,product_id):
 
 
 
-
+@login_required(login_url = 'login')
 def checkout(request):
     rawcart = CartItem.objects.filter(user=request.user)
     for item in rawcart:

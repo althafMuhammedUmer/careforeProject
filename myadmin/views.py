@@ -25,7 +25,7 @@ from orders.models import Order, OrderItem
 
 
 # Create your views here.
-
+@login_required(login_url = 'login')
 def view_orders(request):
     ordercounter= Order.objects.all()
     order_count = ordercounter.count()
@@ -59,6 +59,7 @@ def myadminlogout(request):
     # messages.success(request, 'You are logged out')
     return redirect('home')
 
+@login_required(login_url = 'login')
 def userdata(request):
     if request.user.is_superadmin:
         admin = request.user
@@ -70,7 +71,7 @@ def userdata(request):
     else:
         return redirect('/')
 
-
+@login_required(login_url = 'login')
 def user_delete(request,id):
     if request.user.is_superadmin:
         userid = Account.objects.get(pk=id)
@@ -100,6 +101,7 @@ def product_details2(request):
          
         return render(request, 'myadmin2/apps-e-commerce-products.html',{'products':product, 'admin':admin })  
 
+@login_required(login_url = 'login')
 def add_product(request):
     form = ProductForm()
     
@@ -112,7 +114,9 @@ def add_product(request):
         'form':form
     }
     
-    return render(request, 'myadmin2/addproduct.html', context)   
+    return render(request, 'myadmin2/addproduct.html', context) 
+
+@login_required(login_url = 'login')  
 def update_product(request,pk):
     product = Product.objects.get(id=pk)
     form    = ProductForm(instance=product)
@@ -126,6 +130,7 @@ def update_product(request,pk):
     }
     return render(request, 'myadmin2/update_product.html',context)
 
+@login_required(login_url = 'login')
 def delete_product(request,pk):
     product = Product.objects.get(id=pk)
     product.delete()
@@ -155,7 +160,7 @@ class CategoryUpdate(UpdateView):
     
     template_name = "myadmin2/category_update.html"
     
-
+@login_required(login_url = 'login')
 def category_delete(request, pk):
     category = Category.objects.get(id=pk)
     category.delete()

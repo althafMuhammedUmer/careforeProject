@@ -1,0 +1,95 @@
+{% extends 'base/basehome.html' %}
+{% block content %}
+{% include 'includes/navbar555.html' %}
+<div class="container">
+    <div class="row">
+        {% include 'includes/userdashboardside.html' %}
+        <main class="col-md-9">
+            <div class="card">
+                <header class="card-header">
+                    <strong class="d-inline-block mr-3">Your order history </strong>
+
+                </header>
+                <div class="card-body">
+                    <div class="row">
+                        
+                        <div class="col-md-12">
+                          <div class="panel panel-default plain">
+                            <div class="panel-body">
+                              <div class="row">
+                                <div class="col-lg-6">
+
+
+                                </div>
+                                <div class="col-lg-6">
+                                  <div class="invoice-form">
+                                    <ul class="list-unstyled text-right">
+                                      <li><strong>Invoice To</strong></li>
+                                      <li>{{order.full_name}}</li>
+                                      <li>{{order.address_line_1}}</li>
+                                      <li>{{order.city}}</li>
+                                      <li>{{order.country}}</li>
+
+                                
+                                    </ul>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-lg-12">
+                          <div class="invoice-details ">
+                            <div class="well">
+                              <ul class="list-unstyled">
+                                <li><strong>Order  :</strong> {{order.order_number}}</li>
+                                <li><strong>Payment_method  :</strong> {{order.payment_method}}</li>
+                                <li><strong>Order Date  :</strong> {{order.created_at}}</li>
+                                <li><strong>Status  :</strong> {{order.status}}</li>
+                               
+
+                              </ul>
+                              
+                            </div>
+                          </div>
+                        </div>
+                        <div class="invoice-items">
+                          <div class="table-responsive">
+                            <table class="table table-bordered">
+                              <thead>
+                                <tr>
+                                  <th class="per70 text-center">Products</th>
+                                  <th class="per70 text-center">Quantity</th>
+                                  <th class="per70 text-center">Total</th>
+
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {% for item in order_detail %}
+                                <tr>
+
+                                  <td>{{item.product.product_name}}
+                                    <p class="text-muted small">
+
+                                    </p>
+                                  </td>
+                                  <td class="text-center">{{item.quantity}}</td>
+                                  <td class="text-center">{{item.price}}</td>
+
+
+                                </tr>
+                                {% endfor %}
+                              </tbody>
+
+                            </table>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+
+    </div>
+</div>
+{% endblock content %} 

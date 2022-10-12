@@ -7,7 +7,7 @@
 
                 <div class="logo">
                     <span class="logo-icon">C</span>
-                    <span class="logo-text"></span>
+                    <span class="logo-text">Carefore</span>
                 </div>
 
                 <button id="toggle-fold-aside-button" type="button" class="btn btn-icon d-none d-lg-block" data-fuse-aside-toggle-fold>
@@ -30,15 +30,14 @@
 
                         <span>Dashboards</span>
                     </a>
-                    <ul id="collapse-dashboards" class='collapse show' role="tabpanel" aria-labelledby="heading-dashboards" data-children=".nav-item">
+                    <ul id="collapse-dashboards" class='collapse ' role="tabpanel" aria-labelledby="heading-dashboards" data-children=".nav-item">
 
                         <li class="nav-item">
-                            <a class="nav-link ripple active" href="#" data-url="index.html">
+                            <a class="nav-link ripple {% if '/myadmin/myadmin2/' in request.path %}active {% endif %} " href=" {% url 'myadmin2' %} " data-url="apps-e-commerce-products.html">
 
                                 <span>Project Dashboard</span>
                             </a>
                         </li>
-
                         <li class="nav-item">
                             <a class="nav-link ripple " href="apps-dashboards-server.html" data-url="index.html">
 
@@ -46,11 +45,13 @@
                             </a>
                         </li>
 
+                       
+
                     </ul>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link ripple " href="apps-calendar.html" data-url="index.html">
+                    <a class="nav-link ripple " href="apps-calendar.html" data-url="apps-e-commerce-products.html">
 
                         <i class="icon s-4 icon-calendar-today"></i>
 
@@ -60,36 +61,42 @@
 
                 <li class="nav-item" role="tab" id="heading-ecommerce">
 
-                    <a class="nav-link ripple with-arrow collapsed" data-toggle="collapse" data-target="#collapse-ecommerce" href="#" aria-expanded="false" aria-controls="collapse-ecommerce">
+                    <a class="nav-link ripple with-arrow " data-toggle="collapse" data-target="#collapse-ecommerce" href="#" aria-expanded="true" aria-controls="collapse-ecommerce">
 
                         <i class="icon s-4 icon-cart"></i>
 
                         <span>Ecommerce</span>
                     </a>
-                    <ul id="collapse-ecommerce" class='collapse ' role="tabpanel" aria-labelledby="heading-ecommerce" data-children=".nav-item">
+                    <ul id="collapse-ecommerce" class='collapse show' role="tabpanel" aria-labelledby="heading-ecommerce" data-children=".nav-item">
 
                         <li class="nav-item">
-                            <a class="nav-link ripple " href=" {% url 'product_details2' %} " data-url="index.html">
+                            <a class="nav-link ripple {% if '/myadmin/product_details2/' in request.path %}active{% endif %}" href="apps-e-commerce-products.html" >
 
                                 <span>Products</span>
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link ripple " href=" {% url 'userdata' %} " data-url="index.html">
+                            <a class="nav-link ripple {% if '/myadmin/userdata/' in request.path %}active{% endif %} " href=" {% url 'userdata' %} " >
 
-                                <span>User</span>
+                                <span>Users</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link ripple {% if '/myadmin/category_list/' in request.path %}active{% endif %} " href=" {% url 'category_list' %} " >
+
+                                <span>Category</span>
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link ripple " href="apps-e-commerce-orders.html" data-url="index.html">
+                            <a class="nav-link ripple {% if '/myadmin/view_orders' in request.path %}active {% endif %} " href=" {% url 'view_orders' %} "  >
 
                                 <span>Orders</span>
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link ripple " href=" {% url 'index' %} " >
+                            <a class="nav-link ripple " href=" {% url 'home' %} " >
                                 
                                 <span>Shopping Website View</span>
                             </a>
@@ -99,7 +106,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link ripple " href="apps-mail.html" data-url="index.html">
+                    <a class="nav-link ripple " href="apps-mail.html" data-url="apps-e-commerce-products.html">
 
                         <i class="icon s-4 icon-email"></i>
 
@@ -108,7 +115,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link ripple " href="apps-chat.html" data-url="index.html">
+                    <a class="nav-link ripple " href="apps-chat.html" data-url="apps-e-commerce-products.html">
 
                         <i class="icon s-4 icon-hangouts"></i>
 
@@ -117,7 +124,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link ripple " href="apps-file-manager.html" data-url="index.html">
+                    <a class="nav-link ripple " href="apps-file-manager.html" data-url="apps-e-commerce-products.html">
 
                         <i class="icon s-4 icon-folder"></i>
 
@@ -126,7 +133,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link ripple " href="apps-contacts.html" data-url="index.html">
+                    <a class="nav-link ripple " href="apps-contacts.html" data-url="apps-e-commerce-products.html">
 
                         <i class="icon s-4 icon-account-box"></i>
 
@@ -135,7 +142,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link ripple " href="apps-todo.html" data-url="index.html">
+                    <a class="nav-link ripple " href="apps-todo.html" data-url="apps-e-commerce-products.html">
 
                         <i class="icon s-4 icon-checkbox-marked"></i>
 
@@ -157,21 +164,50 @@
                     </a>
                     <ul id="collapse-authentication" class='collapse ' role="tabpanel" aria-labelledby="heading-authentication" data-children=".nav-item">
 
-                      
+                        <li class="nav-item">
+                            <a class="nav-link ripple " href="pages-auth-login.html" data-url="apps-e-commerce-products.html">
 
-                       
-
-                      
+                                <span>Login</span>
+                            </a>
+                        </li>
 
                         <li class="nav-item">
-                            <a class="nav-link ripple " href="pages-auth-reset-password.html" data-url="index.html">
+                            <a class="nav-link ripple " href="pages-auth-login-v2.html" data-url="apps-e-commerce-products.html">
+
+                                <span>Login v2</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link ripple " href="pages-auth-register.html" data-url="apps-e-commerce-products.html">
+
+                                <span>Register</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link ripple " href="pages-auth-register-v2.html" data-url="apps-e-commerce-products.html">
+
+                                <span>Register v2</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link ripple " href="pages-auth-forgot-password.html" data-url="apps-e-commerce-products.html">
+
+                                <span>Forgot Password</span>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link ripple " href="pages-auth-reset-password.html" data-url="apps-e-commerce-products.html">
 
                                 <span>Reset Password</span>
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link ripple " href="pages-auth-lock-screen.html" data-url="index.html">
+                            <a class="nav-link ripple " href="pages-auth-lock-screen.html" data-url="apps-e-commerce-products.html">
 
                                 <span>Lock Screen</span>
                             </a>
@@ -181,7 +217,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link ripple " href="pages-coming-soon.html" data-url="index.html">
+                    <a class="nav-link ripple " href="pages-coming-soon.html" data-url="apps-e-commerce-products.html">
 
                         <i class="icon s-4 icon-alarm-check"></i>
 
@@ -200,14 +236,14 @@
                     <ul id="collapse-errors" class='collapse ' role="tabpanel" aria-labelledby="heading-errors" data-children=".nav-item">
 
                         <li class="nav-item">
-                            <a class="nav-link ripple " href="pages-errors-404.html" data-url="index.html">
+                            <a class="nav-link ripple " href="pages-errors-404.html" data-url="apps-e-commerce-products.html">
 
                                 <span>404</span>
                             </a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link ripple " href="pages-errors-500.html" data-url="index.html">
+                            <a class="nav-link ripple " href="pages-errors-500.html" data-url="apps-e-commerce-products.html">
 
                                 <span>500</span>
                             </a>
@@ -217,7 +253,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link ripple " href="pages-maintenance.html" data-url="index.html">
+                    <a class="nav-link ripple " href="pages-maintenance.html" data-url="apps-e-commerce-products.html">
 
                         <i class="icon s-4 icon-oil"></i>
 
@@ -225,9 +261,25 @@
                     </a>
                 </li>
 
-            
+                <li class="nav-item">
+                    <a class="nav-link ripple " href="pages-profile.html" data-url="apps-e-commerce-products.html">
 
-               
+                        <i class="icon s-4 icon-account"></i>
+
+                        <span>Profile</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link ripple " href="pages-search.html" data-url="apps-e-commerce-products.html">
+
+                        <i class="icon s-4 icon-magnify"></i>
+
+                        <span>Search</span>
+                    </a>
+                </li>
+
+                
             </ul>
         </div>
     </div>

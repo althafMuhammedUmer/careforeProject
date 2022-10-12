@@ -22,13 +22,11 @@ urlpatterns = [
     path('category_update/<slug:pk>',views.CategoryUpdate.as_view(), name="category_update"),
     path('category_delete/<int:pk>/', views.category_delete, name="category_delete"),
     
-    
-
-
-    
-    
-    
     path('category_create/',views.CategoryCreate.as_view(), name= "category_create"),
+    
+    path('view_orders', views.view_orders, name="view_orders"),
+    
+    
     
     
 ]

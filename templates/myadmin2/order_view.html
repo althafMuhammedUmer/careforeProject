@@ -1,0 +1,157 @@
+{% extends 'myadmin2/baseAdmin2/base.html' %}
+{% load static %}
+{% block content %}
+<body class="layout layout-vertical layout-left-navigation layout-above-toolbar">
+    <main>
+        {% include 'myadmin2/baseAdmin2/basenav.html' %}
+        <div id="wrapper">
+        {% include 'myadmin2/baseAdmin2/sidebar.html' %}
+        <div class="content-wrapper">
+            <div class="content custom-scrollbar">
+
+                <div id="e-commerce-products" class="page-layout carded full-width">
+
+                    <div class="top-bg bg-secondary"></div>
+
+                    <!-- CONTENT -->
+                    <div class="page-content-wrapper">
+
+                        <!-- HEADER -->
+                        <div class="page-header light-fg row no-gutters align-items-center justify-content-between">
+
+                            <!-- APP TITLE -->
+                            <div class="col-12 col-sm">
+
+                                <div class="logo row no-gutters justify-content-center align-items-start justify-content-sm-start">
+                                    <div class="logo-icon mr-3 mt-1">
+                                        <i class="icon-cube-outline s-6"></i>
+                                    </div>
+                                    <div class="logo-text">
+                                        <div class="h4">Orders</div>
+                                        <div class="">Total orders: {{order_count}}</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- / APP TITLE -->
+
+                            <!-- SEARCH -->
+                            <div class="col search-wrapper px-2">
+
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-icon">
+                                            <i class="icon icon-magnify"></i>
+                                        </button>
+                                    </span>
+                                    <input id="products-search-input" type="text" class="form-control" placeholder="Search" aria-label="Search" />
+                                </div>
+
+                            </div>
+                            <!-- / SEARCH -->
+
+                         
+
+                        </div>
+                        <!-- / HEADER -->
+
+                        <div class="page-content-card">
+
+                            <table  class="table dataTable">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">Order Number</span>
+                                            </div>
+                                        </th>
+
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">Full Name</span>
+                                            </div>
+                                        </th>
+
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">Address</span>
+                                            </div>
+                                        </th>
+
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">State</span>
+                                            </div>
+                                        </th>
+
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">Country</span>
+                                            </div>
+                                        </th>
+
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">Post Code</span>
+                                            </div>
+                                        </th>
+
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">Phone</span>
+                                            </div>
+                                        </th>
+
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">Total Price</span>
+                                            </div>
+                                        </th>
+                                        <th>
+                                            <div class="table-header">
+                                                <span class="column-title">Status</span>
+                                            </div>
+                                        </th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    {% for order in orders %}
+                                    <tr>
+                                       <td>{{order.order_number}}</td>
+                                        <td>
+                                            {{order.full_name}}
+                                        </td>
+                                        <td>{{order.address_line_1}}</td>
+                                        
+                                        <td>{{order.state}}</td>
+                                        
+                                        <td>{{order.country}}</td>
+                                        <td>{{order.post_code}}</td>
+                                        <td>{{order.phone}}</td>
+                                        
+                                        <td>{{order.total_price}}</td>
+                                        <td>{{order.status}}</td>
+
+                                    </tr>
+                                    {% endfor %}
+
+                                    
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- / CONTENT -->
+                </div>
+
+                <script type="text/javascript" src="{% static 'myadmin2/assets/js/apps/e-commerce/products/products.js' %}"></script>
+
+            </div>
+        </div>
+        </div>
+        
+
+    </main>
+</body>
+
+{% endblock content %}

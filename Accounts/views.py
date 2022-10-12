@@ -1,4 +1,4 @@
-from itertools import product
+
 from django.http import HttpResponse
 from django.shortcuts import render,redirect
 # from . import verify
@@ -125,7 +125,7 @@ def logout(request):
 #         messages.error(request, 'Invalid Activation link')
 #         return redirect('register')
         
-
+#### user dashboard ###
 
 @login_required(login_url='login')
 def dashboard(request):
@@ -136,15 +136,6 @@ def dashboard(request):
        
     }
     
-    
-    # orderdetails= Order.objects.filter(user=request.user).last()
-    
-    # orderitem = OrderItem.objects.get(order=orderdetails)
-   
-    # context={
-    #     'order':orderitem,
-    #     'orderdetails':orderdetails,
-    # }
     return render(request, 'accounts/dashboard.html', context)
 
 def my_orders(request):
@@ -154,6 +145,11 @@ def my_orders(request):
     }
     return render(request, 'accounts/myorders.html', context)
 
+def edit_profile(request):
+    return render(request, 'accounts/edit_profile.html')
+
+
+### user dashboard ends ###
 
 
 def verify_code(request):

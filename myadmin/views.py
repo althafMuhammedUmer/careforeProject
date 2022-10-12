@@ -19,11 +19,23 @@ from django.contrib.auth.decorators import login_required
 from category.models import Category, SubCategory
 from django.views.generic import ListView, CreateView, UpdateView, DetailView
 from .forms import ProductForm
+from orders.models import Order, OrderItem
 
 
 
 
 # Create your views here.
+
+def view_orders(request):
+    ordercounter= Order.objects.all()
+    order_count = ordercounter.count()
+    orders = Order.objects.all()
+    context = {
+        'orders':orders,
+        'order_count':order_count,
+    }
+    
+    return render(request, 'myadmin2/order_view.html', context)
 
 # def myadmin(request):
 #     if request.user.is_superadmin:

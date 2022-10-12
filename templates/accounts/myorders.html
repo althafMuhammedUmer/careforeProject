@@ -24,7 +24,7 @@
                                     <th scope="col">Order Total </th>
 
 
-                                    <th scope="col">Date </th> 
+                                    {% comment %} <th scope="col">Date </th>  {% endcomment %}
 
                                   </tr>
                                 </thead>
@@ -37,7 +37,7 @@
                                     <td>{{order.payment_method}}</td>
                                     <td>{{order.total_price}}</td>
 
-                                    <td >{{order.created_at}}</td>
+                                    {% comment %} <td >{{order.created_at}}</td> {% endcomment %}
 
                                   </tr>
                                   {% endfor %}

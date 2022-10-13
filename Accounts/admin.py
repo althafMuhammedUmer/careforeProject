@@ -21,7 +21,7 @@ class UserProfileAdmin(admin.ModelAdmin):
     def thumbnail(self, object):
         return format_html('<img src="{}" width="30" style="border-radius:50%;">'.format(object.profile_picture.url))
     
-    list_display = ['thumbnail', 'username', 'full_address', 'city', 'state', 'country']
+    list_display = [ 'username', 'full_address', 'city', 'state', 'country']
     
     
     

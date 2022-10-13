@@ -1,28 +1,45 @@
 {% extends 'base/basehome.html' %}
 {% load static %}
 {% block content  %}
+{% include 'includes/navbar555.html' %}
+{% include 'includes/side.html' %}
+
 
 <section id="form"><!--form-->
     <div class="container">
-        <div class="row">
-            <div class="col-sm-4 col-sm-offset-1">
-                <div class="login-form"><!--login form-->
-                    {% include 'includes/alert.html' %}
-                    <h2>Enter your OTP</h2>
-                    <form action="" method="POST" >
-                        {% csrf_token %}
-                        <input type="text" placeholder="Enter your otp" name="otp" required />
-                        <span>
-                            <input type="checkbox" class="checkbox"> 
-                            Keep me signed in
-                        </span>
-                        <button type="submit" class="btn btn-default" >Login</button>
-                    </form>
-                </div><!--/login form-->
+        <div class="row  ">
+            <div class="container d-flex justify-content-center m-5 p-5">
+                <div class="card border-0 shadow">
+
+                
+                    <div class="card-body">
+                        <div class="login-form"><!--login form-->
+                            {% include 'includes/alert.html' %}
+                            <div class="card-head">
+                                <h2>Enter your OTP</h2>
+
+                            </div>
+                            <div class="card-items mt-3">
+                                <form action="" method="POST" >
+                                    {% csrf_token %}
+                                    <input type="text" placeholder="Enter your otp" name="otp" class="form-control" required />
+                                    
+                                    <button type="submit" class="text-white btn btn-primary mt-3 btn-outline-dark " >Verify</button>
+                                </form> 
+
+                            </div>
+                           
+                            
+                        </div><!--/login form-->
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section><!--/form-->
+{% include 'includes/footer.html' %}
+
 
 
 

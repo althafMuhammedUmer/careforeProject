@@ -129,7 +129,8 @@ def logout(request):
 
 @login_required(login_url='login')
 def dashboard(request):
-    userprofile =UserProfile.objects.get(user_id=request.user.id)
+    
+    userprofile, _ = UserProfile.objects.get_or_create(user_id=request.user.id)
     
     order= Order.objects.order_by('-created_at').filter(user_id = request.user.id, is_ordered=True)
     order_count = order.count()

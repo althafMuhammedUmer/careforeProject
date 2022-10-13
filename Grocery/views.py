@@ -80,7 +80,7 @@ def addtocart(request):
             
         else:
             return JsonResponse({'status':"login to continue"})
-        
+     
     return redirect('/')
     
     

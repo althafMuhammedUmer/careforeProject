@@ -4,6 +4,9 @@ from Accounts.models import *
 
 
 # Create your models here.
+
+
+
 class Product(models.Model):
     product_name    = models.CharField(max_length=200, unique=True)
     slug            = models.SlugField(max_length=200, unique=True)
@@ -24,66 +27,16 @@ class Product(models.Model):
     def __str__(self):
         return self.product_name
 
-class ProductMedia(models.Model):
-    product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
-    media_type_choice =((1,"image"),(2,"video"))
-    media_type = models.CharField(max_length=255)   
-    title_details = models.CharField(max_length=255)
- 
+class ProductGallery(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to = 'photos/products/productgallery')
     
+    def __str__(self):
+        return self.product.product_name
     
-
-    
-class Product_Reviews(models.Model):
-    product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
-    user_id  = models.ForeignKey(Account,on_delete=models.CASCADE)
-    rating = models.CharField(default="5",max_length=255)
-    review = models.TextField(default="")
-    created_date = models.DateField(auto_now_add=True)
-    is_active = models.IntegerField(default=1)
-    
-    
-class ProductReviewVoting(models.Model):
-    product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
-    user_id_voting = models.ForeignKey(Account,on_delete=models.CASCADE)
-    created_date    = models.DateTimeField(auto_now_add=True)
-    modified_date   = models.DateTimeField(auto_now=True)
-
-
-class ProductVarient(models.Model):
-    title = models.CharField(max_length=255)
-    created_date    = models.DateTimeField(auto_now_add=True)
-    
-
-class ProductVarientItems(models.Model):
-    product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
-    product_varient_id = models.ForeignKey(ProductVarient,on_delete=models.CASCADE)
-    title = models.CharField(max_length=255)
-    created_date    = models.DateTimeField(auto_now_add=True)
-   
-
-class CustomerOrders(models.Model):
-    product_id = models.ForeignKey(Product, on_delete=models.DO_NOTHING)
-    purchase_price = models.CharField(max_length=255)
-    coupon_code = models.CharField(max_length=255)
-    discount_amount = models.CharField(max_length=255)
-    product_status = models.CharField(max_length=255)
-    created_date    = models.DateTimeField(auto_now_add=True)
-
-class OrderDeliveryStatus(models.Model):
-    order_id = models.ForeignKey(CustomerOrders, on_delete=models.CASCADE)
-    status = models.CharField(max_length=255)
-    status_message = models.CharField(max_length=255)
-    created_date    = models.DateTimeField(auto_now_add=True)
-    modified_date   = models.DateTimeField(auto_now=True)
-    
-class ProductTransaction(models.Model): 
-    product_id = models.ForeignKey(Product, on_delete=models.CASCADE)
-    transaction_type_choices = ((1,"Buy"), (2,"Sell"))
-    transaction_product_count = models.IntegerField(  default=1)
-    transaction_type = models.IntegerField(choices=transaction_type_choices)
-    transaction_description = models.TextField(max_length=300)
-    created_date    = models.DateTimeField(auto_now_add=True)
+    class Meta:
+        verbose_name = 'productgallery'
+        verbose_name_plural = 'productgallery'
     
     
     

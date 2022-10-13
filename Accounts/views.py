@@ -129,11 +129,14 @@ def logout(request):
 
 @login_required(login_url='login')
 def dashboard(request):
+    userprofile =UserProfile.objects.get(user_id=request.user.id)
     
     order= Order.objects.order_by('-created_at').filter(user_id = request.user.id, is_ordered=True)
     order_count = order.count()
     context={
         'order_count':order_count,
+        'userprofile':userprofile,
+        
        
     }
     
@@ -141,9 +144,10 @@ def dashboard(request):
 
 @login_required(login_url='login')
 def my_orders(request):
+ 
     orders = Order.objects.filter(user=request.user, is_ordered=True).order_by('-created_at')
     context = {
-        'orders':orders
+        'orders':orders,
     }
     return render(request, 'accounts/myorders.html', context)
 

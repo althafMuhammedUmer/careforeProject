@@ -17,3 +17,6 @@ def home(request):
     }
     
     return render(request, 'Home_page/index.html', context )
+
+def errorpage(request):
+    return (request,'Home_page/404.html')

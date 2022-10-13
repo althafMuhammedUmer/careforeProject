@@ -114,9 +114,23 @@ def razorpaycheck(request):
     
 @login_required(login_url = 'login')   
 def payment_page(request):
+    cartitems = CartItem.objects.filter(user=request.user)
+    total_price=0
+    for item in cartitems:
+        total_price += item.product.price * item.quantity
+    tax=0
+    tax = total_price*2/100
+    delivery_charge = 2
+    grand_total = 0
+    grand_total += total_price + tax + delivery_charge
+        
     order_deltails = Order.objects.filter(user=request.user).first()
     context = {
         'order':order_deltails,
+        'total_price':total_price,
+        'tax':tax,
+        'delivery_charge':delivery_charge,
+        'grand_total':grand_total,
     }
     return render(request, 'orders/payments.html', context)
     

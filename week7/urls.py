@@ -22,9 +22,11 @@ from django.conf import settings
 # from .settings import MEDIA_ROOT
 
 urlpatterns = [
-   
-    path('admin/', admin.site.urls),
+    path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
+    path('adminOriginal/', admin.site.urls),
     path('', views.home, name='home'),
+    path('error/', views.errorpage, name='errorpage'),
+    
     path('', include('Grocery.urls')),
     path('', include('store.urls')), 
     path('orders/', include('orders.urls')),

@@ -32,7 +32,7 @@ payment
                     <div class="card-body">
 
                         {% comment %} <input class="form-check-input active" type="checkbox" value="" id="flexCheckDefault" >  {% endcomment %}
-                      <p class="card-text ">paypal</p>
+                      <p class="card-text ">Cash on delivery on available</p>
                     </div>
                 </div>
                 {% comment %} <div class="card">
@@ -53,7 +53,7 @@ payment
                         <div>
                             <b>Total:</b>
                             <span>
-                                {{total}}
+                                {{total_price}}
                             </span>
                            </div>
                         <div>
@@ -62,8 +62,21 @@ payment
                             <span>
                                 {{tax}}
                             </span>
-                           </div>
+                        </div>
                         <div>
+                            <b>Delivery Charge:</b>
+                            <span>
+                                {{delivery_charge}}
+                            </span>
+                        </div>
+                        <div>
+                            <div>
+                            <b>Tax:</b>
+                            <span>
+                                {{tax}}
+                            </span>
+                        </div>
+
                         <b>Grand Total:</b>
                         <span>
                             {{grand_total}}
@@ -78,15 +91,15 @@ payment
 
                     <a href=" {% url 'cash_on_delivery' %}"  class="btn btn-dark shadow mt-2 w-100" >Cash On Delivery</a>
 
-                    <button id="rzp-button1" class="btn btn-info w-100 mt-2">Pay with Paypal</button>
-                    <div id="paypal-button-container" class="mt-3"></div>
+                    {% comment %} <button id="rzp-button1" class="btn btn-info w-100 mt-2">Pay with Paypal</button>
+                    <div id="paypal-button-container" class="mt-3"></div> {% endcomment %}
                   </div>
 
             </div>
         </div>
     </div>
 </section>
-
+{% comment %} 
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
 <script>
@@ -129,6 +142,6 @@ payment
         rzp1.open();
         e.preventDefault();
     }
-    </script>
+    </script> {% endcomment %}
 
 {% endblock %}

@@ -24,10 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-86w6h^ch#xh0$&tiut#w(ewbo(4=-pe&7t+#^m_sesi8zk#^d8'
-
+SECRET_KEY=config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG',default=True, cast=bool) #true or false
 
 ALLOWED_HOSTS = []
 
@@ -35,7 +34,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    
+    'admin_honeypot',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -48,6 +47,7 @@ INSTALLED_APPS = [
     'store',
     'myadmin',
     'orders',
+    
    
     
     
@@ -56,12 +56,17 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django_session_timeout.middleware.SessionTimeoutMiddleware',   
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+SESSION_EXPIRE_SECONDS = 3600 #1 hour
+SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
+SESSION_TIMEOUT_REDIRECT = 'accounts/login'
 
 ROOT_URLCONF = 'week7.urls'
 
@@ -93,10 +98,10 @@ AUTH_USER_MODEL = 'Accounts.Account'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'freshcarefore',
-        'USER': 'postgres',
-        'PASSWORD': '1234',
-        'HOST': 'localhost',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD':config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
         'PORT': '5432',
     }
 }
@@ -156,18 +161,11 @@ MESSAGE_TAGS = {
     
 }
 
-#SMTP Configuration
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_PORT = 587
-# EMAIL_HOST_USER = 'althafav7@gmail.com'
-# EMAIL_HOST_PASSWORD = 'qiea nnvt daue gidr'
-# EMAIL_USE_TLS = True
 
-#otp twilio
 
 
 ############razor pay############
-razor_pay_key_id = 'rzp_test_tbszSEUmR8gpmi'
-key_secret = 'l0Y3dGouRdQWKaqk2PyqGsBd'
+razor_pay_key_id = config('razor_pay_key_id')
+key_secret = config('key_secret')
 
 

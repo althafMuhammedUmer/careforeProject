@@ -12,9 +12,6 @@ urlpatterns = [
     
     # path('wishlist', view.wishlist, name="wishlist")
     
-    
-    
-
     path('cart_view/',views.cart_view, name='cart_view' ),
     
     path('remove_cart/<int:product_id>/',views.remove_cart, name='remove_cart'),

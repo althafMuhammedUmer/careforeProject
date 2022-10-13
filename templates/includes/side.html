@@ -1,3 +1,4 @@
+{% load static %}
 <div id="preloder">
     <div class="loader"></div>
 </div>
@@ -5,8 +6,8 @@
 <!-- Humberger Begin -->
 <div class="humberger__menu__overlay"></div>
 <div class="humberger__menu__wrapper">
-    <div class="humberger__menu__logo">
-        <a href="#"><img src="img/logo.png" alt=""></a>
+    <div class="humberger__menu__logo ">
+        <a href=" {% url 'home' %} "><img src="{% static 'Home_page/img/careforelogo.png' %}" alt="logo" width="90px;"></a>
     </div>
     <div class="humberger__menu__cart">
         <ul>
@@ -26,7 +27,28 @@
             </ul>
         </div>
         <div class="header__top__right__auth">
-            <a href="#"><i class="fa fa-user"></i> Login</a>
+            {% if user.id is None %}
+            <div class="widget-header header__top__left">
+                <small class="title text-muted">Welcome guest</small>
+                <div>
+                    <a href="{% url 'login' %}">Sign In </a> <span class="dark-transp">|</span>
+                    <a href="{% url 'register' %}">Register </a> 
+                </div>
+            </div>
+            
+            {% else %}
+            <div class="widget-header header__top__left">
+                <small class="title text-muted">Welcome {{user.first_name}}</small>
+                <div>
+                    {% if user.is_superadmin%}
+                    <a href="{% url 'myadmin2' %}">Dashboard</a> <span class="dark-transp">|</span>
+                    {% else %}
+                    <a href="{% url 'dashboard' %}">Dashboard</a> <span class="dark-transp">|</span>
+                    {% endif %}
+                    <a href="{% url 'logout' %}">Logout</a> 
+                </div>
+            </div>
+            {% endif %}
         </div>
     </div>
     <nav class="humberger__menu__nav mobile-menu">

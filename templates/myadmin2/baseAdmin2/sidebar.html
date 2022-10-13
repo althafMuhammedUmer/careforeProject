@@ -70,7 +70,7 @@
                     <ul id="collapse-ecommerce" class='collapse show' role="tabpanel" aria-labelledby="heading-ecommerce" data-children=".nav-item">
 
                         <li class="nav-item">
-                            <a class="nav-link ripple {% if '/myadmin/product_details2/' in request.path %}active{% endif %}" href="apps-e-commerce-products.html" >
+                            <a class="nav-link ripple {% if '/myadmin/product_details2/' in request.path %}active{% endif %}" href=" {% url 'product_details' %} " >
 
                                 <span>Products</span>
                             </a>

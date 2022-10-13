@@ -94,7 +94,7 @@ def product_delete(request,id):
 #     product = Product.objects.create('')      
 
 @login_required(login_url='login')
-def product_details2(request):
+def product_details(request):
     if request.user.is_superadmin:
         admin = request.user
         product = Product.objects.all()

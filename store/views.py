@@ -84,8 +84,7 @@ def deletewishlist(request, product_id):
         messages.success(request, 'deleted successfully')
         
         return redirect('wishlist')
-
-   
+    
 def pagenotfound(request,exception):
     return render (request, 'Home_page/404.html')
     

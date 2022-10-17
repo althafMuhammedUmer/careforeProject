@@ -61,7 +61,7 @@ def addwishlist(request):
             
     
    
-
+@login_required(login_url='login')
 def viewWishlist(request,):
     if request.user.is_authenticated:
         
@@ -73,6 +73,9 @@ def viewWishlist(request,):
             'wishlist':wishlist,
         }
         return render(request, 'Home_page/wishlist.html', context)
+    else:
+        messages.success(request, 'login to continue')
+        return render('login')
 
 @login_required(login_url='login')
 def deletewishlist(request, product_id):

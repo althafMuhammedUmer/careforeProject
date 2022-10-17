@@ -12,6 +12,7 @@ urlpatterns = [
     path('addwishlist', views.addwishlist, name="addwishlist"),
     path('wishlist/', views.viewWishlist, name="wishlist"),
     path('deletewishlist/<int:product_id>/', views.deletewishlist, name="deletewishlist"),
+    
     # path('deletewishlist/<int:product_id>/', views.deletewishlist, name="deletewishlist"),
     
     # path('<slug:category_slug>/', views.shop, name='products_by_categroy'),

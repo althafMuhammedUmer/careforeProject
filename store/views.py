@@ -85,3 +85,6 @@ def deletewishlist(request, product_id):
         
         return redirect('wishlist')
     
+def pagenotfound(request,exception):
+    return render (request, 'Home_page/404.html')
+    

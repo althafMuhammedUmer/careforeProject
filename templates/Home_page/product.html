@@ -137,7 +137,7 @@ Product Details
                                </div>
                             </div>
                             <button type="button" class="primary-btn btn-outline-dark  addToCartBtn" data-product="{{product.id}}">ADD TO CARD</button>
-                            <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                            <a href=" {% url 'wishlist' product.slug %} " class="heart-icon"><span class="icon_heart_alt"></span></a>
                             <ul>
                                 <li><b>Availability</b> <span>In Stock</span></li>
                                 <li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>

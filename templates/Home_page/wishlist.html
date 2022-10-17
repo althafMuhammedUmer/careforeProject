@@ -1,0 +1,60 @@
+{% extends 'base/basehome.html' %}
+{% block title %}
+wishlist
+{% endblock title %}
+{% block content %}
+{% include 'includes/navbar555.html' %}
+{% include 'includes/side.html' %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col">
+            <div class="card border-0 shadow ">
+                <div class="card-head d-flex justify-content-center align-content-center">
+                    <h2>Wishlist</h2>
+                </div>
+                <div class="card-body text-center ">
+                    <table class="table table-hover text-center">
+                        <thead class="text-center">
+                          <tr >
+                            <th scope="col">Product</th>
+                            <th scope="col">stock</th>
+                            <th scope="col">Price</th>
+                            <th></th>
+                          </tr>
+                        </thead>
+                        <tbody class="text-center p-5">
+                            {% if wishlist %}
+                            
+
+                            <tr class="">
+                                <td class="">
+                                  <img src="{{wishlist.product.images.url}}" alt="" width="100" class="">
+                                  <h5>{{wishlist.product.product_name}}</h5>
+                                </td>
+                                <td class="p-5 mt-5">{{wishlist.product.stock}}</td>
+                                <td class=" p-5 mt-5">{{wishlist.product.price}}</td>
+                                <td class="shoping__cart__item__close">
+                                    <a href=" ">
+                                        <span class="fa fa-close "></span>
+                                    </a>
+                               
+                                </td>
+                            </tr>
+                           
+                          
+                            {% else %}
+                            <h3>no wishlist added</h3>
+                            {% endif %}
+                          
+                        </tbody>
+                      </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% include 'includes/footer.html' %}
+{% endblock content %}

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, ProductGallery
+from .models import Product, ProductGallery, WishList
 import admin_thumbnails
 
 
@@ -22,4 +22,5 @@ class ProductAdmin(admin.ModelAdmin):
 # Register your models here.
 admin.site.register(Product,ProductAdmin)
 admin.site.register(ProductGallery)
+admin.site.register(WishList)
 

@@ -7,7 +7,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="header__top__left">
                         <ul>
-                            <li><i class="fa fa-envelope"></i>carefore.com</li>
+                            <li><i class="fa fa-envelope"></i>carry.in</li>
                             <li>Free Shipping for all Order of $50</li>
                         </ul>
                     </div>
@@ -74,8 +74,8 @@
             <div class="col-lg-3">
                 <div class="header__cart ">
                     <ul>
-                        <li><a href="#"><i class="fa fa-heart"></i> <span>0</span></a></li>
-                        <li class=" {% if '/cart_view/' in request.path %}active{% endif %} " ><a href=" {% url 'cart_view' %} "><i class="fa fa-shopping-bag "></i> <span>0</span></a></li>
+                        <li><a href=" {% url 'wishlist' %} "><i class="fa fa-heart"></i> <span>{{wishlistcounter}}</span></a></li>
+                        <li class=" {% if '/cart_view/' in request.path %}active{% endif %} " ><a href=" {% url 'cart_view' %} "><i class="fa fa-shopping-bag "></i> <span>{{cart_count}}</span></a></li>
                     </ul>
                     <div class="header__cart__price">item: <span>$150.00</span></div>
                 </div>

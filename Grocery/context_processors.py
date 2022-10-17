@@ -10,9 +10,9 @@ def counter(request):
         
         
             
-        cart_items = CartItem.objects.all()
         
-        for cart_item in cart_items:
+        
+        for cart_item in cart:
             cart_count += cart_item.quantity
             
         
@@ -20,4 +20,6 @@ def counter(request):
         cart_count = 0
    
     return dict(cart_count=cart_count)
+
+
             

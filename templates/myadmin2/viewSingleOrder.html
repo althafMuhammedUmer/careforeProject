@@ -1,0 +1,152 @@
+{% extends 'myadmin2/baseAdmin2/base.html' %}
+{% load static %}
+{% block content %}
+<body class="layout layout-vertical layout-left-navigation layout-above-toolbar">
+    <main>
+        {% include 'myadmin2/baseAdmin2/basenav.html' %}
+        <div id="wrapper">
+            {% include 'myadmin2/baseAdmin2/sidebar.html' %}
+            
+
+            <div class="content-wrapper">
+                <div class="content custom-scrollbar">
+                    <div id="e-commerce-products" class="page-layout carded full-width">
+
+                        <div class="top-bg bg-secondary"></div>
+
+                        <!-- CONTENT -->
+                        <div class="page-content-wrapper">
+                            {% for order in orders %}
+
+
+                            <!-- HEADER -->
+                            <div class="page-header light-fg row no-gutters align-items-center justify-content-between">
+
+                                <!-- APP TITLE -->
+                                <div class="col-12 col-sm">
+
+                                    <div class="logo row no-gutters justify-content-center align-items-start justify-content-sm-start">
+                                        <div class="logo-icon mr-3 mt-1">
+                                            <i class="icon-cube-outline s-6"></i>
+                                        </div>
+                                        <div class="logo-text">
+                                            <div class="h4 text-white inline-block">Order View of     :</div>
+                                            <h3 class="inline-block "> {{ order.full_name}}</h3>
+                                           
+                                            
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- / APP TITLE -->
+
+                                
+
+                            </div>
+                            <!-- / HEADER -->
+
+                            <div class="page-content-card">
+                                <table id="e-commerce-products-table" class="table dataTable">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">Order</th>
+                                        <th scope="col">Billing Name</th>
+                                        <th scope="col">Phone Number</th>
+                                        <th scope="col">email</th>
+                                        <th scope="col">Address</th>
+                                        <th scope="col">City</th>
+                                        <th scope="col">State</th>
+                                        <th scope="col">Country</th>
+                                        <th scope="col">Post Code</th>
+            
+                                        <th scope="col">Order Note</th>
+                                        
+            
+                                        <th scope="col">Payment Method </th>
+                                        <th scope="col">Order Total </th>
+                                        <th scope="col">Status</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">Tracking No</th>
+            
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      
+                                      <tr>
+                                        <th scope="row">{{order.order_number}}</th>
+                                        <td>{{order.full_name}}</td>
+                                        <td>{{order.phone}}</td>
+                                        <td>{{order.email}}</td>
+                                        <td>{{order.address_line_1}}</td>
+                                        <td>{{order.city}}</td>
+                                        <td>{{order.state}}</td>
+                                        <td>{{order.country}}</td>
+                                        <td>{{order.post_code}}</td>
+                                        <td>{{order.order_note}}</td>
+            
+                                        <td>{{order.payment_method}}</td>
+                                        <td>{{order.total_price}}</td>
+                                        <td>{{order.status}}</td>
+                                        <td>{{order.created_at}}</td>
+                                        <td>{{order.tracking_no}}</td>
+            
+            
+            
+            
+                                        {% comment %} <td >{{order.created_at}}</td> {% endcomment %}
+            
+                                      </tr>
+                                      
+                                     
+                                     
+                                    </tbody>
+                                  </table>
+
+                                
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <!-- / CONTENT -->
+                    </div>
+                    
+                    
+                </div>
+
+                
+
+
+
+
+
+            
+
+
+        </div>
+    </main>
+</body>
+
+{% endblock content %}
+<div class="m-5">
+    <div class="card ">
+        <div class="card-head">
+            <h3 class="text-center">Order Details</h3>
+        </div>
+        <div class="card-body">
+
+            <div class="col">
+                {% if orders %}
+                <div class="container-fluid">
+                    
+
+                </div>
+                  
+              </div>
+              {% else %}
+              <h3 class="text-center">No orders</h3>
+              {% endif %}
+            </div>
+        </div>
+
+    </div>
+    
+</div>

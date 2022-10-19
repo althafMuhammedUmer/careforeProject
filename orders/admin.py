@@ -10,6 +10,10 @@ class OrderAdmin(admin.ModelAdmin):
 admin.site.register(Order,OrderAdmin)
 admin.site.register(OrderItem)
 admin.site.register(Profile)
+admin.site.register(Payment)
+
+
+    
 
 
 

@@ -13,6 +13,7 @@ urlpatterns = [
     path('change-password/', views.change_password, name="change_password"),
     path('order_detail/<int:id>/', views.order_detail, name="order_detail"),
     
+    
     ### user dashboard ends ###
     
     # path('', views.dashboard, name='dashboard'),

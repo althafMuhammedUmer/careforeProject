@@ -22,7 +22,11 @@
                                     <th scope="col">Billing Name</th>
                                     <th scope="col">Phone Number</th>
                                     <th scope="col">Payment Method </th>
-                                    <th scope="col">Order Total </th>
+                                    <th scope="col">Order Total</th>
+                                    <th scope="col">Status</th>
+
+
+                                    
 
 
                                     {% comment %} <th scope="col">Date </th>  {% endcomment %}
@@ -38,6 +42,17 @@
                                     <td>{{order.phone}}</td>
                                     <td>{{order.payment_method}}</td>
                                     <td>{{order.total_price}}</td>
+                                    {% if order.status == 'Pending' %}
+                                    <td class="text-danger font-weight-bold">{{order.status}}</td>
+                                    {% elif  order.status == 'Out for shipping'%}
+                                    <td class="text-info font-weight-bold">{{order.status}}</td>
+                                    {% elif order.status == 'Completed' %}
+                                    <td class="text-success font-weight-bold">{{order.status}}</td>
+                                    {% elif order.status == 'Cancelled' %}
+                                    <td class="text-danger font-weight-bold">{{order.status}}</td>
+                                    {% endif %}
+                                    
+
 
                                     {% comment %} <td >{{order.created_at}}</td> {% endcomment %}
 

@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from Grocery.models import CartItem
 from  Accounts.models import Account
-from .models import Order, OrderItem, Profile
+from .models import Order, OrderItem, Profile,Payment
 from store.models import Product
 from django.contrib.auth.decorators import login_required
 
@@ -138,11 +138,54 @@ def payment_page(request):
 
 
 
-
+###  paypal
 @login_required(login_url = 'login')
 def payments(request):
     body = json.loads(request.body)
     print(body)
+    order = Order.objects.filter(user=request.user).last()
+    order_total = order.total_price
+    grand_total = 0
+    tax = 0
+    tax = order_total * 2/100
+    delivery_charge = 2
+    grand_total += order_total + tax + delivery_charge
+    
+    
+    payment = Payment(
+        user = request.user,
+        payment_id = body['transID'],
+        payment_method = body['payment_method'],
+        amount_paid = grand_total,
+        status = body['status'],
+    )
+    payment.save()
+    order.payment = payment
+    order.is_ordered = True
+    order.payment_method = body['payment_method']
+    order.save()
+    
+    neworderitems = CartItem.objects.filter(user=request.user)
+    for item in neworderitems:
+        OrderItem.objects.create(
+            order = order,
+            product = item.product,
+            price = item.product.price,
+            quantity = item.quantity,
+                
+        )
+        
+            # To decrease the product quantity from available stock 
+        orderproduct = Product.objects.filter(id=item.product_id).first()
+        orderproduct.stock = orderproduct.stock - item.quantity
+        orderproduct.save()
+        
+    CartItem.objects.filter(user=request.user).delete()
+    
+    
+    messages.success(request, 'order placed successfully')
+    
+    
     return render(request, 'orders/payments.html')
 
 

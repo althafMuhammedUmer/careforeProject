@@ -53,6 +53,7 @@ def addwishlist(request):
                 return JsonResponse({'status': "no such products found"})
         
         else:
+            # messages.success(request, 'please login')
             return JsonResponse({'status': "login to continue"})
         
     return render('/')

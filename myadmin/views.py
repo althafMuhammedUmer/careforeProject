@@ -1,9 +1,5 @@
 
 
-from email import message
-from filecmp import clear_cache
-from functools import cache
-from multiprocessing import context
 from operator import index
 from unicodedata import category, name
 from urllib import request
@@ -25,6 +21,64 @@ from orders.models import Order, OrderItem
 
 
 # Create your views here.
+
+
+
+
+
+def ordercompleted(request, id):
+    if request.user.is_superadmin:
+        
+        order = Order.objects.get(id=id)
+        order.status = 'Completed'
+        order.save()
+        
+        return redirect('view_orders')
+    else:
+        return redirect('/')
+    
+def orderpending(request, id):
+    if request.user.is_superadmin:
+        order = Order.objects.get(id=id)
+        order.status = 'Pending'
+        order.save()
+        return redirect('view_orders')
+    else:
+        return redirect('/')
+    
+def ordershipping(request, id):
+    if request.user.is_superadmin:
+        order = Order.objects.get(id=id)
+        order.status = 'Out for shipping'
+        order.save()
+        return redirect('view_orders')
+    else:
+        return redirect('/')
+    
+def ordercancel(request, id):
+    if request.user.is_superadmin:
+        order = Order.objects.get(id=id)
+        order.status = 'Cancelled'
+        order.save()
+        return redirect('view_orders')
+    else:
+        return redirect('/')
+    
+    
+
+
+
+def viewSingleOrder(request, id):
+    orders = Order.objects.filter(id=id).order_by('-created_at')
+    context = {
+        'orders':orders,
+    }
+    
+    return render(request, 'myadmin2/viewSingleOrder.html',context)
+    
+    
+
+
 @login_required(login_url = 'login')
 def view_orders(request):
     ordercounter= Order.objects.all()

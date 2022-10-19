@@ -15,6 +15,8 @@ Including another URLconf
 """
 
 from django.contrib import admin
+
+from .settings import DEBUG
 from . import views
 # from django.conf.urls import handler404
 from django.urls import path, include
@@ -30,7 +32,7 @@ urlpatterns = [
     
     path('', include('Grocery.urls')),
     path('', include('store.urls')), 
-    path('orders/', include('orders.urls')),
+    path('', include('orders.urls')),
        
     path('accounts/', include('Accounts.urls')),
     path('myadmin/', include('myadmin.urls')),
@@ -38,7 +40,9 @@ urlpatterns = [
    
 
     
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] 
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
 

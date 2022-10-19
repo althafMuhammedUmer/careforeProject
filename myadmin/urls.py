@@ -25,6 +25,12 @@ urlpatterns = [
     path('category_create/',views.CategoryCreate.as_view(), name= "category_create"),
     
     path('view_orders', views.view_orders, name="view_orders"),
+    path('viewSingleOrder/<int:id>/', views.viewSingleOrder, name="viewSingleOrder"),
+    path('ordercompleted/<int:id>/', views.ordercompleted, name="ordercompleted"),
+    path('orderpending/<int:id>/', views.orderpending, name="orderpending"),
+    path('ordershipping/<int:id>/', views.ordershipping, name="ordershipping"),
+    path('ordercancel/<int:id>/', views.ordercancel, name="ordercancel"),
+    
     
     
     

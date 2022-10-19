@@ -56,8 +56,9 @@
                         <!-- / HEADER -->
 
                         <div class="page-content-card">
-
+                            {% if orders %}
                             <table  class="table dataTable">
+                               
                                 <thead>
                                     <tr>
                                         <th>
@@ -72,29 +73,13 @@
                                             </div>
                                         </th>
 
-                                        <th>
-                                            <div class="table-header">
-                                                <span class="column-title">Address</span>
-                                            </div>
-                                        </th>
+                                        
 
-                                        <th>
-                                            <div class="table-header">
-                                                <span class="column-title">State</span>
-                                            </div>
-                                        </th>
+                                        
 
-                                        <th>
-                                            <div class="table-header">
-                                                <span class="column-title">Country</span>
-                                            </div>
-                                        </th>
+                                       
 
-                                        <th>
-                                            <div class="table-header">
-                                                <span class="column-title">Post Code</span>
-                                            </div>
-                                        </th>
+                                        
 
                                         <th>
                                             <div class="table-header">
@@ -112,26 +97,49 @@
                                                 <span class="column-title">Status</span>
                                             </div>
                                         </th>
+                  
                                     </tr>
                                 </thead>
 
                                 <tbody>
                                     {% for order in orders %}
                                     <tr>
-                                       <td>{{order.order_number}}</td>
+                                        <td class="text-primary">
+                                            <a href=" {% url 'viewSingleOrder' order.id %} ">{{order.order_number}} </a>
+                                        </td>
                                         <td>
                                             {{order.full_name}}
                                         </td>
-                                        <td>{{order.address_line_1}}</td>
                                         
-                                        <td>{{order.state}}</td>
-                                        
-                                        <td>{{order.country}}</td>
-                                        <td>{{order.post_code}}</td>
                                         <td>{{order.phone}}</td>
                                         
                                         <td>{{order.total_price}}</td>
-                                        <td>{{order.status}}</td>
+                                        {% if order.status == 'Pending' %}
+                                        <td class="text-danger font-weight-bold">{{order.status}}</td>
+                                        {% elif  order.status == 'Out for shipping'%}
+                                        <td class="text-info font-weight-bold">{{order.status}}</td>
+                                        {% elif order.status == 'Completed' %}
+                                        <td class="text-success font-weight-bold">{{order.status}}</td>
+                                        {% elif order.status == 'Cancelled' %}
+                                        <td class="text-danger font-weight-bold">{{order.status}}</td>
+
+
+
+                                        {% endif %}
+                                        <td>
+                                            <div class="dropdown">
+                                                <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                  Update status
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                  <a class="dropdown-item" href=" {% url 'orderpending' order.id %} ">Pending</a>
+
+                                                  <a class="dropdown-item" href=" {% url 'ordershipping' order.id %}  ">Out for shipping</a>
+                                                  <a class="dropdown-item" href=" {% url 'ordercompleted' order.id %} ">Completed</a>
+                                                  <a class="dropdown-item" href=" {% url 'ordercancel' order.id %} ">Cancel</a>
+                                                </div>
+                                              </div>
+                                        </td>
 
                                     </tr>
                                     {% endfor %}
@@ -139,6 +147,8 @@
                                     
                                 </tbody>
                             </table>
+                            {% endif %}
+
                         </div>
                     </div>
                     <!-- / CONTENT -->

@@ -87,7 +87,8 @@
 <!--custom js ends-->
 
 <!--paypal script-->
-<script src="https://www.paypal.com/sdk/js?client-id=AXO2RGOqzlm9Q8qltdlksP50TCDJxwOK97hGAk9frdAkUdbbXhpzMvtc-rka1lM2S3rwr65q9g9Yi4Vx&currency=USD"></script>
+
+{% comment %} <script src="https://www.paypal.com/sdk/js?client-id=AXO2RGOqzlm9Q8qltdlksP50TCDJxwOK97hGAk9frdAkUdbbXhpzMvtc-rka1lM2S3rwr65q9g9Yi4Vx&currency=USD"></script>
   <script>
     function getCookie(name) {
         let cookieValue = null;
@@ -174,7 +175,7 @@
 
 
     }).render('#paypal-button-container');
-</script> 
+</script>  {% endcomment %}
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
     <script>
         var delay = alertify.get('notifier','delay');

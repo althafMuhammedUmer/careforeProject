@@ -163,7 +163,7 @@ def add_product(request):
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('product_details2')
+            return redirect('product_details')
     context = {
         'form':form
     }
@@ -178,7 +178,7 @@ def update_product(request,pk):
         form = ProductForm(request.POST, request.FILES, instance=product)
         if form.is_valid():
             form.save()
-            return redirect('product_details2')
+            return redirect('product_details')
     context = {
         "form" : form
     }
@@ -188,7 +188,7 @@ def update_product(request,pk):
 def delete_product(request,pk):
     product = Product.objects.get(id=pk)
     product.delete()
-    return redirect('product_details2')
+    return redirect('product_details')
 
         
 

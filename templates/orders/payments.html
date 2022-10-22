@@ -21,7 +21,7 @@ payment
                         <p class="card-text text-dark">order id: {{order.order_number}}</p>
                         <p class="card-text text-dark">Address: {{order.address_line_1}}</p>
                         {% if order.order_note %}
-                        <b>Order Note: </b>{{order.order_note}}
+                        <b>Order Note: </b> {{order.order_note}}
                         {% endif %}
 
                     </div>
@@ -123,7 +123,8 @@ payment
     var orderID = '{{order.order_number}}'
     var payment_method = 'paypal'
     var amount = '{{grand_total}}'
-    var url = '{% url 'payments' %}'
+    var url = '{% url 'paypal' %}'
+    var redirect_url = '{% url 'order_complete' %}'
 
     paypal.Buttons({
       // Sets up the transaction when a payment button is clicked
@@ -160,9 +161,13 @@ payment
                     status: orderData.status,
                 }),
 
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('success:', data);
+                console.log('Transaction completed');
+                window.location.href = redirect_url + '?order_number=' + data.order_number + '&payment_id=' + data.transID ;
             });
-            //.then(response => response.json())
-            //.then(data => console.log(data));
 
 
           }

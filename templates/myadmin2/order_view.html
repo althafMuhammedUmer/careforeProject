@@ -1,6 +1,16 @@
 {% extends 'myadmin2/baseAdmin2/base.html' %}
 {% load static %}
 {% block content %}
+<style>
+    .my-custom-scrollbar {
+        position: relative;
+        height: 400px;
+        overflow: auto;
+        }
+    .table-wrapper-scroll-y {
+    display: block;
+    }
+</style>
 <body class="layout layout-vertical layout-left-navigation layout-above-toolbar">
     <main>
         {% include 'myadmin2/baseAdmin2/basenav.html' %}
@@ -57,96 +67,97 @@
 
                         <div class="page-content-card">
                             {% if orders %}
-                            <table  class="table dataTable">
-                               
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            <div class="table-header">
-                                                <span class="column-title">Order Number</span>
-                                            </div>
-                                        </th>
-
-                                        <th>
-                                            <div class="table-header">
-                                                <span class="column-title">Full Name</span>
-                                            </div>
-                                        </th>
-
-                                        
-
-                                        
-
-                                       
-
-                                        
-
-                                        <th>
-                                            <div class="table-header">
-                                                <span class="column-title">Phone</span>
-                                            </div>
-                                        </th>
-
-                                        <th>
-                                            <div class="table-header">
-                                                <span class="column-title">Total Price</span>
-                                            </div>
-                                        </th>
-                                        <th>
-                                            <div class="table-header">
-                                                <span class="column-title">Status</span>
-                                            </div>
-                                        </th>
-                  
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                    {% for order in orders %}
-                                    <tr>
-                                        <td class="text-primary">
-                                            <a href=" {% url 'viewSingleOrder' order.id %} ">{{order.order_number}} </a>
-                                        </td>
-                                        <td>
-                                            {{order.full_name}}
-                                        </td>
-                                        
-                                        <td>{{order.phone}}</td>
-                                        
-                                        <td>{{order.total_price}}</td>
-                                        {% if order.status == 'Pending' %}
-                                        <td class="text-danger font-weight-bold">{{order.status}}</td>
-                                        {% elif  order.status == 'Out for shipping'%}
-                                        <td class="text-info font-weight-bold">{{order.status}}</td>
-                                        {% elif order.status == 'Completed' %}
-                                        <td class="text-success font-weight-bold">{{order.status}}</td>
-                                        {% elif order.status == 'Cancelled' %}
-                                        <td class="text-danger font-weight-bold">{{order.status}}</td>
-
-
-
-                                        {% endif %}
-                                        <td>
-                                            <div class="dropdown">
-                                                <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                  Update status
-                                                </button>
-                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                  <a class="dropdown-item" href=" {% url 'orderpending' order.id %} ">Pending</a>
-
-                                                  <a class="dropdown-item" href=" {% url 'ordershipping' order.id %}  ">Out for shipping</a>
-                                                  <a class="dropdown-item" href=" {% url 'ordercompleted' order.id %} ">Completed</a>
-                                                  <a class="dropdown-item" href=" {% url 'ordercancel' order.id %} ">Cancel</a>
+                            <div class="table-wrapper-scroll-y  my-custom-scrollbar">
+                                <table   class=" dataTable table table-bordered table-striped mb-0">
+                                
+                                    <thead>
+                                        <tr>
+                                            <th>
+                                                <div class="table-header">
+                                                    <span class="column-title">Order Number</span>
                                                 </div>
-                                              </div>
-                                        </td>
+                                            </th>
 
-                                    </tr>
-                                    {% endfor %}
+                                            <th>
+                                                <div class="table-header">
+                                                    <span class="column-title">Full Name</span>
+                                                </div>
+                                            </th>
 
-                                    
-                                </tbody>
-                            </table>
+                            
+                                            <th>
+                                                <div class="table-header">
+                                                    <span class="column-title">Phone</span>
+                                                </div>
+                                            </th>
+
+                                            <th>
+                                                <div class="table-header">
+                                                    <span class="column-title">Total Price</span>
+                                                </div>
+                                            </th>
+                                            <th>
+                                                <div class="table-header">
+                                                    <span class="column-title">Status</span>
+                                                </div>
+                                            </th>
+                                            <th>
+                                                <div class="table-header">
+                                                    <span class="column-title">Status update</span>
+                                                </div>
+
+                                            </th>
+                    
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+                                        {% for order in orders %}
+                                        <tr>
+                                            <td class="text-primary">
+                                                <a href=" {% url 'viewSingleOrder' order.id %} ">{{order.order_number}} </a>
+                                            </td>
+                                            <td>
+                                                {{order.full_name}}
+                                            </td>
+                                            
+                                            <td>{{order.phone}}</td>
+                                            
+                                            <td>{{order.total_price}}</td>
+                                            {% if order.status == 'Pending' %}
+                                            <td class="text-danger font-weight-bold">{{order.status}}</td>
+                                            {% elif  order.status == 'Out for shipping'%}
+                                            <td class="text-info font-weight-bold">{{order.status}}</td>
+                                            {% elif order.status == 'Completed' %}
+                                            <td class="text-success font-weight-bold">{{order.status}}</td>
+                                            {% elif order.status == 'Cancelled' %}
+                                            <td class="text-danger font-weight-bold">{{order.status}}</td>
+
+
+
+                                            {% endif %}
+                                            <td>
+                                                <div class="dropdown">
+                                                    <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    Update status
+                                                    </button>
+                                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                    <a class="dropdown-item" href=" {% url 'orderpending' order.id %} ">Pending</a>
+
+                                                    <a class="dropdown-item" href=" {% url 'ordershipping' order.id %}  ">Out for shipping</a>
+                                                    <a class="dropdown-item" href=" {% url 'ordercompleted' order.id %} ">Completed</a>
+                                                    <a class="dropdown-item" href=" {% url 'ordercancel' order.id %} ">Cancel</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+
+                                        </tr>
+                                        {% endfor %}
+
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
                             {% endif %}
 
                         </div>

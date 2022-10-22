@@ -4,6 +4,16 @@
 Product
 {% endblock title %}
 {% block content %}
+<style>
+    .my-custom-scrollbar {
+        position: relative;
+        height: auto;
+        overflow: auto;
+        }
+    .table-wrapper-scroll-y {
+    display: block;
+    }
+</style>
 
 <body class="layout layout-vertical layout-left-navigation layout-above-toolbar">
     <main>
@@ -62,94 +72,97 @@ Product
                             <!-- / HEADER -->
 
                             <div class="page-content-card">
+                                <div class="table-wrapper-scroll-y my-custom-scrollbar">
 
-                                <table id="e-commerce-products-table" class="table dataTable">
-                                    <thead>
-                                        <tr>
-                                            <th>
-                                                <div class="table-header">
-                                                    <span class="column-title">ID</span>
-                                                </div>
-                                            </th>
-
-                                            <th>
-                                                <div class="table-header">
-                                                    <span class="column-title">Image</span>
-                                                </div>
-                                            </th>
-
-                                            <th>
-                                                <div class="table-header">
-                                                    <span class="column-title">Name</span>
-                                                </div>
-                                            </th>
-
-                                            <th>
-                                                <div class="table-header">
-                                                    <span class="column-title">Category</span>
-                                                </div>
-                                            </th>
-
-                                            <th>
-                                                <div class="table-header">
-                                                    <span class="column-title">Price</span>
-                                                </div>
-                                            </th>
-
-                                            <th>
-                                                <div class="table-header">
-                                                    <span class="column-title">Stock</span>
-                                                </div>
-                                            </th>
-
-                                            <th>
-                                                <div class="table-header">
-                                                    <span class="column-title">Active</span>
-                                                </div>
-                                            </th>
-
-                                            <th>
-                                                <div class="table-header">
-                                                    <span class="column-title">Actions</span>
-                                                </div>
-                                            </th>
-                                        </tr>
-                                    </thead>
-
-                                    <tbody>
-                                        {% for product in products %}
-                                        <tr>
-                                           <td>{{product.id}}</td>
-                                            <td>
-                                                <img class="product-image" src="{{product.images.url}}">
-                                            </td>
-                                            <td>{{ product.product_name}}</td>
-                                            
-                                            <td>{{product.Category}}</td>
-                                            
-                                            <td>{{ product.price}}</td>
-                                            <td>{{ product.stock}}</td>
-                                            <td>true</td>
-                                            
+                                    <table id="e-commerce-products-table" class="table dataTable">
+                                        <thead>
+                                            <tr>
+                                                <th>
+                                                    <div class="table-header">
+                                                        <span class="column-title">ID</span>
+                                                    </div>
+                                                </th>
+    
+                                                <th>
+                                                    <div class="table-header">
+                                                        <span class="column-title">Image</span>
+                                                    </div>
+                                                </th>
+    
+                                                <th>
+                                                    <div class="table-header">
+                                                        <span class="column-title">Name</span>
+                                                    </div>
+                                                </th>
+    
+                                                <th>
+                                                    <div class="table-header">
+                                                        <span class="column-title">Category</span>
+                                                    </div>
+                                                </th>
+    
+                                                <th>
+                                                    <div class="table-header">
+                                                        <span class="column-title">Price</span>
+                                                    </div>
+                                                </th>
+    
+                                                <th>
+                                                    <div class="table-header">
+                                                        <span class="column-title">Stock</span>
+                                                    </div>
+                                                </th>
+    
+                                                <th>
+                                                    <div class="table-header">
+                                                        <span class="column-title">Active</span>
+                                                    </div>
+                                                </th>
+    
+                                                <th>
+                                                    <div class="table-header">
+                                                        <span class="column-title">Actions</span>
+                                                    </div>
+                                                </th>
+                                            </tr>
+                                        </thead>
+    
+                                        <tbody>
+                                            {% for product in products %}
+                                            <tr>
+                                               <td>{{product.id}}</td>
+                                                <td>
+                                                    <img class="product-image" src="{{product.images.url}}">
+                                                </td>
+                                                <td>{{ product.product_name}}</td>
+                                                
+                                                <td>{{product.Category}}</td>
+                                                
+                                                <td>{{ product.price}}</td>
+                                                <td>{{ product.stock}}</td>
+                                                <td>true</td>
+                                                
+                                                   
                                                
-                                           
-                                            <td>
-                                                <a href=" {% url 'delete_product' product.id %} " type="button" class="btn btn-icon" aria-label="Product details">
-                                                    <i class="icon-delete-forever"></i>
-                                                </a>
-                                                <a href=" {% url 'update_product' product.id %} " type="button" class="btn btn-icon" aria-label="Product details">
-                                                    <i class="icon icon-pencil s-4"></i>
-                                                </a>
-                                                <a href="#" type="button" class="btn btn-icon" aria-label="Product details">
-                                                    <i class="icon-eye"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        {% endfor %}
+                                                <td>
+                                                    <a href=" {% url 'delete_product' product.id %} " type="button" class="btn btn-icon" aria-label="Product details">
+                                                        <i class="icon-delete-forever"></i>
+                                                    </a>
+                                                    <a href=" {% url 'update_product' product.id %} " type="button" class="btn btn-icon" aria-label="Product details">
+                                                        <i class="icon icon-pencil s-4"></i>
+                                                    </a>
+                                                    <a href="#" type="button" class="btn btn-icon" aria-label="Product details">
+                                                        <i class="icon-eye"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+    
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
 
-                                        
-                                    </tbody>
-                                </table>
                             </div>
                         </div>
                         <!-- / CONTENT -->

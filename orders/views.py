@@ -34,8 +34,10 @@ def place_order(request):
             userprofile = Profile()
             userprofile.user = request.user
             userprofile.phone = request.POST.get('phone')
+            userprofile.email = request.POST.get('email')
             userprofile.address = request.POST.get('address_line_1')
             userprofile.city = request.POST.get('city')
+            userprofile.state = request.POST.get('state')
             userprofile.country = request.POST.get('country')
             userprofile.post_code = request.POST.get('post_code')
             
@@ -140,7 +142,7 @@ def payment_page(request):
 
 ###  paypal
 @login_required(login_url = 'login')
-def payments(request):
+def paypal(request):
     body = json.loads(request.body)
     print(body)
     order = Order.objects.filter(user=request.user).last()
@@ -182,11 +184,15 @@ def payments(request):
         
     CartItem.objects.filter(user=request.user).delete()
     
+    data = {
+        'order_number':order.order_number,
+        'transID':payment.payment_id,
+        
+    }
+    return JsonResponse(data)
     
-    messages.success(request, 'order placed successfully')
     
-    
-    return render(request, 'orders/payments.html')
+   
 
 
 @login_required(login_url = 'login')
@@ -229,6 +235,25 @@ def successpage(request):
         'order':order_deltails,
     }
     return render(request, 'orders/successpage.html', context)
+
+def order_complete(request):
+    order_number = request.GET.get('order_number')
+    transID = request.GET.get('transID')
+    try:
+        order = Order.objects.get(order_number=order_number, is_ordered=True)
+        ordered_products = OrderItem.objects.filter(order_id=order.id)
+        # payment = Payment.objects.get(payment_id = transID)
+        context = {
+            'order':order,
+            'ordered_products':ordered_products,
+            'order_number': order.order_number,
+            # 'transID': payment.payment_id,
+            'transID':transID,
+        }
+        return render(request, 'orders/successpage2.html ', context)
+    except (Payment.DoesNotExist, Order.DoesNotExist):
+        messages.success(request, 'sorry wrong information')
+        return redirect('/')
     
 
 

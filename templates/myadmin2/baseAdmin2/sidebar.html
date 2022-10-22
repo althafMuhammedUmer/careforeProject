@@ -38,26 +38,19 @@
                                 <span>Project Dashboard</span>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        {% comment %} <li class="nav-item">
                             <a class="nav-link ripple " href="apps-dashboards-server.html" data-url="index.html">
 
                                 <span>Server</span>
                             </a>
-                        </li>
+                        </li> {% endcomment %}
 
                        
 
                     </ul>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link ripple " href="apps-calendar.html" data-url="apps-e-commerce-products.html">
-
-                        <i class="icon s-4 icon-calendar-today"></i>
-
-                        <span>Calendar</span>
-                    </a>
-                </li>
+                
 
                 <li class="nav-item" role="tab" id="heading-ecommerce">
 
@@ -70,7 +63,7 @@
                     <ul id="collapse-ecommerce" class='collapse show' role="tabpanel" aria-labelledby="heading-ecommerce" data-children=".nav-item">
 
                         <li class="nav-item">
-                            <a class="nav-link ripple {% if '/myadmin/product_details2/' in request.path %}active{% endif %}" href=" {% url 'product_details' %} " >
+                            <a class="nav-link ripple {% if '/myadmin/product_details/' in request.path %}active{% endif %}" href=" {% url 'product_details' %} " >
 
                                 <span>Products</span>
                             </a>
@@ -105,33 +98,33 @@
                     </ul>
                 </li>
 
-                <li class="nav-item">
+                {% comment %} <li class="nav-item">
                     <a class="nav-link ripple " href="apps-mail.html" data-url="apps-e-commerce-products.html">
 
                         <i class="icon s-4 icon-email"></i>
 
                         <span>Mail</span>
                     </a>
-                </li>
+                </li> {% endcomment %}
 
-                <li class="nav-item">
+                {% comment %} <li class="nav-item">
                     <a class="nav-link ripple " href="apps-chat.html" data-url="apps-e-commerce-products.html">
 
                         <i class="icon s-4 icon-hangouts"></i>
 
                         <span>Chat</span>
                     </a>
-                </li>
+                </li> {% endcomment %}
 
-                <li class="nav-item">
+                {% comment %} <li class="nav-item">
                     <a class="nav-link ripple " href="apps-file-manager.html" data-url="apps-e-commerce-products.html">
 
                         <i class="icon s-4 icon-folder"></i>
 
                         <span>File Manager</span>
                     </a>
-                </li>
-
+                </li> {% endcomment %}
+{% comment %} 
                 <li class="nav-item">
                     <a class="nav-link ripple " href="apps-contacts.html" data-url="apps-e-commerce-products.html">
 
@@ -139,9 +132,9 @@
 
                         <span>Contacts</span>
                     </a>
-                </li>
+                </li> {% endcomment %}
 
-                <li class="nav-item">
+                {% comment %} <li class="nav-item">
                     <a class="nav-link ripple " href="apps-todo.html" data-url="apps-e-commerce-products.html">
 
                         <i class="icon s-4 icon-checkbox-marked"></i>
@@ -277,7 +270,7 @@
 
                         <span>Search</span>
                     </a>
-                </li>
+                </li> {% endcomment %}
 
                 
             </ul>

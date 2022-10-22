@@ -1,0 +1,99 @@
+{% extends 'base/basehome.html' %}
+{% load static %}
+{% block title %}
+order completed
+{% endblock title %}
+{% block content %}
+<div class="container-fluid">
+    
+    {% include 'includes/navbar555.html' %}
+    <div class="container ">
+        <div class="row justify-content-center mt-5">
+            <div class="col">
+                <div class="card mt-5 bg-dark text-white">
+                    <div class="card-items p-5">
+                        <div class="col">
+                            <h3 class="text-center">Your order is Place successfully</h3>
+                            <div class="col d-flex justify-content-center mt-3">
+                                <div class="w-25 text-center">
+                                    <img src="{% static 'Home_page/img/completedicon.png' %}" class=" w-25 " alt="...">
+                                   </div>
+                            </div>
+                            <div class="col d-flex justify-content-center mt-3">
+                                <div class="w-25 ">
+                                    <h3 card-text text-center >Your tracking no: {{order.tracking_no}}</h3>
+
+
+
+                                </div>
+                            </div>
+
+                            
+
+                        </div>
+                        <div class="col d-flex justify-content-end">
+                            <a href=" {% url 'home' %} " class="btn btn-success">continue shopping</a>
+                        </div>
+                        
+                       
+                    </div>
+                </div>
+
+            </div>
+           
+        </div>
+
+    </div>
+    
+</div>
+{% comment %} <div class="container">
+    <center><i class="fas fa-check-circle"></i></center>
+    <h2>payment successful</h2>
+</div>
+<br>
+<div class="text-center">
+    <a href="" class="btn btn-success">continue shopping</a>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default plain" >
+                <div class="panel-body p30">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="invoice-logo">
+                                <div class="invoice-logo"><img src="" alt=""></div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="invoice-form">
+                                <ul class="list-styled text-right">
+                                    <li><strong>Invoice To:</strong></li>
+                                    <li>name</li>
+                                    <li>address</li>
+                                    <li>coutry</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="invoice-details mt25">
+                                <ul class="list-styled mb0">
+                                    <li><strong>Order</strong># {{order_number}}</li>
+                                    <li><strong>Transaction ID</strong>{{transID}}</li>
+                                    <li></li>
+                                    <li></li>
+                                </ul>
+                            </div>
+
+                        </div>
+                        
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div> {% endcomment %}
+{% endblock content %}

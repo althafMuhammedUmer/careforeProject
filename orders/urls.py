@@ -11,7 +11,8 @@ urlpatterns = [
     
     
     path('proceed-to-pay', views.razorpaycheck),
-    path('payments', views.payments, name="payments"),
+    path('paypal', views.paypal, name="paypal"),
+    path('order_complete/', views.order_complete, name='order_complete'),
     path('cash_on_delivery', views.cash_on_delivery, name="cash_on_delivery"),
     path('successpage', views.successpage, name="successpage"),
     

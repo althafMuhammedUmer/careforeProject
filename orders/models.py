@@ -82,8 +82,10 @@ class OrderItem(models.Model):
 class Profile(models.Model):
     user = models.ForeignKey(Account, on_delete=models.CASCADE)
     phone = models.CharField(max_length=50, null=False)
+    email = models.EmailField(blank=True, null=True)
     address = models.TextField(null=False)
     city = models.CharField(max_length=150, null=False)
+    state = models.CharField(max_length = 150, null=True)
     country = models.CharField(max_length=200)
     post_code = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)

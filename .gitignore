@@ -1,4 +1,5 @@
 .env
+__pycache__/
 Grocery/__pycache__/
 orders/__pycache__/
 orders/migrations/__pycache__/

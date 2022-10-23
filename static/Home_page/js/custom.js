@@ -49,7 +49,10 @@ $(document).ready(function () {
                 console.log(response)
                 alertify.success(response.status)
                 
+                
             }
+            
+            
         });
  
     });

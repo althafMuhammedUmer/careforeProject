@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Product, ProductGallery, WishList
+from .models import Product, ProductGallery, WishList, HomeBanner
 import admin_thumbnails
 
 
@@ -17,10 +17,18 @@ class ProductAdmin(admin.ModelAdmin):
     inlines = [ProductGalleryInline]
     
 
+
+
+    
+ 
+    
+    
+
   
 
 # Register your models here.
 admin.site.register(Product,ProductAdmin)
 admin.site.register(ProductGallery)
 admin.site.register(WishList)
+admin.site.register(HomeBanner)
 

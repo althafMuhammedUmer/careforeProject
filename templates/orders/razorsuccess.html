@@ -1,0 +1,44 @@
+{% extends 'base/basehome.html' %}
+{% block content %}
+
+<head>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <style>
+      .center {
+      position: absolute;
+      text-align: center;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      }
+      
+   </style>
+   
+</head>
+<body class="bg-light">
+   <div class="center">
+    <div class="card p-5 shadow  text-center">
+
+        <h3 >
+          payment successfull <i class="fa fa-check-circle text-success fa-lg" ></i>
+        </h3>
+        <h4>
+          <strong>payment id :</strong>{{newpayment.payment_id}}
+          
+          
+        </h4>
+        <h4><strong>order id :</strong>{{neworder.razor_pay_order_id}}</h4>
+        <h4><strong>Tracking id :</strong>{{neworder.tracking_no}}</h4>
+        <h5>
+           <a href=" {% url 'home' %} " class="btn btn-success mt-2">
+              Continue shopping
+           
+           </a>
+        </h5>
+    </div>
+   </div>
+</body>
+
+
+{% endblock content %}

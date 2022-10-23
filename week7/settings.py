@@ -28,7 +28,7 @@ SECRET_KEY=config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG',default=True, cast=bool) #true or false
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '15.206.205.82']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '15.206.205.82', ' 3.110.160.219']
 
 
 # Application definition
@@ -176,7 +176,7 @@ MESSAGE_TAGS = {
 
 
 ############razor pay############
-razor_pay_key_id = config('razor_pay_key_id')
-key_secret = config('key_secret')
+RAZOR_PAY_KEY_ID = config('razor_pay_key_id')
+RAZOR_PAY_SECRET_KEY = config('razor_pay_key_secret')
 
 

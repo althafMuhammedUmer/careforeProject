@@ -1,6 +1,6 @@
 from django.http.response import JsonResponse
 from django.shortcuts import redirect, render
-from .models import Product, ProductGallery, WishList
+from .models import Product, ProductGallery, WishList, HomeBanner
 from category.models import Category
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -91,4 +91,13 @@ def deletewishlist(request, product_id):
     
 def pagenotfound(request,exception):
     return render (request, 'Home_page/404.html')
+
+def homebanner(request):
+    banner = HomeBanner.objects.all()
+    context = {
+        'banner':banner,
+    }
+    return render(request, 'Home_page/index.html', context)
+    
+    
     

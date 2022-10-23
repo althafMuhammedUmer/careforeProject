@@ -20,11 +20,21 @@ order completed
                                     <img src="{% static 'Home_page/img/completedicon.png' %}" class=" w-25 " alt="...">
                                    </div>
                             </div>
+                            {% if razorpaysuccess %}
+                            <div class="col d-flex justify-content-center mt-3">
+                                <div class="w-25 ">
+                                    <h3 card-text text-center >Your order ID: {{}}</h3>
+                                </div>
+                            </div>
+
+                            {% else %}
                             <div class="col d-flex justify-content-center mt-3">
                                 <div class="w-25 ">
                                     <h3 card-text text-center >Your tracking no: {{order.tracking_no}}</h3>
                                 </div>
                             </div>
+                            {% endif %}
+                            
 
                             
 

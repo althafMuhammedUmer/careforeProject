@@ -41,8 +41,13 @@ class Order(models.Model):
     phone = models.CharField(max_length=20)
     email = models.EmailField(max_length=50)
     payment_method = models.CharField(max_length=50,null=True, blank=True)
+    razor_pay_order_id = models.CharField(max_length = 150, null=True, blank=True)
+    razor_pay_payment_id = models.CharField(max_length = 150, null=True, blank=True)
+    razor_pay_payment_signature = models.CharField(max_length = 150, null=True, blank=True)
+    
     address_line_1 = models.CharField(max_length=100)
     address_line_2 = models.CharField(max_length=100,  blank=True)
+    
     country = models.CharField(max_length=50)
     state = models.CharField(max_length=50)
     city = models.CharField(max_length=50)
@@ -82,10 +87,10 @@ class OrderItem(models.Model):
 class Profile(models.Model):
     user = models.ForeignKey(Account, on_delete=models.CASCADE)
     phone = models.CharField(max_length=50, null=False)
-    email = models.EmailField(blank=True, null=True)
+    email = models.CharField(max_length=150,blank=True,null=True)
     address = models.TextField(null=False)
     city = models.CharField(max_length=150, null=False)
-    state = models.CharField(max_length = 150, null=True)
+    state = models.CharField(max_length = 150, blank=True, null=True)
     country = models.CharField(max_length=200)
     post_code = models.IntegerField()
     created_at = models.DateTimeField(auto_now_add=True)

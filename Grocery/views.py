@@ -79,7 +79,10 @@ def addtocart(request):
                 return JsonResponse({'status': "No such products found"})
             
         else:
+            
+            
             return JsonResponse({'status':"login to continue"})
+        
      
     return redirect('/')
     

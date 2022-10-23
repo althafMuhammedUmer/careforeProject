@@ -8,9 +8,15 @@ from  Accounts.models import Account
 from .models import Order, OrderItem, Profile,Payment
 from store.models import Product
 from django.contrib.auth.decorators import login_required
+from django.conf import settings
+
+### razor pay csrf_exempt
+from django.views.decorators.csrf import csrf_exempt
+
 
 
 from .forms import OrderForm
+import razorpay
 import datetime 
 import random
 
@@ -99,19 +105,11 @@ def place_order(request):
         
         return redirect('payment_page')
     
-@login_required(login_url = 'login')
-def razorpaycheck(request):
-    cart = CartItem.objects.filter(user=request.user)
-    total_price = 0
-    for item in cart:
-        total_price = total_price + item.product.price * item.quantity
-        
-    print(total_price)
+   
+    
         
         
-    return JsonResponse({
-        'total_price':total_price
-    })
+    
     
     
 @login_required(login_url = 'login')   
@@ -126,15 +124,89 @@ def payment_page(request):
     grand_total = 0
     grand_total += total_price + tax + delivery_charge
         
-    order_deltails = Order.objects.filter(user=request.user).first()
+    order_deltails = Order.objects.filter(user=request.user).last()
+    
+    #### razor pay ####
+    
+    client = razorpay.Client(auth = (settings.RAZOR_PAY_KEY_ID, settings.RAZOR_PAY_SECRET_KEY))
+    razor_payment = client.order.create({'amount': grand_total *100 , 'currency': 'INR', 'payment_capture': 1 })
+    
+    print('*******')
+    print(razor_payment)
+    print('*********')
+    order_deltails.razor_pay_order_id = razor_payment['id']
+    order_deltails.save()
+    print(order_deltails.razor_pay_order_id)
+    
+    
+    
+    
     context = {
         'order':order_deltails,
         'total_price':total_price,
         'tax':tax,
         'delivery_charge':delivery_charge,
         'grand_total':grand_total,
+        'razor_payment':razor_payment,
     }
     return render(request, 'orders/payments.html', context)
+
+@csrf_exempt
+def razorpaysuccess(request):
+    order_id = request.GET.get('order_id')
+    payment_id = request.GET.get('payment_id')
+    signature = request.GET.get('signature')
+    
+    print('#####')
+    print(order_id)
+    print(payment_id)
+    print('#####')
+    
+    
+   
+    
+    neworder = Order.objects.get(razor_pay_order_id = order_id)
+    neworder.is_ordered = True
+    neworder.payment_method = 'razor pay'
+    neworder.razor_pay_payment_id = payment_id
+    neworder.razor_pay_payment_signature = signature
+    
+    neworder.save()
+    
+    newpayment = Payment.objects.create(
+        user = request.user,
+        payment_id = payment_id,
+        payment_method = 'razor pay',
+        amount_paid = neworder.total_price,
+        status = 'completed',
+    )
+    newpayment.save()
+    neworder.payment = newpayment
+    neworder.save()
+    context = {
+        "newpayment":newpayment,
+        "neworder":neworder,
+    }
+    neworderitems = CartItem.objects.filter(user=request.user)
+    for item in neworderitems:
+        OrderItem.objects.create(
+            order = neworder,
+            product = item.product,
+            price = item.product.price,
+            quantity = item.quantity,
+                
+        )
+        
+            # To decrease the product quantity from available stock 
+        orderproduct = Product.objects.filter(id=item.product_id).first()
+        orderproduct.stock = orderproduct.stock - item.quantity
+        orderproduct.save()
+    CartItem.objects.filter(user=request.user).delete()
+    
+    
+    return render(request, 'orders/razorsuccess.html', context)
+
+ 
     
 
 

@@ -28,7 +28,7 @@ SECRET_KEY=config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG',default=True, cast=bool) #true or false
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '15.206.205.82', ' 3.110.160.219']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '15.206.205.82', ' 3.110.160.219', 'carry.codestreak.in']
 
 
 # Application definition

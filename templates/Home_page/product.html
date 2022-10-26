@@ -98,14 +98,14 @@ Product Details
                     <div class="col-md-6 mt-5">
                         <div class="product__details__text ">
                             <h4 class="title">{{product.product_name}}</h4>
-                            <div class="product__details__rating">
+                            {% comment %} <div class="product__details__rating">
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star-half-o"></i>
                                 <span>(18 reviews)</span>
-                            </div>
+                            </div> {% endcomment %}
                             
                             <div class="product__details__price"></div>
                            
@@ -160,14 +160,14 @@ Product Details
                                     <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab"
                                         aria-selected="true">Description</a>
                                 </li>
-                                <li class="nav-item">
+                                {% comment %} <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab"
                                         aria-selected="false">Information</a>
-                                </li>
-                                <li class="nav-item">
+                                </li> {% endcomment %}
+                                {% comment %} <li class="nav-item">
                                     <a class="nav-link" data-toggle="tab" href="#tabs-3" role="tab"
                                         aria-selected="false">Reviews <span>(1)</span></a>
-                                </li>
+                                </li> {% endcomment %}
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane active" id="tabs-1" role="tabpanel">
@@ -178,7 +178,7 @@ Product Details
                                             
                                     </div>
                                 </div>
-                                <div class="tab-pane" id="tabs-2" role="tabpanel">
+                                {% comment %} <div class="tab-pane" id="tabs-2" role="tabpanel">
                                     <div class="product__details__tab__desc">
                                         <h6>Products Infomation</h6>
                                         <p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui.
@@ -214,7 +214,7 @@ Product Details
                                             Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.
                                             Proin eget tortor risus.</p>
                                     </div>
-                                </div>
+                                </div> {% endcomment %}
                             </div>
                         </div>
                     </div>

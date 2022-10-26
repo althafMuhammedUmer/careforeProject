@@ -6,7 +6,7 @@ from store.models import Product
 from .models import  CartItem
 from orders.models import Order, Profile
 from django.http import HttpResponse, JsonResponse
-from django.db.models import Q
+
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
@@ -38,17 +38,7 @@ from django.core.exceptions import ObjectDoesNotExist
     
 #     return render(request,'Home_page/index.html', context)
 ####################################################################
-def search(request):
-    if 'keyword' in request.GET:
-        keyword = request.GET['keyword']
-       
-        product = Product.objects.filter(Q(product_name__icontains=keyword) | Q(description__icontains = keyword))
-         
-        context = {
-            'products':product
-        } 
-    
-    return render(request,'Home_page/index.html', context)  
+ 
 
 
 

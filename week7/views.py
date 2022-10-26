@@ -12,7 +12,7 @@ def home(request):
     category = Category.objects.all()
     
     context = {
-        'product': products,
+        'products': products,
         'category':category,
     }
     

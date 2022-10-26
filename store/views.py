@@ -5,6 +5,21 @@ from category.models import Category
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from Grocery.models import CartItem
+from django.db.models import Q
+
+
+def search(request):
+    if 'keyword' in request.GET:
+        keyword = request.GET['keyword']
+        if keyword:
+       
+            product = Product.objects.filter(Q(product_name__icontains=keyword) | Q(description__icontains = keyword))
+         
+    context = {
+        'products':product
+    } 
+    
+    return render(request,'Home_page/shop-grid.html', context) 
 
 def store(request):
     products = Product.objects.filter(is_available=True)
@@ -13,7 +28,7 @@ def store(request):
     product_count = products.count()
     
     context = {
-        'product': products,
+        'products': products,
         'category':category,
         'product_count':product_count,
     }

@@ -14,24 +14,16 @@
             <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
             <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
         </ul>
-        <div class="header__cart__price">item: <span>$150.00</span></div>
+        {% comment %} <div class="header__cart__price">item: <span>$150.00</span></div> {% endcomment %}
     </div>
     <div class="humberger__menu__widget">
-        <div class="header__top__right__language">
-            <img src="img/language.png" alt="">
-            <div>English</div>
-            <span class="arrow_carrot-down"></span>
-            <ul>
-                <li><a href="#">Spanis</a></li>
-                <li><a href="#">English</a></li>
-            </ul>
-        </div>
-        <div class="header__top__right__auth">
+        
+        <div class="header__top__right__auth ">
             {% if user.id is None %}
-            <div class="widget-header header__top__left">
+            <div class="widget-header header__top__left ">
                 <small class="title text-muted">Welcome guest</small>
                 <div>
-                    <a href="{% url 'login' %}">Sign In </a> <span class="dark-transp">|</span>
+                    <a href="{% url 'login' %}">Sign In </a> <span class="dark-transp"></span>
                     <a href="{% url 'register' %}">Register </a> 
                 </div>
             </div>
@@ -41,11 +33,11 @@
                 <small class="title text-muted">Welcome {{user.first_name}}</small>
                 <div>
                     {% if user.is_superadmin%}
-                    <a href="{% url 'myadmin2' %}">Dashboard</a> <span class="dark-transp">|</span>
+                    <a href="{% url 'myadmin2' %}">Dashboard</a> <span class="dark-transp"></span>
                     {% else %}
-                    <a href="{% url 'dashboard' %}">Dashboard</a> <span class="dark-transp">|</span>
+                    <a href="{% url 'dashboard' %}">Dashboard</a> <span class="dark-transp"></span>
                     {% endif %}
-                    <a href="{% url 'logout' %}">Logout</a> 
+                    <a href="{% url 'logout' %}" class="btn btn-success mt-2 text-white">Logout</a> 
                 </div>
             </div>
             {% endif %}
@@ -53,18 +45,10 @@
     </div>
     <nav class="humberger__menu__nav mobile-menu">
         <ul>
-            <li class="active"><a href="./index.html">Home</a></li>
-            <li><a href="./shop-grid.html">Shop</a></li>
-            <li><a href="#">Pages</a>
-                <ul class="header__menu__dropdown">
-                    <li><a href="./shop-details.html">Shop Details</a></li>
-                    <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                    <li><a href="./checkout.html">Check Out</a></li>
-                    <li><a href="./blog-details.html">Blog Details</a></li>
-                </ul>
-            </li>
-            <li><a href="./blog.html">Blog</a></li>
-            <li><a href="./contact.html">Contact</a></li>
+            <li class="active"><a href=" {% url 'home' %} ">Home</a></li>
+            <li><a href=" {% url 'store' %} ">Store</a></li>
+            
+                
         </ul>
     </nav>
     <div id="mobile-menu-wrap"></div>
@@ -76,7 +60,7 @@
     </div>
     <div class="humberger__menu__contact">
         <ul>
-            <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
+            <li><i class="fa fa-envelope"></i> carry.codestreak.in</li>
             <li>Free Shipping for all Order of $99</li>
         </ul>
     </div>

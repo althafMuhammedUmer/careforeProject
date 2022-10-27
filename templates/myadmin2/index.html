@@ -1,6 +1,7 @@
 {% extends 'myadmin2/baseAdmin2/base.html' %}
 {% load static %}
 {% block content %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
 <body class="layout layout-vertical layout-left-navigation layout-above-toolbar">
     <main>
@@ -75,25 +76,19 @@
 
                                                     <div class="widget-header pl-4 pr-2 row no-gutters align-items-center justify-content-between">
 
-                                                        <div class="col">
+                                                        <div class="col text-center text-primary">
 
-                                                            <select class="h6 custom-select">
-                                                                <option selected="" value="today">Today</option>
-                                                                <option value="yesterday">Yesterday</option>
-                                                                <option value="tomorrow">Tomorrow</option>
-                                                            </select>
+                                                           <h3 class="text-primary">Total Users</h3>
 
                                                         </div>
 
-                                                        <button type="button" class="btn btn-icon">
-                                                            <i class="icon icon-dots-vertical"></i>
-                                                        </button>
+                                                        
 
                                                     </div>
 
                                                     <div class="widget-content pt-2 pb-8 d-flex flex-column align-items-center justify-content-center">
 
-                                                        <div class="title text-secondary">25</div>
+                                                        <div class="title text-secondary">{{user_total}}</div>
 
                                                         <div class="sub-title h6 text-muted">DUE TASKS</div>
 
@@ -349,10 +344,42 @@
                                                         <div class="row no-gutters">
 
                                                             <div class="col-12">
+                                                                
+                                                                <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
 
-                                                                <div id="widget6-main-chart" class="p-4">
+                                                                <script>
+                                                                var xValues = [];
+                                                                var yValues = [];
+                                                                var barColors = [
+                                                                "#b91d47",
+                                                                "#00aba9",
+                                                                "#2b5797",
+                                                                "#e8c3b9",
+                                                                "#1e7145"
+                                                                ];
+
+                                                                new Chart("myChart", {
+                                                                type: "pie",
+                                                                data: {
+                                                                    labels: xValues,
+                                                                    datasets: [{
+                                                                    backgroundColor: barColors,
+                                                                    data: yValues
+                                                                    }]
+                                                                },
+                                                                options: {
+                                                                    title: {
+                                                                    display: true,
+                                                                    text: "World Wide Wine Production 2018"
+                                                                    }
+                                                                }
+                                                                });
+                                                                </script>
+
+                                                                {% comment  %} <div id="widget6-main-chart" class="p-4">
                                                                     <svg></svg>
-                                                                </div>
+                                                                </div> {% endcomment %}
+                                                                
 
                                                             </div>
 

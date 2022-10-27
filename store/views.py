@@ -43,7 +43,7 @@ def product_details(request, slug):
     
     category = Category.objects.all()
     context = {
-        'categories':category,
+        'category':category,
         'product':product,
         'product_gallery':product_gallery,
     }

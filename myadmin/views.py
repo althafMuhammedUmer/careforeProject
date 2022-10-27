@@ -102,8 +102,40 @@ def view_orders(request):
 @login_required(login_url='login')
 def myadmin2(request):
     if request.user.is_superadmin:
+        # orders = Order.objects.all()
+        
+        
+        # order_products = OrderItem.objects.all()
+        # order_product_dict = {}
+        # for order_product in order_products:
+        #     if order_product.product.product_name in order_product_dict:
+        #         quantity = order_product_dict[order_product.product.product_name]
+        #         quantity += order_product.quantity
+        #         order_product_dict[order_product.product.product_name] = quantity
+        #     else:
+        #         order_product_dict[order_product.product.product_name]=order_product.quantity
+
+        # sorted_order_product_dict = dict(sorted(order_product_dict.items(), key=lambda item: item[1], reverse=True))
+
+        # sorted_products_by_sales = list(sorted_order_product_dict.keys())
+        # sorted_product_quantity_by_sales = list(sorted_order_product_dict.values())
+        
+        
+        user = Account.objects.filter(is_superadmin=False)
+        user_total = user.count() 
+       
+        
         admin = request.user
-        return render(request,'myadmin2/index.html', {'admin':admin}) 
+        context = {
+            'user_total':user_total,
+            'admin':admin,
+            
+            # 'sorted_product_quantity_by_sales':sorted_product_quantity_by_sales,
+            # 'sorted_products_by_sales':sorted_products_by_sales,
+            
+        
+        }
+        return render(request,'myadmin2/index.html', context) 
     else:
         return redirect(index)
 

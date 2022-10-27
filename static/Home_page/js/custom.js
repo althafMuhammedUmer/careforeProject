@@ -106,7 +106,7 @@ $(document).ready(function () {
             // dataType: "dataType",
             success: function (response) {
                 console.log(response)
-                alertify.success(response.status)
+                
                 $('.cartdata').load(location.href + " .cartdata")
                 
             }

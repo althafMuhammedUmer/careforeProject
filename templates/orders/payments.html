@@ -55,33 +55,33 @@ payment
                         <div>
                             <b>Total:</b>
                             <span>
-                                ${{total_price}}
+                                &#8377;{{total_price}}
                             </span>
                            </div>
                         <div>
                         <div>
                             <b>Tax:</b>
                             <span>
-                                ${{tax}}
+                                &#8377;{{tax}}
                             </span>
                         </div>
                         <div>
                             <b>Delivery Charge:</b>
                             <span>
-                                ${{delivery_charge}}
+                                &#8377;{{delivery_charge}}
                             </span>
                         </div>
                         <div>
                             <div>
                             <b>Tax:</b>
                             <span>
-                                ${{tax}}
+                                &#8377;{{tax}}
                             </span>
                         </div>
 
                         <b>Grand Total:</b>
                         <span>
-                            ${{grand_total}}
+                            &#8377;{{grand_total}}
                         </span>
                        </div>
                       
@@ -125,7 +125,7 @@ payment
     var csrftoken = getCookie('csrftoken');
     var orderID = '{{order.order_number}}'
     var payment_method = 'paypal'
-    var amount = '{{grand_total}}'
+    var amount = '{{converted_grand_total}}'
     var url = '{% url 'paypal' %}'
     var redirect_url = '{% url 'order_complete' %}'
 

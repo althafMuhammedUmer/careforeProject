@@ -12,6 +12,8 @@ from django.conf import settings
 
 ### razor pay csrf_exempt
 from django.views.decorators.csrf import csrf_exempt
+from forex_python.converter import CurrencyRates
+
 
 
 
@@ -25,6 +27,18 @@ import json
 
 
 # Create your views here.
+# def USDtoINR(request):
+#     usd = CurrencyRates()
+#     live_usd_price = usd.get_rate('USD', 'INR')
+#     print(live_usd_price)
+    
+
+    
+
+
+
+
+
 @login_required(login_url = 'login')
 def place_order(request):
     if request.method == "POST":
@@ -114,6 +128,12 @@ def place_order(request):
     
 @login_required(login_url = 'login')   
 def payment_page(request):
+    usd = CurrencyRates()
+    live_usd_price = int(usd.get_rate('USD', 'INR'))
+    
+    print(live_usd_price)
+    
+    
     cartitems = CartItem.objects.filter(user=request.user)
     total_price=0
     for item in cartitems:
@@ -123,13 +143,18 @@ def payment_page(request):
     delivery_charge = 2
     grand_total = 0
     grand_total += total_price + tax + delivery_charge
+    
+    ### grand_total converted to usd
+    converted_grand_total=0
+    converted_grand_total += int(grand_total / live_usd_price)
+    print(converted_grand_total)
         
     order_deltails = Order.objects.filter(user=request.user).last()
     
     #### razor pay ####
     
     client = razorpay.Client(auth = (settings.RAZOR_PAY_KEY_ID, settings.RAZOR_PAY_SECRET_KEY))
-    razor_payment = client.order.create({'amount': grand_total *100 , 'currency': 'INR', 'payment_capture': 1 })
+    razor_payment = client.order.create({'amount': grand_total * 100 , 'currency': 'INR', 'payment_capture': 1 })
     
     print('*******')
     print(razor_payment)
@@ -148,6 +173,7 @@ def payment_page(request):
         'delivery_charge':delivery_charge,
         'grand_total':grand_total,
         'razor_payment':razor_payment,
+        'converted_grand_total':converted_grand_total,
     }
     return render(request, 'orders/payments.html', context)
 

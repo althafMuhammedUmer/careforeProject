@@ -123,7 +123,7 @@
                                             
                                             <td>{{order.phone}}</td>
                                             
-                                            <td>{{order.total_price}}</td>
+                                            <td>&#8377;{{order.total_price}}</td>
                                             {% if order.status == 'Pending' %}
                                             <td class="text-danger font-weight-bold">{{order.status}}</td>
                                             {% elif  order.status == 'Out for shipping'%}

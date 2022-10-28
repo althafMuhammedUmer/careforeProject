@@ -60,7 +60,7 @@ cart
                                         <h5>{{cart.product.product_name}}</h5>
                                     </td>
                                     <td class="shoping__cart__price">
-                                        $ {{cart.product.price | stringformat:'d'}}
+                                        &#8377; {{cart.product.price | stringformat:'d'}}
                                     </td>
                                     <td class="shoping__cart__quantity p-5">
                                         {% csrf_token %}
@@ -104,7 +104,7 @@ cart
                                     </td>
                                     
                                     <td class="shoping__cart__total cartdata">
-                                        $ {{cart.sub_total}}
+                                        &#8377; {{cart.sub_total}}
                                     </td>
                                     <td class="shoping__cart__item__close">
                                         <a href=" {% url 'remove_cart' cart.product_id %} ">
@@ -144,11 +144,11 @@ cart
                     <div class="shoping__checkout">
                         <h5>Cart Total</h5>
                         <ul>
-                            <li>Total <span>${{total_price}}</span></li>
-                            <li>tax 2%<span>${{tax}}</span></li>
-                            <li>delivery_charge <span>${{delivery_charge}}</span></li>
+                            <li>Total <span>&#8377;{{total_price}}</span></li>
+                            <li>tax 2%<span>&#8377;{{tax}}</span></li>
+                            <li>delivery_charge <span>&#8377;{{delivery_charge}}</span></li>
                             
-                            <li>Grand Total <span>${{grand_total}}</span></li>
+                            <li>Grand Total <span>&#8377;{{grand_total}}</span></li>
 
                         </ul>
                         <a href=" {% url 'checkout' %} " class="primary-btn btn">PROCEED TO CHECKOUT</a>

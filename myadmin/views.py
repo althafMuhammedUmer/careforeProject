@@ -16,6 +16,11 @@ from category.models import Category, SubCategory
 from django.views.generic import ListView, CreateView, UpdateView, DetailView
 from .forms import ProductForm
 from orders.models import Order, OrderItem
+import datetime
+from datetime import datetime as date
+
+import time
+import requests
 
 
 
@@ -83,7 +88,7 @@ def viewSingleOrder(request, id):
 def view_orders(request):
     ordercounter= Order.objects.all()
     order_count = ordercounter.count()
-    orders = Order.objects.all()
+    orders = Order.objects.all().order_by('-created_at')
     context = {
         'orders':orders,
         'order_count':order_count,
@@ -102,7 +107,26 @@ def view_orders(request):
 @login_required(login_url='login')
 def myadmin2(request):
     if request.user.is_superadmin:
-        # orders = Order.objects.all()
+        current_date = datetime.datetime.now()
+        month = current_date.strftime("%B")
+        day = date.today().strftime("%A")
+        current_time = time.strftime("%H:%M:%S", time.localtime())
+        url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=imperial&appid=dfb3784a3e5dd64ae687bcd5f165a29f'
+        city = 'calicut'
+        city_weather = requests.get(url.format(city)).json()
+        weather = {
+            'city' : city,
+            'temperature' : city_weather['main']['temp'],
+            'description' : city_weather['weather'][0]['description'],
+            'icon' : city_weather['weather'][0]['icon']
+        }
+        
+        orders = Order.objects.all()
+        orders_count = orders.count()
+        products = Product.objects.filter(is_available=True)
+        product_count = products.count()
+        sales = Order.objects.filter(status='Completed')
+        sales_count = sales.count()
         
         
         # order_products = OrderItem.objects.all()
@@ -129,6 +153,15 @@ def myadmin2(request):
         context = {
             'user_total':user_total,
             'admin':admin,
+            'current_date':current_date,
+            'current_time':current_time,
+            'day':day,
+            'month':month,
+            'weather':weather,
+            'orders':orders,
+            'orders_count':orders_count,
+            'product_count':product_count,
+            'sales_count':sales_count,
             
             # 'sorted_product_quantity_by_sales':sorted_product_quantity_by_sales,
             # 'sorted_products_by_sales':sorted_products_by_sales,

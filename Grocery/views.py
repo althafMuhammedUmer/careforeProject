@@ -93,10 +93,11 @@ def addtocart(request):
 @login_required(login_url='login' )       
 def cart_view(request):
     if request.user.is_authenticated:
+        categories = Category.objects.all()
         
     
         
-        carts = CartItem.objects.filter(user=request.user)
+        carts = CartItem.objects.filter(user=request.user).order_by('-created_at')
         
         
         total_price=0
@@ -109,6 +110,7 @@ def cart_view(request):
         grand_total = total_price + tax + delivery_charge    
         
         context = {
+            'categories':categories,
             'carts':carts,
             'total_price':total_price,
             'tax':tax,

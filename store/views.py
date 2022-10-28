@@ -6,6 +6,25 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from Grocery.models import CartItem
 from django.db.models import Q
+import requests 
+
+
+def testweather(request):
+    
+    url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=imperial&appid=dfb3784a3e5dd64ae687bcd5f165a29f'
+    city = 'KANNUR'
+    city_weather = requests.get(url.format(city)).json()
+    weather = {
+        'city' : city,
+        'temperature' : city_weather['main']['temp'],
+        'description' : city_weather['weather'][0]['description'],
+        'icon' : city_weather['weather'][0]['icon']
+    }
+    context = {
+        'weather':weather,
+    }
+    return render(request, 'Home_page/testweather.html', context)
+        
 
 
 
@@ -52,9 +71,9 @@ def product_details(request, slug):
     print(product_gallery)
     
     
-    category = Category.objects.all()
+    categories = Category.objects.all()
     context = {
-        'category':category,
+        'categories':categories,
         'product':product,
         'product_gallery':product_gallery,
     }

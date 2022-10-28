@@ -140,5 +140,8 @@ GitHub.sublime-settings
 Grocery/__pycache__/
 store/__pycache__/
 week7/__pycache__/
+__pycache__/
+py[cod]
+*.py[cod]
 
  

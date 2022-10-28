@@ -23,6 +23,7 @@
 
                                     <div>
                                         <span class="h2">Welcome back, {{user.username}}!</span>
+                                        
                                     </div>
 
                                     <button type="button" class="sidebar-toggle-button btn btn-icon d-block d-xl-none" data-fuse-bar-toggle="dashboard-project-sidebar" aria-label="Toggle sidebar">
@@ -78,7 +79,7 @@
 
                                                         <div class="col text-center text-primary">
 
-                                                           <h3 class="text-primary">Total Users</h3>
+                                                           <h3 class="text-primary">Users</h3>
 
                                                         </div>
 
@@ -90,17 +91,17 @@
 
                                                         <div class="title text-secondary">{{user_total}}</div>
 
-                                                        <div class="sub-title h6 text-muted">DUE TASKS</div>
+                                                        {% comment %} <div class="sub-title h6 text-muted">DUE TASKS</div> {% endcomment %}
 
                                                     </div>
 
-                                                    <div class="widget-footer p-4 bg-light row no-gutters align-items-center">
+                                                    {% comment %} <div class="widget-footer p-4 bg-light row no-gutters align-items-center">
 
                                                         <span class="text-muted">Completed:</span>
 
                                                         <span class="ml-2">7</span>
 
-                                                    </div>
+                                                    </div> {% endcomment %}
                                                 </div>
                                             </div>
                                             <!-- / WIDGET 1 -->
@@ -112,24 +113,23 @@
 
                                                     <div class="widget-header pl-4 pr-2 row no-gutters align-items-center justify-content-between">
 
-                                                        <div class="col">
-                                                            <span class="h6">Overdue</span>
+                                                        <div class="col text-center">
+                                                            
+                                                            <h3 class="text-primary">Orders</h3>
                                                         </div>
 
-                                                        <button type="button" class="btn btn-icon">
-                                                            <i class="icon icon-dots-vertical"></i>
-                                                        </button>
+                                                       
                                                     </div>
 
                                                     <div class="widget-content pt-2 pb-8 d-flex flex-column align-items-center justify-content-center">
-                                                        <div class="title text-danger">4</div>
-                                                        <div class="sub-title h6 text-muted">TASKS</div>
+                                                        <div class="title text-danger">{{orders_count}}</div>
+                                                        {% comment %} <div class="sub-title h6 text-muted">TASKS</div> {% endcomment %}
                                                     </div>
 
-                                                    <div class="widget-footer p-4 bg-light row no-gutters align-items-center">
+                                                    {% comment %} <div class="widget-footer p-4 bg-light row no-gutters align-items-center">
                                                         <span class="text-muted">Yesterday's:</span>
                                                         <span class="ml-2">2</span>
-                                                    </div>
+                                                    </div> {% endcomment %}
                                                 </div>
                                             </div>
                                             <!-- / WIDGET 2 -->
@@ -141,25 +141,21 @@
 
                                                     <div class="widget-header pl-4 pr-2 row no-gutters align-items-center justify-content-between">
 
-                                                        <div class="col">
-                                                            <span class="h6">Issues</span>
+                                                        <div class="col text-center">
+                                                            
+                                                            <h3 class="text-primary">Products</h3>
                                                         </div>
 
-                                                        <button type="button" class="btn btn-icon">
-                                                            <i class="icon icon-dots-vertical"></i>
-                                                        </button>
+                                                        
 
                                                     </div>
 
                                                     <div class="widget-content pt-2 pb-8 d-flex flex-column align-items-center justify-content-center">
-                                                        <div class="title text-warning">32</div>
-                                                        <div class="sub-title h6 text-muted">OPEN</div>
+                                                        <div class="title text-warning">{{product_count}}</div>
+                                                        
                                                     </div>
 
-                                                    <div class="widget-footer p-4 bg-light row no-gutters align-items-center">
-                                                        <span class="text-muted">Closed today:</span>
-                                                        <span class="ml-2">0</span>
-                                                    </div>
+                                                    
                                                 </div>
                                             </div>
                                             <!-- / WIDGET 3 -->
@@ -171,25 +167,21 @@
 
                                                     <div class="widget-header pl-4 pr-2 row no-gutters align-items-center justify-content-between">
 
-                                                        <div class="col">
-                                                            <span class="h6">Features</span>
+                                                        <div class="col text-center">
+                                                            
+                                                            <h3 class="text-primary">Sales</h3>
                                                         </div>
 
-                                                        <button type="button" class="btn btn-icon">
-                                                            <i class="icon icon-dots-vertical"></i>
-                                                        </button>
+                                                        
 
                                                     </div>
 
                                                     <div class="widget-content pt-2 pb-8 d-flex flex-column align-items-center justify-content-center">
-                                                        <div class="title text-info">42</div>
-                                                        <div class="sub-title h6 text-muted">PROPOSALS</div>
+                                                        <div class="title text-info">{{sales_count}}</div>
+                                                        
                                                     </div>
 
-                                                    <div class="widget-footer p-4 bg-light row no-gutters align-items-center">
-                                                        <span class="text-muted">Implemented:</span>
-                                                        <span class="ml-2">8</span>
-                                                    </div>
+                                                    
                                                 </div>
                                             </div>
                                             <!-- / WIDGET 4 -->
@@ -1887,7 +1879,9 @@
 
                                     <div class="widget-header row no-gutters align-items-center justify-content-between pl-4 py-4">
 
-                                        <div class="h6">Monday, 16:37:16</div>
+                                        {% comment %} <div class="h6">Monday, 16:37:16</div> {% endcomment %}
+                                        <div class="h6 "><strong>{{day }}, </strong>{{ current_time}}</div>
+
 
                                         <button type="button" class="btn btn-icon" aria-label="Options">
                                             <i class="icon icon-dots-vertical"></i>
@@ -1895,9 +1889,9 @@
                                     </div>
 
                                     <div class="widget-content d-flex flex-column align-items-center justify-content-center p-4 pb-6">
-                                        <div class="month text-muted">May</div>
-                                        <div class="day text-muted">8</div>
-                                        <div class="year text-muted">2017</div>
+                                        <div class="month text-muted">{{month}}</div>
+                                        <div class="day text-muted">{{current_date.day}}</div>
+                                        <div class="year text-muted">{{current_date.year}}</div>
                                     </div>
 
                                 </div>
@@ -1912,7 +1906,7 @@
 
                                         <div class="row no-gutters align-items-center">
                                             <i class="icon-map-marker mr-2"></i>
-                                            <span class="h6">New York</span>
+                                            <span class="h6">{{weather.city}}</span>
                                         </div>
 
                                         <button type="button" class="btn btn-icon" aria-label="Options">
@@ -1925,14 +1919,14 @@
 
                                         <div class="today-weather row no-gutters align-items-center justify-content-center">
                                             <i class="icon-weather-pouring s-10 mr-4"></i>
-                                            <span class="h1">22</span>
+                                            <span class="h1">{{weather.temperature}}</span>
                                             <span class="h1 text-muted">&deg;</span>
-                                            <span class="h1 text-muted">C</span>
+                                            <span class="h1 text-muted">F</span>
                                         </div>
 
                                     </div>
 
-                                    <div class="row no-gutters align-items-center justify-content-between p-4">
+                                    {% comment %} <div class="row no-gutters align-items-center justify-content-between p-4">
 
                                         <div class="row no-gutters align-items-center">
                                             <i class="icon-weather-windy icon mr-2 s-5"></i>
@@ -1989,7 +1983,7 @@
                                             <span class="h5 text-muted">C</span>
                                         </div>
 
-                                    </div>
+                                    </div> {% endcomment %}
                                 </div>
                                 <!-- / WEATHER WIDGET -->
 

@@ -49,7 +49,10 @@ $(document).ready(function () {
                 console.log(response)
                 alertify.success(response.status)
                 
+                
             }
+            
+            
         });
  
     });
@@ -103,7 +106,7 @@ $(document).ready(function () {
             // dataType: "dataType",
             success: function (response) {
                 console.log(response)
-                alertify.success(response.status)
+                
                 $('.cartdata').load(location.href + " .cartdata")
                 
             }

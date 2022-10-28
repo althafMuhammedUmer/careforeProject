@@ -9,15 +9,17 @@
                         <span>All departments</span>
                     </div>
                     <ul>
-                     {% for categories in category%}
+                        {% for cat in categories %}
+                    
                     
                     
 
-                        <li><a href="#">{{categories.category_name}}</a></li>
+                        <li><a href=" {% url 'products_by_categroy' cat.slug %}">{{cat.category_name}}</a></li>
                    
                     
-                    {% endfor %}
+                        {% endfor %}
                     </ul>
+
                 </div>
             </div>
             <div class="col-lg-9">

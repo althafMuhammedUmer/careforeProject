@@ -137,5 +137,8 @@ GitHub.sublime-settings
 .history
 
 /__pycache__/
+Grocery/__pycache__/
+store/__pycache__/
+week7/__pycache__/
 
  

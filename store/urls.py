@@ -7,7 +7,8 @@ from django.urls import path
 urlpatterns = [
    
  
-    path('store/', views.store, name='store'),
+    path('', views.store, name='store'),
+    path('<slug:category_slug>', views.store, name="products_by_categroy"),
     path('search/',views.search, name='search'),
     path('product_details/<slug>/', views.product_details, name='product_details'),
     path('addwishlist', views.addwishlist, name="addwishlist"),

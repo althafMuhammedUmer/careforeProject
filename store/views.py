@@ -1,11 +1,12 @@
 from django.http.response import JsonResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from .models import Product, ProductGallery, WishList, HomeBanner
 from category.models import Category
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from Grocery.models import CartItem
 from django.db.models import Q
+
 
 
 def search(request):
@@ -21,15 +22,25 @@ def search(request):
     
     return render(request,'Home_page/shop-grid.html', context) 
 
-def store(request):
-    products = Product.objects.filter(is_available=True)
-    category = Category.objects.all()
+def store(request, category_slug=None):
+    category = None
+    products = None
     
-    product_count = products.count()
+    categories = Category.objects.all()
+    if category_slug != None:
+        category = get_object_or_404(Category, slug=category_slug)
+        products = Product.objects.filter(Category=category, is_available=True)
+        product_count = products.count()
+    else:
+        
+        products = Product.objects.filter(is_available=True)
+        
+        
+        product_count = products.count()
     
     context = {
         'products': products,
-        'category':category,
+        'categories':categories,
         'product_count':product_count,
     }
     return render(request, 'Home_page/shop-grid.html', context)

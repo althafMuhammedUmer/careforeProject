@@ -95,7 +95,7 @@ def cart_view(request):
     if request.user.is_authenticated:
         
     
-        categories = Category.objects.all()
+        
         carts = CartItem.objects.filter(user=request.user)
         
         
@@ -115,7 +115,7 @@ def cart_view(request):
             'delivery_charge':delivery_charge,
             'grand_total':grand_total,
             
-            'categories':categories,
+            
         }
     
         return render(request, 'Home_page/shopping-cart.html', context )

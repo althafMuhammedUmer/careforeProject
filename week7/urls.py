@@ -31,7 +31,7 @@ urlpatterns = [
     path('error/', views.errorpage, name='errorpage'),
     
     path('', include('Grocery.urls')),
-    path('', include('store.urls')), 
+    path('store/', include('store.urls')), 
     path('', include('orders.urls')),
        
     path('accounts/', include('Accounts.urls')),

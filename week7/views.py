@@ -13,7 +13,7 @@ def home(request):
     
     context = {
         'products': products,
-        'category':category,
+        'categories':category,
     }
     
     return render(request, 'Home_page/index.html', context )

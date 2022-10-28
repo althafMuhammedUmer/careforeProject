@@ -114,20 +114,20 @@
                                 <div class="checkout__order__products">Products <span>Product price</span> </div>
                                 {% for cart_item in cartitems %}
                                 <ul>
-                                    <li>{{cart_item.product.product_name}}<span>{{cart_item.product.price}}</span></li>
+                                    <li>{{cart_item.product.product_name}}<span>&#8377;{{cart_item.product.price}}</span></li>
                                   
                                 </ul>
                                 <div class="checkout__order__subtotal">Quantity<span>{{cart_item.quantity}}</span></div>
                                 
                                
                                 {% endfor %}
-                                <div class="checkout__order__subtotal">Total<span>$ {{total_price}}</span></div>
-                                <div class="checkout__order__subtotal">Tax<span>$ {{tax}}</span></div>
+                                <div class="checkout__order__subtotal">Total<span>&#8377; {{total_price}}</span></div>
+                                <div class="checkout__order__subtotal">Tax<span>&#8377; {{tax}}</span></div>
 
 
-                                <div class="checkout__order__subtotal">delivery charge<span>$ {{delivery_charge}}</span></div>
+                                <div class="checkout__order__subtotal">delivery charge<span>&#8377; {{delivery_charge}}</span></div>
 
-                                <div class="checkout__order__total">Grand Total<span>$ {{grand_total}}</span></div>
+                                <div class="checkout__order__total">Grand Total<span>&#8377; {{grand_total}}</span></div>
 
                                 <div class="checkout__input__checkbox">
                                     <label for="payment">

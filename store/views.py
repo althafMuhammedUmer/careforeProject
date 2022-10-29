@@ -50,6 +50,7 @@ def addwishlist(request, id):
 
 def search(request):
     if 'keyword' in request.GET:
+        category = Category.objects.all()
         keyword = request.GET['keyword']
         if keyword:
        
@@ -61,7 +62,8 @@ def search(request):
                                              )
          
     context = {
-        'products':product
+        'products':product,
+        'categories':category,
     } 
     
     return render(request,'Home_page/shop-grid.html', context) 

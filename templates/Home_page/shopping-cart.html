@@ -42,7 +42,7 @@ cart
             <div class="row ">
                 <div class="col-12 col-md-12 col-sm-12">
                     <div class="shoping__cart__table">
-                        <table class="product_data ">
+                        <table class=" ">
                             <thead>
                                 <tr>
                                     <th class="shoping__product">Products</th>
@@ -54,7 +54,7 @@ cart
                             </thead>
                             <tbody >
                                 {% for cart in carts %}
-                                <tr >
+                                <tr class="product_data">
                                     <td class="shoping__cart__item ">
                                         <img class="img-fluid" src="{{ cart.product.images.url}}" alt="" height=100px width=100px >
                                         <h5>{{cart.product.product_name}}</h5>
@@ -102,9 +102,10 @@ cart
                 
                                     
                                     </td>
+                                    <input type="hidden" id="product_price{{cart.product.id}}" value="{{cart.product.price}}">
                                     
                                     <td class="shoping__cart__total ">
-                                        <div >
+                                        <div id="subtotal{{cart.product.id}}">
                                             &#8377; {{cart.sub_total}}
                                             
 

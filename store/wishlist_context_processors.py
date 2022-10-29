@@ -4,9 +4,9 @@ def wishlistcounter(request):
     wishlistcounter=0
     try:
         wishlist = WishList.objects.filter(user=request.user.id)
+        count = wishlist.count()
         
-        for item in wishlist:
-            wishlistcounter += item.product_id
+        wishlistcounter += count
             
     except WishList.DoesNotExist:
         wishlistcounter = 0

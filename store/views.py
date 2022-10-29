@@ -24,6 +24,22 @@ def testweather(request):
         'weather':weather,
     }
     return render(request, 'Home_page/testweather.html', context)
+
+def addwishlist(request, id):
+    
+    product = Product.objects.get(id=id)
+    product_id = request.GET.get('id')
+    
+    if WishList.objects.filter(user=request.user.id,product_id=product):
+        messages.success(request, 'already added')
+        return redirect('/')
+    else:
+        newwishlish = WishList.objects.create(user=request.user, product=product)
+        newwishlish.save()
+        messages.success(request, 'wishlist added successfully')
+    
+    
+        return redirect('home')
         
 
 
@@ -84,29 +100,29 @@ def product_details(request, slug):
     }
     return render(request, 'Home_page/product.html', context)
 
-@login_required(login_url='login')
-def addwishlist(request):
-    if request.method == "POST":
-        if request.user.is_authenticated:
-            prod_id = request.POST.get('product_id')
+# @login_required(login_url='login')
+# def addwishlist(request):
+#     if request.method == "POST":
+#         if request.user.is_authenticated:
+#             prod_id = request.POST.get('product_id')
             
-            product_check = Product.objects.get(id=prod_id)
-            if product_check:
-                if WishList.objects.filter(user=request.user.id, product_id = prod_id):
+#             product_check = Product.objects.get(id=prod_id)
+#             if product_check:
+#                 if WishList.objects.filter(user=request.user.id, product_id = prod_id):
                     
-                    return JsonResponse({'status': "already added"})
+#                     return JsonResponse({'status': "already added"})
                 
-                else:
-                    WishList.objects.create(user=request.user, product_id = prod_id)
-                    return JsonResponse({'status': "added to wishlist"})
-            else:
-                return JsonResponse({'status': "no such products found"})
+#                 else:
+#                     WishList.objects.create(user=request.user, product_id = prod_id)
+#                     return JsonResponse({'status': "added to wishlist"})
+#             else:
+#                 return JsonResponse({'status': "no such products found"})
         
-        else:
-            # messages.success(request, 'please login')
-            return JsonResponse({'status': "login to continue"})
+#         else:
+#             # messages.success(request, 'please login')
+#             return JsonResponse({'status': "login to continue"})
         
-    return render('/')
+#     return render('/')
         
                     
             

@@ -75,7 +75,7 @@
                 <div class="header__cart ">
                     <ul>
                         <li><a href=" {% url 'wishlist' %} "><i class="fa fa-heart"></i> <span>{{wishlistcounter}}</span></a></li>
-                        <li class=" {% if '/cart_view/' in request.path %}active{% endif %} " ><a href=" {% url 'cart_view' %} "><i class="fa fa-shopping-bag "></i> <span>{{cart_count}}</span></a></li>
+                        <li  class=" {% if '/cart_view/' in request.path %}active{% endif %} " ><a href=" {% url 'cart_view' %} "><i  class="fa fa-shopping-bag "></i> <span ><div id="cartdata_count">{{cart_count}}</div></span></a></li>
                     </ul>
                     {% comment %} <div class="header__cart__price">item: <span>$150.00</span></div> {% endcomment %}
                 </div>

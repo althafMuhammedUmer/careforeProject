@@ -1,5 +1,4 @@
 {% extends 'base/basehome.html' %}
-
 {% load static %}
 {% block title %} 
 Home
@@ -9,12 +8,9 @@ Home
 <!-- Header Section End -->
 {% include 'includes/side.html' %}
 
-    <!-- Hero Section Begin -->
+<!-- Hero Section Begin -->
 {% include 'includes/searchbar.html' %}
 <!-- Hero Section End -->
-
-
-
 
                 <div class="container ">
                     <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
@@ -34,9 +30,6 @@ Home
                 </div>
             </div>
 
-
-
-    
     <!-- Categories Section End -->
 
     <!-- Featured Section Begin -->
@@ -73,7 +66,7 @@ Home
                                 
                                 <ul class="featured__item__pic__hover product_data2">
                                     
-                                    <li  ><a ><i class="fa fa-heart addwishlist" data-product="{{product.id}}"></i></a></li>
+                                    <li  ><a href=" {% url 'addwishlist2' product.id %}" ><i class="fa fa-heart " ></i></a></li>
                                     <input type="hidden" class="qty-input2" value="1">
                                  
                                     <li ><a ><i  class="fa fa-shopping-cart addToCartBtn2" data-product="{{product.id}}"></i></a></li>

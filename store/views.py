@@ -6,7 +6,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from Grocery.models import CartItem
 from django.db.models import Q
-import requests 
+import requests
+
+
 
 
 def testweather(request):
@@ -25,15 +27,40 @@ def testweather(request):
     }
     return render(request, 'Home_page/testweather.html', context)
         
-
-
+# @login_required('login')
+def addwishlist2(request, id):
+    if request.user.is_authenticated:
+        checkid = request.GET.get('id')
+        
+    
+        product = Product.objects.get(id=id)
+        if WishList.objects.filter(user=request.user, product_id = id):
+            messages.success(request,'already added')
+            return redirect('/')
+        else:
+        
+        
+            newwishlist = WishList.objects.create(product=product, user=request.user)
+            
+        
+            newwishlist.save()
+    else:
+        messages.success(request, 'please login to add wishlist')
+        return redirect('home')
+      
+    messages.success(request, 'wish list added')
+    return redirect('/')
 
 def search(request):
     if 'keyword' in request.GET:
         keyword = request.GET['keyword']
         if keyword:
        
-            product = Product.objects.filter(Q(product_name__icontains=keyword) | Q(description__icontains = keyword))
+            product = Product.objects.filter(
+                Q(product_name__icontains=keyword) | 
+                Q(description__icontains = keyword) |
+                Q(subcategorys__subcategory_name__icontains = keyword) |
+                Q(Category__category_name__icontains = keyword))
          
     context = {
         'products':product
@@ -79,29 +106,29 @@ def product_details(request, slug):
     }
     return render(request, 'Home_page/product.html', context)
 
-@login_required(login_url='login')
-def addwishlist(request):
-    if request.method == "POST":
-        if request.user.is_authenticated:
-            prod_id = request.POST.get('product_id')
+# @login_required(login_url='login')
+# def addwishlist(request):
+#     if request.method == "POST":
+#         if request.user.is_authenticated:
+#             prod_id = request.POST.get('product_id')
             
-            product_check = Product.objects.get(id=prod_id)
-            if product_check:
-                if WishList.objects.filter(user=request.user.id, product_id = prod_id):
+#             product_check = Product.objects.get(id=prod_id)
+#             if product_check:
+#                 if WishList.objects.filter(user=request.user.id, product_id = prod_id):
                     
-                    return JsonResponse({'status': "already added"})
+#                     return JsonResponse({'status': "already added"})
                 
-                else:
-                    WishList.objects.create(user=request.user, product_id = prod_id)
-                    return JsonResponse({'status': "added to wishlist"})
-            else:
-                return JsonResponse({'status': "no such products found"})
+#                 else:
+#                     WishList.objects.create(user=request.user, product_id = prod_id)
+#                     return JsonResponse({'status': "added to wishlist"})
+#             else:
+#                 return JsonResponse({'status': "no such products found"})
         
-        else:
-            # messages.success(request, 'please login')
-            return JsonResponse({'status': "login to continue"})
+#         else:
+#             # messages.success(request, 'please login')
+#             return JsonResponse({'status': "login to continue"})
         
-    return render('/')
+#     return render('/')
         
                     
             

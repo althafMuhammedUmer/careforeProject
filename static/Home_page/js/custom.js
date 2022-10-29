@@ -107,7 +107,9 @@ $(document).ready(function () {
             success: function (response) {
                 console.log(response)
                 
-                $('.cartdata').load(location.href + " .cartdata")
+                $('#cartdata').load(location.href + " #cartdata")
+                // $('#cartdata2').load(location.href + " #cartdata2")
+
                 
             }
         });
@@ -120,28 +122,28 @@ $(document).ready(function () {
 
     });
 
-    $('.addwishlist').click(function (e) { 
-        e.preventDefault();
-        var product_id = e.target.dataset.product
-        var token = $('input[name=csrfmiddlewaretoken]').val();
+    // $('.addwishlist').click(function (e) { 
+    //     e.preventDefault();
+    //     var product_id = e.target.dataset.product
+    //     var token = $('input[name=csrfmiddlewaretoken]').val();
 
-        $.ajax({
-            type: "POST",
-            url: "/addwishlist",
-            data: {
-                'product_id':product_id,
-                csrfmiddlewaretoken:token,
-            },
-            // dataType: "dataType",
-            success: function (response) {
-                console.log(response)
-                alertify.success(response.status)
+    //     $.ajax({
+    //         type: "POST",
+    //         url: "addwishlist",
+    //         data: {
+    //             'product_id':product_id,
+    //             csrfmiddlewaretoken:token,
+    //         },
+    //         // dataType: "dataType",
+    //         success: function (response) {
+    //             console.log(response)
+    //             alertify.success(response.status)
                 
-            }
-        });
+    //         }
+    //     });
 
         
-    });
+    // });
     
    
 });

@@ -7,11 +7,6 @@ def counter(request):
     try:
         cart = CartItem.objects.filter(user=request.user.id)
         
-        
-        
-            
-        
-        
         for cart_item in cart:
             cart_count += cart_item.quantity
             

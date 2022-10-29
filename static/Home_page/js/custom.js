@@ -50,6 +50,7 @@ $(document).ready(function () {
                 alertify.success(response.status)
                 
                 
+                
             }
             
             
@@ -81,7 +82,10 @@ $(document).ready(function () {
                 $('#cartdata_count').load(location.href + " #cartdata_count")
 
                 
-            }
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) { 
+                alert("Status: " + textStatus); alert("Error: " + errorThrown); 
+            } 
         });
  
     });

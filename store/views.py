@@ -25,21 +25,25 @@ def testweather(request):
     }
     return render(request, 'Home_page/testweather.html', context)
 
+@login_required(login_url='login')
 def addwishlist(request, id):
+    if request.user.is_authenticated:
+        
     
-    product = Product.objects.get(id=id)
-    product_id = request.GET.get('id')
+        product = Product.objects.get(id=id)
+        product_id = request.GET.get('id')
+        
+        if WishList.objects.filter(user=request.user.id,product_id=product):
+            messages.success(request, 'already added')
+            return redirect('/')
+        else:
+            newwishlish = WishList.objects.create(user=request.user, product=product)
+            newwishlish.save()
+            messages.success(request, 'wishlist added successfully')
+        
+        
+            return redirect('home')
     
-    if WishList.objects.filter(user=request.user.id,product_id=product):
-        messages.success(request, 'already added')
-        return redirect('/')
-    else:
-        newwishlish = WishList.objects.create(user=request.user, product=product)
-        newwishlish.save()
-        messages.success(request, 'wishlist added successfully')
-    
-    
-        return redirect('home')
         
 
 

@@ -42,7 +42,7 @@ cart
             <div class="row ">
                 <div class="col-12 col-md-12 col-sm-12">
                     <div class="shoping__cart__table">
-                        <table class=" ">
+                        <table>
                             <thead>
                                 <tr>
                                     <th class="shoping__product">Products</th>
@@ -54,9 +54,9 @@ cart
                             </thead>
                             <tbody >
                                 {% for cart in carts %}
-                                <tr class="product_data">
-                                    <td class="shoping__cart__item ">
-                                        <img class="img-fluid" src="{{ cart.product.images.url}}" alt="" height=100px width=100px >
+                                <tr class="product_data ">
+                                    <td class="shoping__cart__item">
+                                        <img src="{{ cart.product.images.url}}" alt="" height=100px width=100px >
                                         <h5>{{cart.product.product_name}}</h5>
                                     </td>
                                     <td class="shoping__cart__price">
@@ -81,7 +81,7 @@ cart
                                        
   
                                         
-                                                <input type="text"   name="quantity" class="form-control  text-center qty-input" value="{{cart.quantity}}">
+                                                <input type="text"  name="quantity" class="form-control  text-center qty-input" value="{{cart.quantity}}">
                                         
                                        
                                                 <span class="input-group-btn">
@@ -102,15 +102,15 @@ cart
                 
                                     
                                     </td>
-                                    <input type="hidden" id="product_price{{cart.product.id}}" value="{{cart.product.price}}">
                                     
                                     <td class="shoping__cart__total ">
+                                        <input type="hidden" id="product_price{{cart.product.id}}" value="{{cart.product.price}}">
+
                                         <div id="subtotal{{cart.product.id}}">
-                                            &#8377; {{cart.sub_total}}
-                                            
+                                        &#8377; {{cart.sub_total}}
+                                        
 
                                         </div>
-                                       
                                     </td>
                                     <td class="shoping__cart__item__close">
                                         <a href=" {% url 'remove_cart' cart.product_id %} ">
@@ -146,17 +146,21 @@ cart
                         </div> {% endcomment %}
                     </div>
                 </div>
-                <div class="col-lg-6 ">
-                    <div class="shoping__checkout ">
-                        <h5>Cart Total</h5>
-                        <ul id="cartdata">
-                            <li>Total <span>&#8377;{{total_price}}</span></li>
-                            <li>tax 2%<span>&#8377;{{tax}}</span></li>
-                            <li>delivery_charge <span>&#8377;{{delivery_charge}}</span></li>
-                            
-                            <li>Grand Total <span>&#8377;{{grand_total}}</span></li>
+                <div class="col-lg-6">
+                    <div class="shoping__checkout" >
+                        <div id="cartdata">
+                            <h5>Cart Total</h5>
+                            <ul>
+                                <li>Total <span>&#8377;{{total_price}}</span></li>
+                                <li>tax 2%<span>&#8377;{{tax}}</span></li>
+                                <li>delivery_charge <span>&#8377;{{delivery_charge}}</span></li>
+                                
+                                <li>Grand Total <span>&#8377;{{grand_total}}</span></li>
 
-                        </ul>
+                            </ul>
+
+                        </div>
+                        
                         <a href=" {% url 'checkout' %} " class="primary-btn btn">PROCEED TO CHECKOUT</a>
                     </div>
                 </div>

@@ -96,7 +96,7 @@ def login(request):
             if request.user.is_superadmin:
                 return redirect('myadmin2')
             else:
-                return redirect('/')
+                return redirect('dashboard')
         
         else:
             messages.error(request, 'Invalid login credentials')

@@ -35,6 +35,10 @@ def register(request):
             last_name = request.POST['last_name']
             email      = request.POST['email']
             phone_number     = request.POST['phone_number']
+            phone_number = phone_number.replace(" ","")
+            phone_number = phone_number.strip()
+            
+            
             password   = request.POST['password']
             
             

@@ -22,7 +22,7 @@
                             <div class="card-items mt-3">
                                 <form action="" method="POST" >
                                     {% csrf_token %}
-                                    <input type="text" placeholder="Enter your otp" name="otp" class="form-control" required />
+                                    <input type="number" placeholder="Enter your otp" name="otp" class="form-control" min="6" max="6" required />
                                     
                                     <button type="submit" class="text-white btn btn-primary mt-3 btn-outline-dark " >Verify</button>
                                 </form> 

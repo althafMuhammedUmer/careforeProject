@@ -11,15 +11,20 @@
             <div class="container d-flex justify-content-center m-5 p-5">
                 <div class="card border-0 shadow">
 
-                
                     <div class="card-body">
-                        <div class="login-form"><!--login form-->
+                        
+                        <div class="login-form">
+                            <!--login form-->
                             {% include 'includes/alert.html' %}
+
                             <div class="card-head">
+
                                 <h2>Enter your OTP</h2>
 
                             </div>
+
                             <div class="card-items mt-3">
+
                                 <form action="" method="POST" >
                                     {% csrf_token %}
                                     <input type="number" placeholder="Enter your otp" name="otp" class="form-control" min="6" max="6" required />

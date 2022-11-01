@@ -64,23 +64,25 @@ Home
                 {% csrf_token %}
                 {% for product in products %}
                 
+                
                 <div class="col-lg-3 col-md-4 col-sm-6" >
+                    
 
                     <div class="featured__item ">
                         
+                        
                         <div class="card align-items-center border-0" >
                             
-
-                            
-                            
+                        
                             <div class="featured__item__pic set-bg  img-fluid " data-setbg="{{product.images.url}} " style= "width:200px; ">
+                                
                                 
                                 <ul class="featured__item__pic__hover product_data2">
                                     
                                     <li  ><a href="{% url 'addwishlist' product.id %}"><i class="fa fa-heart " ></i></a></li>
                                     <input type="hidden" class="qty-input2" value="1">
                                 
-                                    <button ><a ><i  class="fa fa-shopping-cart addToCartBtn2" data-product="{{product.id}}"></i></a></button>
+                                    <li ><a ><i  class="fa fa-shopping-cart addToCartBtn2" data-product="{{product.id}}"></i></a></li>
                                     
                                 </ul>
                                 

@@ -27,7 +27,7 @@
 
                                 <form action="" method="POST" >
                                     {% csrf_token %}
-                                    <input type="number" placeholder="Enter your otp" name="otp" class="form-control" min="6" max="6" required />
+                                    <input type="number" placeholder="Enter your otp" name="otp" class="form-control" minlength="6" maxlength="6" required />
                                     
                                     <button type="submit" class="text-white btn btn-primary mt-3 btn-outline-dark " >Verify</button>
                                 </form> 

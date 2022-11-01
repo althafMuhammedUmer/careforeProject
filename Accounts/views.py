@@ -38,9 +38,7 @@ def register(request):
             phone_number = phone_number.replace(" ","")
             phone_number = phone_number.strip()
             
-            
             password   = request.POST['password']
-            
             
             request.session['first_name'] = first_name
             request.session['last_name'] = last_name
@@ -50,11 +48,10 @@ def register(request):
             request.session['phone_number'] = phone_number
             request.session['password'] = password
             
-            
             send_otp(phone_number)
             return redirect('verify_code')
         else:
-            messages.error(request, "You are already registered ")
+            messages.error(request, "invalid credentials")
         
     form = RegistrationForm() 
     

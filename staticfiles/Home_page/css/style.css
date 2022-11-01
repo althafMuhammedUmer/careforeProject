@@ -136,8 +136,9 @@ ol {
 
 .set-bg {
 	background-repeat: no-repeat;
-	background-size: contain;
+	background-size: cover;
 	background-position: top center;
+	overflow: hidden;
 }
 
 .spad {
@@ -857,6 +858,7 @@ ol {
 
 .featured__item {
 	margin-bottom: 50px;
+	
 }
 
 .featured__item:hover .featured__item__pic .featured__item__pic__hover {
@@ -868,6 +870,7 @@ ol {
 	position: relative;
 	overflow: hidden;
 	background-position: center center;
+	
 }
 
 .featured__item__pic__hover {

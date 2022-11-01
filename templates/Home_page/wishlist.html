@@ -30,8 +30,10 @@ wishlist
 
                             <tr class="">
                                 <td class="">
-                                  <img src="{{wishlist.product.images.url}}" alt="" width="100" class="">
-                                  <h5>{{wishlist.product.product_name}}</h5>
+                                    <a href="{% url 'product_details' wishlist.product.slug %}">
+                                        <img src="{{wishlist.product.images.url}}" alt="" width="100" class="">
+                                        <h5>{{wishlist.product.product_name}}</h5>
+                                    </a>
                                 </td>
                                 <td class="p-5 mt-5">{{wishlist.product.stock}}</td>
                                 <td class=" p-5 mt-5">{{wishlist.product.price}}</td>

@@ -56,8 +56,11 @@ cart
                                 {% for cart in carts %}
                                 <tr class="product_data ">
                                     <td class="shoping__cart__item">
-                                        <img src="{{ cart.product.images.url}}" alt="" height=100px width=100px class="img-fluid" >
-                                        <h5>{{cart.product.product_name}}</h5>
+                                        <a href="{% url 'product_details' cart.product.slug %}">
+                                            <img src="{{ cart.product.images.url}}" alt="" height=100px width=100px class="img-fluid" >
+                                            <h5>{{cart.product.product_name}}</h5>
+                                        </a>
+                                        
                                     </td>
                                     <td class="shoping__cart__price">
                                         &#8377; {{cart.product.price | stringformat:'d'}}

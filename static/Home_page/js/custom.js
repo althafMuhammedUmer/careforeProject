@@ -48,6 +48,7 @@ $(document).ready(function () {
             success: function (response) {
                 console.log(response)
                 alertify.success(response.status)
+                $('#cartdata_count').load(location.href + " #cartdata_count")
                 
                 
                 
@@ -82,10 +83,8 @@ $(document).ready(function () {
                 $('#cartdata_count').load(location.href + " #cartdata_count")
 
                 
-            },
-            error: function(XMLHttpRequest, textStatus, errorThrown) { 
-                alert("Status: " + textStatus); alert("Error: " + errorThrown); 
-            } 
+            }
+            
         });
  
     });

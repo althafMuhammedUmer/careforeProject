@@ -213,11 +213,19 @@ def order_detail(request,id):
     order_detail = OrderItem.objects.filter(order_id=id)
     order = Order.objects.get(id=id)
     print(order_detail)
+    
     context = {
         'order_detail': order_detail,
         'order':order,
     }
     return render(request, 'accounts/user_order_detail.html', context)
+
+
+def orderCancel(request, id):
+    order = Order.objects.get(id=id)
+    order.delete()
+    return redirect('my_orders')
+    
 
 
 ### user dashboard ends ###

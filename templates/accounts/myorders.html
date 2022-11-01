@@ -24,6 +24,7 @@
                                     <th scope="col">Payment Method </th>
                                     <th scope="col">Order Total</th>
                                     <th scope="col">Status</th>
+                                    <th scope="col" colspan="1">Action</th>
 
 
                                     
@@ -51,6 +52,35 @@
                                     {% elif order.status == 'Cancelled' %}
                                     <td class="text-danger font-weight-bold">{{order.status}}</td>
                                     {% endif %}
+                                    <td>
+                                      <button class="btn btn-danger btn-sm btn-action" data-toggle="modal" data-target="#exampleModal">
+                                        <i class="fas fa-ban text-white"></i>
+                                      </button>
+
+                                      
+                                      
+                                      
+                                    </td>
+                                    <!---############## cancel order modal ################-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Order Cancel</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to cancel your order?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <a href="{% url 'orderCancel' order.id %}" class="btn btn-primary">confirm</a>
+      </div>
+    </div>
+  </div>
+</div>
                                     
 
 
@@ -74,4 +104,6 @@
 
     </div>
 </div>
+
+
 {% endblock content %} 

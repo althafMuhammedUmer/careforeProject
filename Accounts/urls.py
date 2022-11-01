@@ -12,6 +12,7 @@ urlpatterns = [
     path('edit_profile/', views.edit_profile, name="edit_profile"),
     path('change-password/', views.change_password, name="change_password"),
     path('order_detail/<int:id>/', views.order_detail, name="order_detail"),
+    path('order-cancel/<int:id>/', views.orderCancel, name="orderCancel"),
     
     
     ### user dashboard ends ###

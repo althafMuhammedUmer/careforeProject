@@ -18,6 +18,8 @@ from .forms import ProductForm
 from orders.models import Order, OrderItem
 import datetime
 from datetime import datetime as date
+from django.db.models import Q
+
 
 import time
 import requests
@@ -26,6 +28,13 @@ import requests
 
 
 # Create your views here.
+
+# def search(request):
+#     if 'adminkeyword' in request.GET:
+#         keyword = request.GET['adminkeyword']
+#         if keyword:
+#             user = Account.objects.filter(
+#                                         Q(username__icontains = keyword))
 
 
 

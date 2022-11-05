@@ -11,40 +11,59 @@ User
         <div id="wrapper">
            {% include 'myadmin2/baseAdmin2/sidebar.html' %}
             <div class="content-wrapper">
-                <div class="content custom-scrollbar ps ps--theme_default" data-ps-id="b90777e1-6692-e7d8-00c7-adf897452841">
+            <div class="content custom-scrollbar">
 
-                    <div class="page-layout carded full-width">
+                <div id="e-commerce-products" class="page-layout carded full-width">
 
-                        <div class="top-bg bg-secondary text-auto"></div>
+                    <div class="top-bg bg-secondary"></div>
 
-                        <!-- CONTENT -->
-                        <div class="page-content-wrapper">
+                    <!-- CONTENT -->
+                    <div class="page-content-wrapper">
 
-                            <!-- HEADER -->
-                            
-                            <div class="page-header py-6 text-light">
-                                <ol class="breadcrumb text-white">
-                                    <li class="breadcrumb-item "><a href="#">Dashboard</a></li>
-                                    <li class="breadcrumb-item ">User</li>
-                                </ol>
-                            
-                                    <i class="icon-account text-white s-6 m-4"></i>
-                                    <span class="h4 "> User Management</span>
-                               
+                        <!-- HEADER -->
+                        <div class="page-header light-fg row no-gutters align-items-center justify-content-between">
+
+                            <!-- APP TITLE -->
+                            <div class="col-12 col-sm">
+
+                                <div class="logo row no-gutters justify-content-center align-items-start justify-content-sm-start">
+                                    <div class="logo-icon mr-3 mt-1">
+                                        <i class="icon-cube-outline s-6"></i>
+                                    </div>
+                                    <div class="logo-text">
+                                        <div class="h4">Users</div>
+                                        {% comment %} <div class="">Total orders: {{order_count}}</div> {% endcomment %}
+                                    </div>
+                                </div>
+
                             </div>
-                            <!-- / HEADER -->
+                            <!-- / APP TITLE -->
 
-                            <div class="page-content-card">
-                                <!-- CONTENT TOOLBAR -->
-                                <div class="toolbar p-6 ">users list</div>
-                                <!-- / CONTENT TOOLBAR -->
+                            <!-- SEARCH -->
+                            <div class="col search-wrapper px-2">
 
-                                <div class="page-content p-6 custom-scrollbar ps ps--theme_default ps--active-y" data-ps-id="c21704b2-7c22-40fa-d6eb-25187a0ac7f3">
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-icon">
+                                            <i class="icon icon-magnify"></i>
+                                        </button>
+                                    </span>
+                                    <input id="myInput-search" type="text" class="form-control" placeholder="Search" aria-label="Search" />
+                                </div>
+
+                            </div>
+                            <!-- / SEARCH -->
+
+                        </div>
+            
+
+                            
+
                                     <!-- DEMO CONTENT -->
-                                    <div class="container-fluid">
+                                    <div class="page-content-card">
                                         
-                                            
-                                            <table class="table  ">
+                                        <div class="table-wrapper-scroll-y  my-custom-scrollbar">   
+                                            <table class="dataTable table table-bordered table-striped mb-0"  >
                                                 <thead class="table-dark">
                                                     <td>username</td>
                                                     <td>Email ID</td>
@@ -53,7 +72,7 @@ User
                                                     <td>Is Active</td>
                                                 
                                                 </thead>
-                                                <tbody>
+                                                <tbody id="myTable">
                                                     
                                                     
                                                     {% for user in users %}
@@ -80,6 +99,11 @@ User
                                                     
                                                 </tbody>
                                             </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- / CONTENT -->
+                            </div>
                                             
 
                                         
@@ -90,20 +114,22 @@ User
 
                                        
                                     <!-- / DEMO CONTENT -->
-                                <div class="ps__scrollbar-x-rail" style="left: 0px; bottom: -611.2px;"><div class="ps__scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__scrollbar-y-rail" style="top: 611.2px; height: 482px; right: 0px;"><div class="ps__scrollbar-y" tabindex="0" style="top: 220px; height: 173px;"></div></div></div>
 
                             </div>
                         </div>
                         <!-- / CONTENT -->
                     </div>
+                </div>
 
-                <div class="ps__scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps__scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps__scrollbar-y-rail" style="top: 0px; right: 0px;"><div class="ps__scrollbar-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></div>
+               
             </div>
+        </div>
             
            
             
-        </main>
-    </body>
-</div>
+    </main>
+</body>
+
+
     
 {% endblock content %}

@@ -6,7 +6,7 @@ urlpatterns = [
     # path('myadminpage',views.myadmin, name="myadmin"),
     path('myadminlogout/', views.myadminlogout, name='myadminlogout'),
     path('userdata/', views.userdata, name='userdata'),
-    path('delete/<int:id>/', views.user_delete, name="user_delete"),
+    path('user_delete/<int:id>/', views.user_delete, name="user_delete"),
     # path('product_details/', views.product_details, name='product_details'),
     path('product_delete/<int:id>/', views.product_delete, name='product_delete'),
    

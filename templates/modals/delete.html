@@ -1,0 +1,23 @@
+{% extends 'modals/baseModal.html' %}
+
+<!--Modal ID-->
+{% block modal-id %}id="deleteModal"{% endblock modal-id %}
+
+
+
+<!--Modal Title-->
+{% block modal-title %}
+<i class="fas fa-trash-alt"></i>&nbsp;&nbsp; Delete 
+{% endblock modal-title %}
+
+<!--Modal Body-->
+{% block modal-body%}
+<div class="text-center text-danger"><i class="far fa-times-circle fa-5x mb-4 mt-2"></i></div>
+<div class="text-center text-danger">
+    <span>Do you want to delete ?</span>
+    <div class="text-dark mt-3 mb-2">user: <strong>{{user.name}}</strong></div>
+</div>
+{% endblock modal-body %}
+{% block modal-footer %}
+<a href="/user_delete/{{user.id}}" class="btn btn-outline-danger btn-sm btn-modal" >Delete </a>
+{% endblock modal-footer %}

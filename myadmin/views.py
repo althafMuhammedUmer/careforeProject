@@ -194,8 +194,9 @@ def userdata(request):
         search_key = request.GET.get(
             'key') if request.GET.get('key') != None else ''
         
-        user = Account.objects.filter(is_superadmin=False)
-        return render(request, 'myadmin2/userdata.html',{'users':user, 'admin': admin})
+        user = Account.objects.filter(is_superadmin=False).order_by('-date_joined')
+        user_count = str(user.count())
+        return render(request, 'myadmin2/userdata.html',{'users':user, 'admin': admin, 'user_count':user_count})
     else:
         return redirect('/')
 

@@ -1,6 +1,5 @@
-{% extends 'myadmin2/baseAdmin2/base.html' %} 
-{% load static %} 
-{% block content %}
+{% extends 'myadmin2/baseAdmin2/base.html' %} {% load static %} {% block
+content%}
 <style>
   .my-custom-scrollbar {
     position: relative;
@@ -129,13 +128,13 @@
                         <td>
                           <form action="#" method="POST">
                             {% csrf_token %}
-                            <button type="submit" class="btn ms-3 btn-warning text-white">
+                            <button type="submit" class="btn ms-3 btn-warning">
                               block
                             </button>
                           </form>
                         </td>
                         <td>
-                          <form action="{% url 'user_delete' user.id %}" method="POST">
+                          <form action="#" method="POST">
                             {% csrf_token %}
                             <button type="submit" class="btn ms-3 btn-danger">
                               delete

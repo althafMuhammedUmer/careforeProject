@@ -1,5 +1,6 @@
  {% load static %}
  <!-- Header Section Begin -->
+
  <header class="header">
     <div class="header__top">
         <div class="container">
@@ -29,7 +30,11 @@
                         
                         {% else %}
                         <div class="widget-header header__top__left">
-                            <small class="title text-muted">Welcome {{user.first_name}}</small>
+                            <small class="title text-muted">Welcome {{user.first_name}}   </small>
+                            {% if userprofile.profile_picture %}
+                            <img class="profile_pic" src="{{userprofile.profile_picture.url}}" alt="profile" width="50" height="50" style="border-radius: 50%;">
+                            
+                            {% endif %}
                             <div>
                                 {% if user.is_superadmin%}
                                 <a href="{% url 'myadmin2' %}">Dashboard</a> <span class="dark-transp">|</span>
@@ -38,6 +43,7 @@
                                 {% endif %}
                                 <a href="{% url 'logout' %}">Logout</a> 
                             </div>
+     
                         </div>
                         {% endif %}
                     

@@ -233,10 +233,6 @@ def razorpaysuccess(request):
     return render(request, 'orders/razorsuccess.html', context)
 
  
-    
-
-
-
 
 ###  paypal
 @login_required(login_url = 'login')

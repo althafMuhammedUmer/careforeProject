@@ -208,6 +208,19 @@ def user_delete(request,id):
         return redirect('userdata')
     else:
         return render(request,'/')
+    
+@login_required(login_url = 'login')    
+def user_block(request, id):
+    if request.user.is_superadmin:
+        user = Account.objects.get(id=id)
+        user.is_active = False
+        
+        return redirect('userdata')
+    
+    else:
+        return render(request, '/')
+        
+    
 
 
     

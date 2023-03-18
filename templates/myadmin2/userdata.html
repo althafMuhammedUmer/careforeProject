@@ -127,7 +127,7 @@
                         <td>{{user.last_login}}</td>
                         <td>{{user.is_active}}</td>
                         <td>
-                          <form action="#" method="POST">
+                          <form action=" {% url 'user_block' user.id %} " method="POST">
                             {% csrf_token %}
                             <button type="submit" class="btn ms-3 btn-warning text-white">
                               block
